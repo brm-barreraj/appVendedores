@@ -17,14 +17,6 @@ $include_path = ini_get("include_path");
 require_once("DB.php");
 require_once("DB/DataObject.php");
 
-/* Servidor  fba */
-/*
-$username_link = "brm2_userfd";
-$password_link = "i9^0c6Sf";
-$database_link = "fund3_s1t3db";
-$serverdb_link = "127.0.0.1";
-/**/
-
 /*LOCAL*/
 //
 $username_link = "root";
