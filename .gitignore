@@ -2,3 +2,4 @@
 # http://git-scm.com/docs/gitignore
 
 server/db/DBO.php
+server/templates_c/
