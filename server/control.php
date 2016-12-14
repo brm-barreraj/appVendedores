@@ -22,8 +22,7 @@
 				if (isset($user) && !empty($user) && !empty($pass)  ) {	
 					$usuario = $General->getTotalDatos('VenUsuarioAdmin',null,array('email'=>$user,'contrasena'=>$pass) );
 					if ($usuario) {
-						$data = $usuario;
-						
+						$data = $usuario;						
 						$error = 1;
 						/*
 							valor de la cookie = $nombre+$apellido+email
@@ -38,7 +37,8 @@
 				}
 			break;
 			
-			case '':
+			//control de paginador para usuarios
+			case 'nextUsuarios':
 				
 				break;
 
