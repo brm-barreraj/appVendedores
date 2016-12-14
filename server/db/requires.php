@@ -14,6 +14,7 @@ require($prefijo."db/requires.ini.php");
 
 //Clases
 require($prefijo."class/class.General.inc.php");
+require($prefijo."class/class.Usuario.inc.php");
 /*require($prefijo."class/class.MillerLite.inc.php");*/
 
 //Smarty
