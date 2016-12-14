@@ -33,6 +33,11 @@
           },
           success:function(data){
             console.log(data);
+            if (data.error !=1) {
+              alert('Ocurrio un error, verifique sus datos de incio de sesión');
+            }else{
+              location.href='goHome.php';
+            }
           }
         });
     });
