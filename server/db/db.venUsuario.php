@@ -17,6 +17,7 @@ class DataObject_VenUsuario extends DB_DataObject
     public $usuario;                         // string(45)  
     public $contrasena;                      // string(45)  
     public $puntos;                          // string(45)  
+    public $estado;                          // string(1)  enum
     public $fechaMod;                        // datetime(19)  binary
     public $fecha;                           // datetime(19)  binary
 
@@ -34,6 +35,7 @@ class DataObject_VenUsuario extends DB_DataObject
              'usuario' =>  DB_DATAOBJECT_STR,
              'contrasena' =>  DB_DATAOBJECT_STR,
              'puntos' =>  DB_DATAOBJECT_STR,
+             'estado' =>  DB_DATAOBJECT_STR,
              'fechaMod' =>  DB_DATAOBJECT_STR + DB_DATAOBJECT_DATE + DB_DATAOBJECT_TIME,
              'fecha' =>  DB_DATAOBJECT_STR + DB_DATAOBJECT_DATE + DB_DATAOBJECT_TIME,
          );
@@ -58,6 +60,7 @@ class DataObject_VenUsuario extends DB_DataObject
              'usuario' => '',
              'contrasena' => '',
              'puntos' => '',
+             'estado' => 'A',
          );
     }
 
