@@ -13,6 +13,7 @@ class DataObject_VenCategoria extends DB_DataObject
     public $nombre;                          // string(75)  
     public $imagen;                          // string(150)  
     public $idPadre;                         // int(11)  
+    public $estado;                          // string(1)  enum
     public $fechaMod;                        // datetime(19)  binary
     public $fecha;                           // datetime(19)  binary
 
@@ -26,6 +27,7 @@ class DataObject_VenCategoria extends DB_DataObject
              'nombre' =>  DB_DATAOBJECT_STR,
              'imagen' =>  DB_DATAOBJECT_STR,
              'idPadre' =>  DB_DATAOBJECT_INT,
+             'estado' =>  DB_DATAOBJECT_STR,
              'fechaMod' =>  DB_DATAOBJECT_STR + DB_DATAOBJECT_DATE + DB_DATAOBJECT_TIME,
              'fecha' =>  DB_DATAOBJECT_STR + DB_DATAOBJECT_DATE + DB_DATAOBJECT_TIME,
          );
@@ -38,7 +40,7 @@ class DataObject_VenCategoria extends DB_DataObject
 
     function sequenceKey() // keyname, use native, native name
     {
-         return array('idCategoria', true, false);
+         return array('idCargo', true, false);
     }
 
     function defaults() // column default values 
@@ -46,6 +48,7 @@ class DataObject_VenCategoria extends DB_DataObject
          return array(
              'nombre' => '',
              'imagen' => '',
+             'estado' => 'A',
          );
     }
 

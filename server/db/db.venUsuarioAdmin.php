@@ -15,6 +15,7 @@ class DataObject_VenUsuarioAdmin extends DB_DataObject
     public $email;                           // string(45)  
     public $usuario;                         // string(45)  
     public $contrasena;                      // string(45)  
+    public $estado;                          // string(1)  enum
     public $fechaMod;                        // datetime(19)  binary
     public $fecha;                           // datetime(19)  binary
 
@@ -30,6 +31,7 @@ class DataObject_VenUsuarioAdmin extends DB_DataObject
              'email' =>  DB_DATAOBJECT_STR,
              'usuario' =>  DB_DATAOBJECT_STR,
              'contrasena' =>  DB_DATAOBJECT_STR,
+             'estado' =>  DB_DATAOBJECT_STR,
              'fechaMod' =>  DB_DATAOBJECT_STR + DB_DATAOBJECT_DATE + DB_DATAOBJECT_TIME,
              'fecha' =>  DB_DATAOBJECT_STR + DB_DATAOBJECT_DATE + DB_DATAOBJECT_TIME,
          );
@@ -42,7 +44,7 @@ class DataObject_VenUsuarioAdmin extends DB_DataObject
 
     function sequenceKey() // keyname, use native, native name
     {
-         return array('idCategoria', true, false);
+         return array('idCargo', true, false);
     }
 
     function defaults() // column default values 
@@ -53,6 +55,7 @@ class DataObject_VenUsuarioAdmin extends DB_DataObject
              'email' => '',
              'usuario' => '',
              'contrasena' => '',
+             'estado' => 'A',
          );
     }
 
