@@ -7,10 +7,12 @@
 <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <body>
 
+<span id="hojas">{#$count#}</span>
 
 <div>
-	<table border="1">
+	<table border="1" class="tabla">
 		<tr>
+			<td>id</td>
 			<td>Nombre</td>
 			<td>Apellido</td>
 			<td>Cargo</td>
@@ -19,6 +21,7 @@
 		</tr>
 		{#foreach from=$datos item=dato#}
 		  <tr>
+		  	<td>{#$dato.idUsuario#}</td>
 		  	<td>{#$dato.nombre#}</td>
 		  	<td>{#$dato.apellido#}</td>
 		  	<td>{#$dato.cargo#}</td>
@@ -32,13 +35,46 @@
   <li class="disabled">
     <a href="#">&laquo;</a>
   </li>
-  <li class="active">
+<!--   <li class="active">
     <a href="#">1 <span class="sr-only">(página actual)</span></a>
-  </li>
-  <li><a href="#">2</a></li>
+  </li> -->
+
+
+{#foreach from=$grupos item=numero#}
+	
+		  	 <li><a class="num" id="{#$numero#}" href="#">{#$numero#}</a></li>
+		  	
+
+		{#/foreach#}
+<!--   <li><a href="#">2</a></li>
   <li><a href="#">3</a></li>
   <li><a href="#">4</a></li>
-  <li><a href="#">5</a></li>
+  <li><a href="#">5</a></li> -->
 </ul>
+
+<script type="text/javascript">
+	$('.num').click(function(){
+		var num = $(this).attr('id');
+		alert(num);
+		$.ajax({
+			dataType:'json',
+			type:'POST',
+			url:'goUsuarios.php',
+			data:{
+				control:'paginar',
+				pagina:num,
+			},
+			success:function(data){
+				console.log(data);
+				var tabla='<tr><td>id</td><td>Nombre</td><td>Apellido</td><td>Cargo</td><td>Email</td><td>Puntos</td></tr>';//cabecera
+
+				for (var i =0; i< data.length ; i++) {
+					tabla+='<tr><td>'+data[i].idUsuario+'</td><td>'+data[i].nombre+'</td><td>'+data[i].apellido+'</td><td>'+data[i].cargo+'</td><td>'+data[i].email+'</td><td>'+data[i].puntos+'</td></tr>';
+				}
+				$('.tabla').html(tabla);
+			}
+		});
+	});
+</script>
 </body>
 </html>
