@@ -11,6 +11,7 @@ class DataObject_VenCargo extends DB_DataObject
     public $__table = 'ven_cargo';                       // table name
     public $idCargo;                         // int(11)  not_null primary_key auto_increment
     public $nombre;                          // string(150)  
+    public $estado;                          // string(1)  enum
     public $fechaMod;                        // datetime(19)  binary
     public $fecha;                           // datetime(19)  binary
 
@@ -22,6 +23,7 @@ class DataObject_VenCargo extends DB_DataObject
          return array(
              'idCargo' =>  DB_DATAOBJECT_INT + DB_DATAOBJECT_NOTNULL,
              'nombre' =>  DB_DATAOBJECT_STR,
+             'estado' =>  DB_DATAOBJECT_STR,
              'fechaMod' =>  DB_DATAOBJECT_STR + DB_DATAOBJECT_DATE + DB_DATAOBJECT_TIME,
              'fecha' =>  DB_DATAOBJECT_STR + DB_DATAOBJECT_DATE + DB_DATAOBJECT_TIME,
          );
@@ -41,6 +43,7 @@ class DataObject_VenCargo extends DB_DataObject
     {
          return array(
              'nombre' => '',
+             'estado' => 'A',
          );
     }
 

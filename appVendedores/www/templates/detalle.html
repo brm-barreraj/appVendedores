@@ -14,11 +14,12 @@
         <p class="detalle-subtitle">{{detalleNoticia.subtitulo}}</p>
       </div>
     </div>
-    <div class="spacer" style="width: 300px; height: 60px;"></div>
+    <div class="spacer" style="width: 300px; height: 85px;"></div>
     <div id="detalle-container9">
-      <div id="detalle-markdown20"  class="detalle-text">
-        <img ng-src="img/noticias/{{detalleNoticia.imagen}}">
-        <p>{{detalleNoticia.contenido}}</p>
+      <div id="detalle-markdown20"  class="detalle-text" ng-repeat="seccion in detalleNoticia.secciones ">
+        <p ng-if='seccion.titulo'><strong>{{seccion.titulo}}</strong></p>
+        <img ng-src="img/noticias/{{seccion.imagen}}">
+        <p>{{seccion.contenido}}</p>
       </div>
     </div>
   </ion-content>

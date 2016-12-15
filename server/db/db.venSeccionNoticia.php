@@ -1,38 +1,34 @@
 <?php
 /**
- * Table Definition for ven_noticia
+ * Table Definition for ven_seccion_noticia
  */
 
-class DataObject_VenNoticia extends DB_DataObject 
+class DataObject_VenSeccionNoticia extends DB_DataObject 
 {
     ###START_AUTOCODE
     /* the code below is auto generated do not remove the above tag */
 
-    public $__table = 'ven_noticia';                     // table name
-    public $idNoticia;                       // int(11)  not_null primary_key auto_increment
-    public $idCategoria;                     // int(11)  not_null multiple_key
-    public $idUsuarioAdmin;                  // int(11)  not_null multiple_key
-    public $titulo;                          // string(75)  
-    public $subtitulo;                       // string(75)  
+    public $__table = 'ven_seccion_noticia';             // table name
+    public $idSeccionNoticia;                // int(11)  not_null primary_key auto_increment
+    public $idNoticia;                       // int(11)  not_null multiple_key
+    public $titulo;                          // string(120)  
     public $imagen;                          // string(150)  
-    public $tipoTemplate;                    // int(11)  
+    public $contenido;                       // blob(65535)  blob
     public $estado;                          // string(1)  enum
     public $fechaMod;                        // datetime(19)  binary
     public $fecha;                           // datetime(19)  binary
 
     /* Static get */
-    function staticGet($k,$v=NULL) { return DB_DataObject::staticGet('DataObject_VenNoticia',$k,$v); }
+    function staticGet($k,$v=NULL) { return DB_DataObject::staticGet('DataObject_VenSeccionNoticia',$k,$v); }
 
     function table()
     {
          return array(
+             'idSeccionNoticia' =>  DB_DATAOBJECT_INT + DB_DATAOBJECT_NOTNULL,
              'idNoticia' =>  DB_DATAOBJECT_INT + DB_DATAOBJECT_NOTNULL,
-             'idCategoria' =>  DB_DATAOBJECT_INT + DB_DATAOBJECT_NOTNULL,
-             'idUsuarioAdmin' =>  DB_DATAOBJECT_INT + DB_DATAOBJECT_NOTNULL,
              'titulo' =>  DB_DATAOBJECT_STR,
-             'subtitulo' =>  DB_DATAOBJECT_STR,
              'imagen' =>  DB_DATAOBJECT_STR,
-             'tipoTemplate' =>  DB_DATAOBJECT_INT,
+             'contenido' =>  DB_DATAOBJECT_STR + DB_DATAOBJECT_BLOB,
              'estado' =>  DB_DATAOBJECT_STR,
              'fechaMod' =>  DB_DATAOBJECT_STR + DB_DATAOBJECT_DATE + DB_DATAOBJECT_TIME,
              'fecha' =>  DB_DATAOBJECT_STR + DB_DATAOBJECT_DATE + DB_DATAOBJECT_TIME,
@@ -41,7 +37,7 @@ class DataObject_VenNoticia extends DB_DataObject
 
     function keys()
     {
-         return array('idNoticia');
+         return array('idSeccionNoticia');
     }
 
     function sequenceKey() // keyname, use native, native name
@@ -53,8 +49,8 @@ class DataObject_VenNoticia extends DB_DataObject
     {
          return array(
              'titulo' => '',
-             'subtitulo' => '',
              'imagen' => '',
+             'contenido' => '',
              'estado' => 'A',
          );
     }
