@@ -20,7 +20,7 @@ require_once("DB/DataObject.php");
 /*LOCAL*/
 //
 $username_link = "root";
-$password_link = "root";
+$password_link = "1nt3r4ct1v3";
 $database_link = "vendedores";
 $serverdb_link = "127.0.0.1";
 /**/

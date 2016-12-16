@@ -32,11 +32,6 @@
   <script>
   $(document).ready(function(){
 
-
-
-  
-
-
     $("#login-buton").click(function(){
   result = sendAjax("serviceAdmin.php", "doLogin", {usuario:$('#user').val(),pass:$('#password').val()});
   if (result.error == 1){
@@ -45,7 +40,7 @@
     alert('Ocurrio un error, verifique sus datos de incio de sesión');
   }
     });
-  })
+  });
   </script>
 
     </body>

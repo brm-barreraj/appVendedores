@@ -23,3 +23,7 @@ function sendAjax(url, action, data) {
   });
   return result;
 };
+
+function logout(){
+  sendAjax('url', 'logout', {});
+}
