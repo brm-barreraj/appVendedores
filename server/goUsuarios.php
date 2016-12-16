@@ -2,30 +2,31 @@
 	
 	//php_value display_errors 1
 
-	error_reporting(E_ALL);
-	ini_set('display_errors',1);
 
 	require 'db/requires.php';
 	
+
 	if(isset($_COOKIE['login']) ){
 
-		if (isset($_POST['control'])) {
+		if (isset($_POST['accion'])) {
 			
-			switch ($_POST['control']) {
-				case 'paginar':
+			switch ($_POST['accion']) {
+					case 'buscadorUsuario':
 					$usr = new Usuario();
-					$ini = $_POST['pagina'];
-					$ini = ((int)$ini == 1)? ((int)$ini-1) :( ( (int)$ini  * (int)$usr->getLimit() )- (int)$usr->getLimit() );	
-					//printVar($ini);			
-					
-					$pagina = $usr->getUsuariosLimitRange($ini);
-					echo json_encode($pagina);
+					$termino = $_POST['termino'];
+					$result = $usr->serchTermUser($termino);
+					if (count($result) > 0) {
+					$data = $result;
+					$error = 1;
+				}else{
+					$error = 2;
+				}
+				$result['data']=$result;
+				$result['data']=$error;
+				echo json_encode($result);
 					exit();
 					break;
-				
-				default:
-					# code...
-					break;
+
 			}
 
 		}else{
@@ -51,9 +52,7 @@
 		//printVar($cook);
 		
 		$smarty->assign('user',$cook);//nombre usuaro logueado
-		//$smarty->assing('nom',$no);//nombre usuaro logueado
-		//$smarty->assing('ape',$ap);//apelido de usario logueado
-		//$smarty->assing('ema',$em); //email del usuario logueado
+		$smarty->assign('seccion','usuario');//nombre de la seccion en la que estamos actualmente
 		$smarty->assign('datos',$data); //primeros 10 usuaros
 		$smarty->assign('count',$count);//numero total de usaurios
 		$smarty->assign('grupos',$arr);//arreglo para pintar los numeros del paginador

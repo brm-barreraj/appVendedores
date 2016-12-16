@@ -1,8 +1,9 @@
 <?php 
 	class Usuario{
 
-		/*metodos para los usuarios*/
 		private $limite=10;
+		
+		/*metodos para los usuarios*/
 
 		function getLimit(){
 			return $this->limite;
@@ -114,6 +115,83 @@
 			//printVar($data,'getUsuariosLimitRange');
 			return $data;
 		}
+
+		function serchTermUser($termino){
+
+			$control = (is_numeric($termino) )? 'numb': 'stri';
+
+			DB_DataObject::debugLevel(0);
+			$obj = DB_DataObject::Factory('VenUsuario');
+			$data='';
+			
+			switch ($control) {
+				case 'numb':
+					$obj->whereAdd('puntos LIKE "'.$obj->escape($termino).'%"');
+					//$obj->whereAdd('age > 30', 'OR');
+					$obj->find();
+					$i=0;
+					while($obj->fetch()){
+						$data[$i]['idUsuario']=$obj->idUsuario;
+						$data[$i]['idCargo']=$obj->idCargo;
+
+						$nombreCargo=$this->getCargoById($obj->idCargo);
+						$nombreCargo=$nombreCargo['nombre'];
+						$data[$i]['cargo']= $nombreCargo;
+						
+						$data[$i]['nombre']=$obj->nombre;
+						$data[$i]['apellido']=$obj->apellido;
+						$data[$i]['email']=$obj->email;
+						$data[$i]['usuario']=$obj->usuario;
+						$data[$i]['puntos']=$obj->puntos;
+						$data[$i]['estado']=$obj->estado;
+						$data[$i]['fechaMod']=$obj->fechaMod;
+						$data[$i]['fecha']=$obj->fecha;
+
+						$i++;
+					}
+					printVar($data);
+					return $data;
+				break;
+
+				case 'stri':
+					$obj->whereAdd('nombre LIKE "'.$obj->escape($termino).'%"');
+					$obj->whereAdd('apellido LIKE "'.$obj->escape($termino).'%"', 'OR');
+					$obj->find();
+					$i=0;
+					while($obj->fetch()){
+						$data[$i]['idUsuario']=$obj->idUsuario;
+						$data[$i]['idCargo']=$obj->idCargo;
+
+						$nombreCargo=$this->getCargoById($obj->idCargo);
+						$nombreCargo=$nombreCargo['nombre'];
+						$data[$i]['cargo']= $nombreCargo;
+						
+						$data[$i]['nombre']=$obj->nombre;
+						$data[$i]['apellido']=$obj->apellido;
+						$data[$i]['email']=$obj->email;
+						$data[$i]['usuario']=$obj->usuario;
+						$data[$i]['puntos']=$obj->puntos;
+						$data[$i]['estado']=$obj->estado;
+						$data[$i]['fechaMod']=$obj->fechaMod;
+						$data[$i]['fecha']=$obj->fecha;
+
+						$i++;
+					}
+					//printVar($data);
+					$obj->free();
+					return $data;
+				break;
+				
+			}
+
+			
+			$obj->limit($ini,$this->limite);
+			$obj->find();
+			$i = 0;
+			$data='';
+			while($obj->fetch()){
+		}
+	}
 
 	/*medotos para los cargos*/
 
