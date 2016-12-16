@@ -1,0 +1,16 @@
+<ion-view  id="page2" class="main">
+  <ion-content class="has-header">
+    <div class="spacer" style="height: 50px;"></div>
+    <div id="ventas-container5">
+      <div id="ventas-markdown7" style="text-align:center;" class="show-list-numbers-and-dots">
+        <p class="list-title subcategoria-title">
+          {{categoria}}
+        </p>
+      </div>
+      <div class="spacer" style="height: 40px;"></div>
+      <div>
+        <a id="main-button4" ng-repeat="subcategoria in subcategorias" ng-click="selSubcategoria(subcategoria)" class="btn-subcat btn-subcategoria-caja-{{subcategoria.nDiv}}" >{{subcategoria.nombre}}</a>
+      </div>
+    </div>
+  </ion-content>
+</ion-view>

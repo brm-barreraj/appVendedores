@@ -1,0 +1,54 @@
+<ion-side-menus enable-menu-with-back-views="true">
+  <ion-side-menu-content>
+    <ion-nav-bar class="transparent">
+      <ion-nav-back-button class="azul-claro"></ion-nav-back-button>
+      <ion-nav-buttons side="right">
+        <button class="white transparent button button-icon button-clear ion-navicon" menu-toggle="right"></button>
+      </ion-nav-buttons>
+    </ion-nav-bar>
+    <ion-nav-view name="side-menu21"></ion-nav-view>
+  </ion-side-menu-content>
+  <ion-side-menu side="right" id="side-menu21" class="bg-menu">
+    <ion-content padding="false" class="side-menu-right has-header ">
+      <div class="spacer" style="height: 60px;"></div>
+      <div id="menu-container2">
+        <div id="menu-markdown21" style="text-align:center;" class="show-list-numbers-and-dots">
+          <p class="menu-puntos azul-claro">
+            {{puntosUsuario}}p
+          </p>
+        </div>
+        <div id="menu-markdown21" style="text-align:center;" class="show-list-numbers-and-dots">
+          <p class="menu-nombre">
+            <strong>{{nombreUsuario}}</strong>
+          </p>
+        </div>
+        <div id="menu-markdown23" style="text-align:center;" class="show-list-numbers-and-dots">
+          <p class="menu-cargo azul-claro">{{cargoUsuario}}</p>
+        </div>
+      </div>
+      <div class="spacer" style="height: 60px;"></div>
+      <ion-list id="menu-list1">
+        <div>
+          <ion-item id="menu-list-item1" ng-click="selMenuCategoria(categoria1)" menu-close="">
+          <i class="icon-ventas"></i>
+          <span>{{categoria1.nombre}}</span>
+          </ion-item>
+        </div>
+        <div>
+          <ion-item id="menu-list-item2" ng-click="selMenuCategoria(categoria2)" menu-close="">
+            <i class="icon-marketing"></i>
+            <span> {{categoria2.nombre}} </span>
+          </ion-item>
+        </div>
+        <div>
+          <ion-item id="menu-list-item3" ng-click="loguot(categoria2)" menu-close="">
+            <i class="icon-salir"></i>
+            <span>Salir</span>
+          </ion-item>
+        </div>
+        
+        
+      </ion-list>
+    </ion-content>
+  </ion-side-menu>
+</ion-side-menus>

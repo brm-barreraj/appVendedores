@@ -4,40 +4,10 @@ $error = -1;
 $data="";
 $General = new General();
 
-/*
 
-$idSubCategoria="1";
-$idUsuarioAdmin="1";
-$titulo="titulo";
-$subtitulo="subtitulo";
-$contenido="contenido";
-$imagen="6.jpg";
-$tipoTemplate="1";
 
-$idSubCategoria = $idSubCategoria;
-$idUsuarioAdmin = $idUsuarioAdmin;
-$Noticia = new General();
-$Noticia->idCategoria=$idSubCategoria;
-$Noticia->idUsuarioAdmin=$idUsuarioAdmin;
-$Noticia->titulo=utf8_encode($titulo);
-$Noticia->subtitulo=utf8_encode($subtitulo);
-$Noticia->contenido=utf8_encode($contenido);
-$Noticia->imagen=$imagen;
-$Noticia->estado='A';
-$Noticia->tipoTemplate=$tipoTemplate;
-$Noticia->fechaMod = date("Y-m-d H:i:s");
-$idNoticia = $Noticia->setInstancia('VenNoticia');
-//sendMessageAndroid($request->titulo);
-printVar($idNoticia);
-if ($idNoticia > 0) {
-	$data = $idNoticia;
-	$error = 1;
-}else{
-	$error = 0;
-}
-die;
 
-*/
+
 	
 	
 	
@@ -69,12 +39,113 @@ die;
 					$error = 3;
 				}
 			break;
-			
-			//accion de paginador para usuarios
-			case 'nextUsuarios':
-				
-				break;
 
+			/* Inserta categorías y subcategorías */
+			case 'setCategoria':
+				if (isset($request->nombre) && $request->nombre != "" && 
+					isset($request->imagen) && $request->imagen != "") {
+					$Categoria = new General();
+					$Categoria->nombre = $request->nombre;
+					$Categoria->imagen = $request->imagen;
+					$Categoria->idPadre = (isset($request->idCategoria) && $request->idCategoria > 0) ? $request->idCategoria : 0;
+					$Categoria->estado='A';
+					$Categoria->fechaMod = date("Y-m-d H:i:s");
+					$idCategoria = $Categoria->setInstancia('VenCategoria');
+					if ($idCategoria > 0) {
+						$data = $idCategoria;
+						$error = 1;
+					} else {
+						$error = 0;
+					}
+				}else{
+					$error=3;
+				}
+			break;
+
+			/* Lista categorías */
+			case 'getCategorias':
+				$categorias = $General->getTotalDatos('VenCategoria',null,array('idPadre'=>0,'estado'=>'A'));
+				if (count($categorias) > 0) {
+					$data = $categorias;
+					$error = 1;
+				}else{
+					$error = 2;
+				}
+			break;
+
+			/* Inserta una noticia */
+			case 'setNoticia':
+				if (isset($request->idSubCategoria) && $request->idSubCategoria > 0 &&
+					isset($request->idUsuarioAdmin) && $request->idUsuarioAdmin > 0 &&
+					isset($request->titulo) && $request->titulo != "" &&
+					isset($request->subtitulo) && $request->subtitulo != "" &&
+					isset($request->contenido) && $request->contenido != "" &&
+					isset($request->imagen) && $request->imagen != "" &&
+					isset($request->tipoTemplate) && $request->tipoTemplate != "") {
+					$idSubCategoria = $request->idSubCategoria;
+					$idUsuarioAdmin = $request->idUsuarioAdmin;
+					$Noticia = new General();
+					$Noticia->idCategoria=$idSubCategoria;
+					$Noticia->idUsuarioAdmin=$idUsuarioAdmin;
+					$Noticia->titulo=utf8_encode($request->titulo);
+					$Noticia->subtitulo=utf8_encode($request->subtitulo);
+					$Noticia->contenido=utf8_encode($request->contenido);
+					$Noticia->imagen=$request->imagen;
+					$Noticia->tipoTemplate=$request->tipoTemplate;
+					$Noticia->estado='A';
+					$Noticia->fechaMod = date("Y-m-d H:i:s");
+					$idNoticia = $Noticia->setInstancia('VenNoticia');
+					sendMessageAndroid($request->titulo);
+					if ($idNoticia > 0) {
+						$data = $idNoticia;
+						$error = 1;
+					}else{
+						$error = 0;
+					}
+				} else {
+					$error = 3;
+				}
+			break;
+
+			/* Lista todas las noticias */
+			case 'getNoticias':
+				if (isset($request->idSubcategoria) && $request->idSubcategoria > 0) {
+					$idSubcategoria = $request->idSubcategoria;
+					$noticia = $General->getTotalDatos('VenNoticia',array('idNoticia','imagen','titulo'),array('idCategoria'=>$idSubcategoria,'estado'=>'A'));
+					if (count($noticia) > 0) {
+						$data = $noticia;
+						$error = 1;
+					}else{
+						$error = 2;
+					}
+				} else {
+					$error = 3;
+				}
+			break;
+
+				/* Lista detalle de una noticia */
+			case 'getNoticia':
+				if (isset($request->idNoticia) && $request->idNoticia > 0) {
+					$idNoticia = $request->idNoticia;
+					$noticia = $General->getTotalDatos('VenNoticia',null,array('idNoticia'=>$idNoticia,'estado'=>'A'));
+
+					if (count($noticia) > 0) {
+						$secciones = $General->getTotalDatos('VenSeccionNoticia',null,array('idNoticia'=>$idNoticia,'estado'=>'A'));
+						$data = $noticia[0];
+						if ($secciones) {
+							$data->secciones = $secciones;
+						}
+						
+						$error = 1;
+					}else{
+						$error = 2;
+					}
+				} else {
+					$error = 3;
+				}
+			break;
+
+			// Trae todos los 
 			case 'getPaginadorUsuario':
 					$usr = new Usuario();
 					$ini = $_POST['pagina'];
@@ -83,35 +154,8 @@ die;
 					$pagina = $usr->getUsuariosLimitRange($ini);
 					echo json_encode($pagina);
 					exit();
-				break;
+			break;
 				
-			case '':
-				
-				break;
-
-			case '':
-				
-				break;
-
-			case '':
-				
-				break;
-
-			case '':
-				
-				break;
-
-			case '':
-				
-				break;
-
-			case '':
-				
-				break;
-
-			case '':
-				
-				break;
 		}//end switch
 	}//end if 
 

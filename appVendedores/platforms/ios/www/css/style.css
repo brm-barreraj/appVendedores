@@ -1,0 +1,345 @@
+/* Empty. Add your own CSS if you like */
+.login {
+    background: url('../img/imgs/bg-login.jpg') no-repeat;
+    background-size: cover;
+}
+
+.main{
+    background: url('../img/imgs/bg-categorias.jpg') no-repeat;
+    background-size: cover;
+}
+
+.bg-list-noticias{
+    background: url('../img/imgs/bg-noticias.jpg') no-repeat white;
+    background-size: contain;
+    background-position-y: -100px;
+}
+
+.bg-detalle{
+    background: url('../img/imgs/bg-noticias.jpg') no-repeat;
+    background-size: contain;
+    background-position-y: -100px;
+    background-color: white;
+}
+
+.bg-menu{
+    background: url('../img/imgs/bg-menu.jpg') no-repeat;
+    background-size: cover;
+}
+
+.bg-menu .list ion-item a, .bg-menu .list ion-item {
+    background: none;
+}
+
+.bg-menu .list ion-item {
+    border: 0px;
+}
+
+.bg-menu .list ion-item a{
+    background: transparent;
+    color: white;
+    font-size: 18px;
+    padding: 20px 0 0 14px;
+}
+
+.logo{
+    margin-left: 30%;
+    width: 40%;
+}
+
+label.item.item-input {
+    background: transparent;
+    border: 0;
+    border-bottom: 1px solid white;
+    padding-left: 0;
+}
+
+label.item.item-input input {
+    color: white;
+}
+
+.btn-categoria{
+    background: none;
+    color: white;
+    font-size: 40px;
+    padding: 30% 0;
+    display: block;
+    text-align: center;
+    text-decoration: none;
+}
+
+.btn-categoria:active, .btn-categoria:focus, .btn-categoria:hover, .btn-categoria:visited,{
+    background: none;
+}
+
+.btn-login{
+    color: white !important;
+    background: #00bdf2; /* Old browsers */
+    background: -moz-linear-gradient(top,  #00bdf2 0%, #00b3f0 20%, #0066b3 75%, #004785 100%); /* FF3.6-15 */
+    background: -webkit-linear-gradient(top,  #00bdf2 0%,#00b3f0 20%,#0066b3 75%,#004785 100%); /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(to bottom,  #00bdf2 0%,#00b3f0 20%,#0066b3 75%,#004785 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00bdf2', endColorstr='#004785',GradientType=0 ); /* IE6-9 */
+}
+
+.logo-small{
+    width: 20px;
+    height: 20px;
+    margin: 0 10px;
+}
+
+.logo-mail{
+    background: url('../img/svg/mail.svg') no-repeat;
+    background-size: cover;
+}
+
+.logo-pass{
+    background: url('../img/svg/pass.svg') no-repeat;
+    background-size: cover;
+}
+
+.logo-arrow-go{
+    background: url('../img/svg/arrow-go.svg') no-repeat;
+    background-size: cover;
+}
+
+.icon-ventas{
+    background: url('../img/svg/ventas.svg') no-repeat;
+    background-size: cover;
+    width: 30px;
+    height: 30px;
+    float: left;
+    margin: 0 20px;
+}
+
+.icon-marketing{
+    background: url('../img/svg/marketing.svg') no-repeat;
+    background-size: cover;
+    width: 30px;
+    height: 30px;
+    float: left;
+    margin: 0 20px;
+}
+
+.icon-salir {
+    background: url(../img/svg/marketing.svg) no-repeat;
+    background-size: cover;
+    width: 30px;
+    height: 30px;
+    float: left;
+    margin: 0 20px;
+}
+
+.azul-claro{
+    color: #2be9ff !important;
+}
+.menu-puntos{
+    font-size: 25px;
+}
+
+.menu-nombre{
+    color: white;
+    font-size: 22px;
+}
+
+.menu-cargo{
+    font-size: 15px;
+}
+
+.list-title{
+    color: white;
+    font-size: 22px;
+}
+
+.list-subtitle{
+    color: #b9b7b7;
+    font-size: 18px;
+}
+
+.detalle-fecha{
+    color: #b9b7b7;
+}
+.detalle-title{
+    color: white;
+    font-size: 26px;
+}
+.detalle-subtitle{
+    color: #b9b7b7;
+    margin-top: 16px;
+}
+
+.detalle-text{
+    color: #888686;
+}
+
+.detalle-border-title{
+    border-top: 3px solid;
+    width: 40px;
+}
+
+.transparent{
+    background: none !important;
+    border: none;
+}
+
+.white{
+    color: white !important;
+}
+
+.detalle-icon-fecha{
+    background: url('../img/svg/reloj.svg') no-repeat;
+    background-size: cover;
+    width: 20px;
+    height: 20px;
+    float: left;
+    margin-right: 6px;
+}
+
+.subcategoria-title{
+    font-size: 25px;
+}
+
+/*
+.subcategoria-row{
+    background: none;
+    width: 100%;
+    float: left;
+}
+
+.subcategoria-row1{
+    border-bottom: 2px solid #2be9ff;
+    border-top: 2px solid #2be9ff;
+}
+
+.subcategoria-row2{
+    border-bottom: 2px solid #2be9ff;
+}
+
+.subcategoria-row3{
+    border-bottom: 2px solid #2be9ff;
+}
+
+.subcategoria-row2 a{
+    width: 100%;
+}
+
+.btn-subcategoria-row1-caja1{
+    width: 40%;
+    border-right: 2px solid #2be9ff;
+}
+.btn-subcategoria-row1-caja2{
+    width: 60%;
+}
+.btn-subcategoria-row3-caja1{
+    width: 60%;
+}
+.btn-subcategoria-row3-caja2{
+    width: 40%;
+    border-left: 2px solid #2be9ff;
+}
+*/
+
+.btn-subcategoria-caja-1{
+    width: 40%;
+    border: 2px solid #2be9ff;
+    border-left: none;
+}
+.btn-subcategoria-caja-2{
+    width: 60%;
+    border: 2px solid #2be9ff;
+    border-left: none;
+    border-right: none;
+}
+.btn-subcategoria-caja-3{
+    width: 100%;
+    border-bottom: 2px solid #2be9ff;
+    height: auto !important;
+}
+.btn-subcategoria-caja-4{
+    width: 60%;
+    border: 2px solid #2be9ff;
+    border-left: none;
+    border-top: none;
+}
+.btn-subcategoria-caja-5{
+    width: 40%;
+    border-bottom: 2px solid #2be9ff;
+}
+
+
+.btn-subcat{
+    color: white;
+    background: none;
+    display: block;
+    font-size: 16px;
+    padding: 40px 8px;
+    text-align: center;
+    text-decoration: none;
+    float: left;
+    height: 124px;
+    background: rgba(20, 28, 49, 0.75);
+    display: table;
+}
+
+.main-icon{
+    position: fixed;
+    width: 40px;
+    height: 40px;
+}
+
+.main-icon-ventas{
+    background: url('../img/svg/carrito.svg') no-repeat;
+    background-size: contain;
+    top: 50px;
+    right: 20px;
+}
+.main-icon-marketing{
+    background: url('../img/svg/torta.svg') no-repeat;
+    background-size: contain;
+    bottom: 20px;
+    left: 20px;
+}
+
+.list-cat-icon-carrito{
+    background: url('../img/svg/carrito.svg') no-repeat;
+    background-size: contain;
+    float: left;
+    width: 25px;
+    height: 25px;
+}
+.list-cat-icon-torta{
+    background: url('../img/svg/torta.svg') no-repeat;
+    background-size: contain;
+    float: left;
+    width: 25px;
+    height: 25px;
+}
+
+.list-cat-tipo{
+    width: 30%;
+    height: 34px;
+    margin-left: 40%;
+}
+.separador-icons{
+    float: left;
+    margin: 5px;
+    font-size: 25px;
+    color: #888686;
+}
+
+.detalle-info-noticia{
+    padding: 0 10px;
+}
+
+.detalle-text{
+    background: white;
+    text-align:justify;
+    padding:0 10px;
+}
+.detalle-text img{
+    width: 100%;
+    padding:10px 0;
+}
+
+.item {
+    color: #f8f8f8;
+}

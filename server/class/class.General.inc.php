@@ -273,5 +273,27 @@ class General
 		}
 		return($ret);
 	}
+
+	function countRows($table,$conditions=""){
+		$objDBO = DB_DataObject::Factory($table);
+		if ($conditions!="") {
+			$objDBO->whereAdd($conditions);
+		}
+		$total = $objDBO->count(DB_DATAOBJECT_WHEREADD_ONLY);
+		$objDBO->free();
+		return $total;
+	}
+
+	function query($tabla,$query){
+		$objDBO = DB_DataObject::Factory($tabla);
+		$objDBO->query($query);
+		$rows=array();
+		while($objDBO->fetch()){
+			//Asigna los valores
+			$rows[] = $objDBO->toArray();
+		}
+		$objDBO->free();
+		return($rows);
+	}
 }
 ?>

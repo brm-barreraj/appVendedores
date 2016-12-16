@@ -17,27 +17,6 @@ if ($request==null) {
 
 switch ($request->accion) {
 
-	/* Inserta categorías y subcategorías */
-	case 'setCategoria':
-		if (isset($request->nombre) && $request->nombre != "" && 
-			isset($request->imagen) && $request->imagen != "") {
-			$Categoria = new General();
-			$Categoria->nombre = $request->nombre;
-			$Categoria->imagen = $request->imagen;
-			$Categoria->idPadre = (isset($request->idCategoria) && $request->idCategoria > 0) ? $request->idCategoria : 0;
-			$Categoria->fechaMod = date("Y-m-d H:i:s");
-			$idCategoria = $Categoria->setInstancia('VenCategoria');
-			if ($idCategoria > 0) {
-				$data = $idCategoria;
-				$error = 1;
-			} else {
-				$error = 0;
-			}
-		}else{
-			$error=3;
-		}
-	break;
-
 	/* Lista categorías */
 	case 'getCategorias':
 		$categorias = $General->getTotalDatos('VenCategoria',null,array('idPadre'=>0,'estado'=>'A'));
@@ -59,39 +38,6 @@ switch ($request->accion) {
 				$error = 1;
 			}else{
 				$error = 2;
-			}
-		} else {
-			$error = 3;
-		}
-	break;
-
-	/* Inserta una noticia */
-	case 'setNoticia':
-		if (isset($request->idSubCategoria) && $request->idSubCategoria > 0 &&
-			isset($request->idUsuarioAdmin) && $request->idUsuarioAdmin > 0 &&
-			isset($request->titulo) && $request->titulo != "" &&
-			isset($request->subtitulo) && $request->subtitulo != "" &&
-			isset($request->contenido) && $request->contenido != "" &&
-			isset($request->imagen) && $request->imagen != "" &&
-			isset($request->tipoTemplate) && $request->tipoTemplate != "") {
-			$idSubCategoria = $request->idSubCategoria;
-			$idUsuarioAdmin = $request->idUsuarioAdmin;
-			$Noticia = new General();
-			$Noticia->idCategoria=$idSubCategoria;
-			$Noticia->idUsuarioAdmin=$idUsuarioAdmin;
-			$Noticia->titulo=utf8_encode($request->titulo);
-			$Noticia->subtitulo=utf8_encode($request->subtitulo);
-			$Noticia->contenido=utf8_encode($request->contenido);
-			$Noticia->imagen=$request->imagen;
-			$Noticia->tipoTemplate=$request->tipoTemplate;
-			$Noticia->fechaMod = date("Y-m-d H:i:s");
-			$idNoticia = $Noticia->setInstancia('VenNoticia');
-			sendMessageAndroid($request->titulo);
-			if ($idNoticia > 0) {
-				$data = $idNoticia;
-				$error = 1;
-			}else{
-				$error = 0;
 			}
 		} else {
 			$error = 3;
