@@ -529,8 +529,8 @@ article .link .link-nav b:nth-child(2){float: right;}
 	padding: 2% 3%;
 }
 
-
-.create-field-line{
+.create-field-line,
+.login-field-line{
 	height: 2px;
 	width: 100%;
 	background: rgb(0,71,133);
@@ -672,4 +672,58 @@ textarea:-ms-input-placeholder
 	margin-top: 12px;
 }
 
-
+#login{
+	position: relative;
+	width: 40%;
+	overflow: hidden;
+	display: block;
+	margin: 0 auto;
+	top: calc(50% - 198px);
+}
+#login-logo{background-image: url(../img/logo.png);height: 150px;width: inherit;background-size: contain;background-repeat: no-repeat;background-position: center center;display: block;margin: 0 auto 5% auto;}
+#login #login-fileds{
+	width: 100%;
+	position: relative;
+	display: block;
+	float: left;
+}
+#login #login-fileds .login-field{
+	width: 100%;
+	margin-bottom: 10px;
+}
+#login #login-fileds .login-field input{
+	background: transparent;
+	border: 0;
+	width: 100%;
+	font-family: col-thin;
+	font-size: 25px;
+	color: #fff;
+	padding: 2% 3%;
+}
+#login-buton{
+	width: 100%;
+	height: 10%;
+	position: relative;
+	display: block;
+	float: left;
+	background: /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#004587+0,0066b6+25,00b4f2+80,00bdf3+100 */ background: rgb(0,69,135); /* Old browsers */
+	background: -moz-linear-gradient(top,  rgba(0,69,135,1) 0%, rgba(0,102,182,1) 25%, rgba(0,180,242,1) 80%, rgba(0,189,243,1) 100%); /* FF3.6-15 */
+	background: -webkit-linear-gradient(top,  rgba(0,69,135,1) 0%,rgba(0,102,182,1) 25%,rgba(0,180,242,1) 80%,rgba(0,189,243,1) 100%); /* Chrome10-25,Safari5.1-6 */
+	background: linear-gradient(to bottom,  rgba(0,69,135,1) 0%,rgba(0,102,182,1) 25%,rgba(0,180,242,1) 80%,rgba(0,189,243,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#004587', endColorstr='#00bdf3',GradientType=0 ); /* IE6-9 */
+	color: #fff;
+	font-family: col-reg;
+	font-size: 18px;
+	display: block;
+	text-align: center;
+	border-radius: 2px;
+	margin-top: 5%;
+}
+#login-buton i{
+	color: #fff;
+	font-size: 35px;
+	position: absolute;
+	top: 22%;
+	cursor: pointer;
+	right: 5%;
+}
