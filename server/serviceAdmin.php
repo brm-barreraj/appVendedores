@@ -144,8 +144,6 @@ if (isset($_POST['accion']) && !empty($_POST['accion']) ) {
 			}else{
 				$error = 3;
 			}
-			
-			
 		break;
 
 		/* Actualiza campos de un Usuario */
@@ -211,8 +209,7 @@ if (isset($_POST['accion']) && !empty($_POST['accion']) ) {
 
 		/* Inserta categorías y subcategorías */
 		case 'setCategoria':
-			if (isset($_POST['nombre']) && $_POST['nombre'] != "" && 
-				isset($_POST['imagen']) && $_POST['imagen'] != "") {
+			if (isset($_POST['nombre']) && $_POST['nombre'] != "") {
 				$Categoria = new General();
 				$Categoria->nombre = $_POST['nombre'];
 				$Categoria->imagen = $_POST['imagen'];

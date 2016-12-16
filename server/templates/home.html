@@ -1,4 +1,5 @@
 {#include file="head.html" user=$user#}
+{#include file="menu.html"#}
 <article>
 	
 	<div id="links">
@@ -8,7 +9,7 @@
 					<em class="lnr lnr-users"></em>
 				</div>
 			</div>
-			<p>3.000 Usuarios</p>
+			<p>{#$countUsuarios#} Usuarios</p>
 			<div class="link-nav">
 				<b class="lnr lnr-eye"></b>
 				<b class="lnr lnr-plus"></b>
@@ -21,7 +22,7 @@
 					<em class="lnr lnr-spell-check"></em>
 				</div>
 			</div>
-			<p>49 Categorías</p>
+			<p>{#$countCategorias#} Categorías</p>
 			<div class="link-nav">
 				<b class="lnr lnr-eye"></b>
 				<b class="lnr lnr-plus"></b>
@@ -34,7 +35,7 @@
 					<em class="lnr lnr-news"></em>
 				</div>
 			</div>
-			<p>20.000 Noticias</p>
+			<p>{#$countNoticias#} Noticias</p>
 			<div class="link-nav">
 				<b class="lnr lnr-eye"></b>
 				<b class="lnr lnr-plus"></b>

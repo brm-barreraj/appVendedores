@@ -5,7 +5,7 @@ $('.num').click(function(){
 	$('#pagI').html(pagI);
 	$('#pagF').html(pagF);
 	// obtiene los datos de usuario
-	result = sendAjax("control.php", "getUsuarios", {pagina:num});
+	result = sendAjax("serviceAdmin.php", "getUsuarios", {pagina:num});
 	if (result.error == 1){
 		data = result.data;
 		var tabla='';
@@ -24,7 +24,7 @@ $('#search').keyup(function(){
 	termino = termino.trim();
 	termino = (termino.length > 60)? termino.slice(0,59): termino;
 	console.log(termino);
-	result = sendAjax("goUsuarios.php", "buscadorUsuario", {termino:termino});
+	result = sendAjax("usuarios.php", "buscadorUsuario", {termino:termino});
 	if(result.error == 1){
 		data = result.data;
 		var tabla='';

@@ -22,7 +22,7 @@
 					$error = 2;
 				}
 				$result['data']=$result;
-				$result['data']=$error;
+				$result['error']=$error;
 				echo json_encode($result);
 					exit();
 					break;
@@ -35,6 +35,7 @@
 		$obj= new Usuario();
 		$count = $obj->getCountUsuarios(); 
 		$data = $obj->getUsuariosLimit();
+		//$data = $obj->getAllUsuarios();
 
 		$grupos = ceil((int)$count/$obj->getLimit());
 		$arr = array();
@@ -58,6 +59,7 @@
 		$smarty->assign('grupos',$arr);//arreglo para pintar los numeros del paginador
 		//$smarty->display('usuarios.html');
 		$smarty->display('users.html');
+		//$smarty->display('usuarios.html');
 		}
 	}else{
 		header('Location:login.php');
