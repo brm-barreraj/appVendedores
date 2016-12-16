@@ -343,3 +343,10 @@ label.item.item-input input {
 .item {
     color: #f8f8f8;
 }
+
+#login-list2{
+	width: 85%;
+	position: relative;
+	display: block;
+	margin: 0 auto;
+}

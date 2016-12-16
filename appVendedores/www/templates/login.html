@@ -1,5 +1,5 @@
 <ion-view title="Login" id="page4" class="login" hide-nav-bar="true">
-  <ion-content scroll="false" padding="true" class="has-header" >
+  <ion-content scroll="false" padding="false" class="has-header" >
     <div class="spacer" style="width: 300px; height: 60px;"></div>
     <div id="login-container1">
       <div >
@@ -10,19 +10,21 @@
     <form id="login-form1" class="list">
       <ion-list id="login-list2">
         <label class="item item-input" id="login-input1">
-          <i class="logo-mail logo-small"></i>
-          <input type="text" ng-model="usuario.user" placeholder="Correo electrónico">
+          <i class="lnr lnr-user logo-small"></i>
+          <input type="text" ng-model="usuario.user" placeholder="SO ID">
         </label>
         <label class="item item-input" id="login-input2">
-          <i class="logo-pass logo-small"></i>
-          <input type="password" ng-model="usuario.pass" placeholder="Contraseña">
+          <i class="lnr lnr-lock logo-small"></i>
+          <input type="password" ng-model="usuario.pass" placeholder="YEI ID">
         </label>
       </ion-list>
       <div class="spacer" style="height: 40px;"></div>
       <a  id="login-button1" ng-click="login(usuario)" class="btn-login button button-stable  button-block">
         Ingresar 
       </a>
-      <i class="logo-arrow-go logo-small"></i>
+			<i class="lnr lnr-arrow-right logo-small"></i>
     </form>
   </ion-content>
 </ion-view>
+
+
