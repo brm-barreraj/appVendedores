@@ -1,0 +1,32 @@
+<ion-view  id="page2" class="bg-list-noticias">
+  <ion-content class="has-header">
+    <div class="list-cat-tipo">
+      <a ng-click="selCategoria(categoria1)"><i class="list-cat-icon-carrito"></i></a>
+      <span class="separador-icons"> / </span>
+      <a ng-click="selCategoria(categoria2)"><i class="list-cat-icon-torta"></i></a>
+    </div>
+    <div class="spacer" style="height: 50px;"></div>
+    <div id="ventas-container5">
+      
+      <div id="ventas-markdown7" style="text-align:center;" class="show-list-numbers-and-dots">
+        <p class="list-title">
+          {{categoria}}
+        </p>
+      </div>
+      <div id="ventas-markdown8" style="text-align:center;" class="show-list-numbers-and-dots">
+        <p class="list-subtitle">{{nombreSubcategoria}}</p>
+      </div>
+      <div class="spacer" style="height: 20px;"></div>
+      <div id="ventas-markdown9" class="show-list-numbers-and-dots">
+        <p style="color:white; margin-left: 15px;">{{fechaSubcategoria}}</p>
+      </div>
+    </div>
+    <div id="ventas-list3">
+      <ion-item class="item-thumbnail-left item-icon-right" ng-repeat="noticia in noticias" ng-click="selNoticia(noticia.idNoticia)">
+        <img ng-src="img/noticias/{{noticia.imagen}}">
+        <h2>{{noticia.titulo}}</h2>
+        <i class="icon ion-ios-more"></i>
+      </ion-item>
+    </div>
+  </ion-content>
+</ion-view>
