@@ -6,7 +6,7 @@ class General
 	* @param tabla: Nombre del DBO de la tabla
 	*/
 	function setInstancia($tabla){
-		DB_DataObject::debugLevel(1);
+		//DB_DataObject::debugLevel(1);
 		//Crea una nueva instancia de $tabla a partir de DataObject
 		$objDBO = DB_DataObject::Factory($tabla);
 		
@@ -32,6 +32,46 @@ class General
 
 		return ($ret);
 	}
+
+/**
+	* Actualiza o inserta la tupla con id dado en la tabla dada
+	* @param tabla: Nombre del DBO de la tabla a actualizar
+	* @param campos: campos de la tabla a actualizar o instertar
+	* @param id: Id del registro a actualizar
+	*/
+	function setUpdateInstancia($tabla,$campos,$campoWhere){
+		//DB_DataObject::debugLevel(5);
+		//Crea una nueva instancia de $tabla a partir de DataObject
+		$objDBO = DB_DataObject::Factory($tabla);
+		if (is_array($campoWhere)) {
+			foreach ($campoWhere as $key => $value) {
+				$objDBO->$key = $value;
+			}
+		}elseif ($campoWhere!="") { 
+			$objDBO->whereAdd($campoWhere);
+		}
+		//Asigna los valores
+		$objDBO->find();
+		if($objDBO->fetch()){
+			foreach($campos as $key => $value){
+				$objDBO->$key = $value;
+			}
+			$objDBO->fechaMod = date("Y-m-d H:i:s");
+			$ret=$objDBO->update();
+		}else{
+			foreach($campos as $key => $value){
+				$objDBO->$key = $value;
+			}
+			$objDBO->fecha = date("Y-m-d H:i:s");
+			$ret = $objDBO->insert();
+		}
+		//Libera el objeto DBO
+		$objDBO->free();
+
+		return ($ret);
+	}
+
+
 	
 	
 	/**

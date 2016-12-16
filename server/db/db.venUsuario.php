@@ -48,7 +48,7 @@ class DataObject_VenUsuario extends DB_DataObject
 
     function sequenceKey() // keyname, use native, native name
     {
-         return array('idCargo', true, false);
+         return array('idUsuario', true, false);
     }
 
     function defaults() // column default values 

@@ -46,7 +46,7 @@ class DataObject_VenNoticia extends DB_DataObject
 
     function sequenceKey() // keyname, use native, native name
     {
-         return array('idCargo', true, false);
+         return array('idNoticia', true, false);
     }
 
     function defaults() // column default values 

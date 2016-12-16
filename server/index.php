@@ -107,7 +107,7 @@ switch ($request->accion) {
 
 	// Errores
 
-	-1 = No se existe la acción
+	-1 = No existe la acción
 	0 = No se realizó la acción correctamente
 	1 = La acción se realizó correctamente
 	2 = La acción se realizó correctamente pero no hay datos
