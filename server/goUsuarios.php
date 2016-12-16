@@ -2,8 +2,8 @@
 	
 	//php_value display_errors 1
 
-	ini_set('display_errors',1);
 	error_reporting(E_ALL);
+	ini_set('display_errors',1);
 
 	require 'db/requires.php';
 	
@@ -42,9 +42,20 @@
 			array_push($arr, $i);
 		}
 		//printVar($arr);
-		$smarty->assign('datos',$data); 
-		$smarty->assign('count',$count);
-		$smarty->assign('grupos',$arr);
+		$cook = base64_decode($_COOKIE['login']);
+		$cook= explode('+', $cook);
+		$no=$cook[0];
+	    $ap=$cook[1];
+		$em=$cook[2];
+
+		//printVar($cook);
+		
+		//$smarty->assing('nom',$no);//nombre usuaro logueado
+		//$smarty->assing('ape',$ap);//apelido de usario logueado
+		//$smarty->assing('ema',$em); //email del usuario logueado
+		$smarty->assign('datos',$data); //primeros 10 usuaros
+		$smarty->assign('count',$count);//numero total de usaurios
+		$smarty->assign('grupos',$arr);//arreglo para pintar los numeros del paginador
 		//$smarty->display('usuarios.html');
 		$smarty->display('users.html');
 		}
