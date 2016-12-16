@@ -80,7 +80,11 @@ label.item.item-input input {
     background: linear-gradient(to bottom,  #00bdf2 0%,#00b3f0 20%,#0066b3 75%,#004785 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00bdf2', endColorstr='#004785',GradientType=0 ); /* IE6-9 */
 }
-
+#login-button1 i{
+	position: absolute;
+	right: 5%;
+	top: 24%;
+}
 .logo-small{
     width: 20px;
     height: 20px;
@@ -342,4 +346,11 @@ label.item.item-input input {
 
 .item {
     color: #f8f8f8;
+}
+
+#login-list2{
+	width: 85%;
+	position: relative;
+	display: block;
+	margin: 0 auto;
 }
