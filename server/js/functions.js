@@ -25,5 +25,5 @@ function sendAjax(url, action, data) {
 };
 
 function logout(){
-  sendAjax('url', 'logout', {});
+  sendAjax('serviceAdmin.php', 'logout', {});
 }

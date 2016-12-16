@@ -31,6 +31,11 @@ if (isset($_POST['accion']) && !empty($_POST['accion']) ) {
 			}
 		break;
 
+		case 'logout':
+		setcookie("login","",time()-1);
+		header('Location:login.php');
+		break;		
+
 		/* buscador usuario--------- Falta */
 		case 'buscadorUsuario':
 			if (isset($_POST['nombre']) && $_POST['nombre'] != "" && 
