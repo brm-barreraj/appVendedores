@@ -476,3 +476,200 @@ article .link .link-nav b:nth-child(2){float: right;}
 	text-decoration: none;
 	color: #fff;
 }
+
+#create{
+	position: relative;
+	width: 100%;
+	height: 100%;
+	overflow: hidden;
+	display: block;
+	margin: 0 auto;
+}
+#create-title{
+	width: 100%;
+	height: 8%;
+	display: block;
+	position: relative;
+	float: left;
+}
+#create-title p{
+	font-family: col-reg;
+	color: #fff;
+	margin: 0;
+	float: left;
+}
+#create-title em{
+	position: absolute;
+	color: #bccc37;
+	margin-left: 26px;
+}
+#create-title i{
+	color: #fff;
+	font-size: 25px;
+}
+#create .create-fileds{
+	width: 40%;
+	position: relative;
+	display: block;
+	float: left;
+	height: 82%;
+	padding: 9% 0;
+}
+#create .create-fileds .create-field{
+	width: 100%;
+	margin-bottom: 10px;
+}
+#create .create-fileds .create-field input{
+	background: transparent;
+	border: 0;
+	width: 100%;
+	font-family: col-thin;
+	font-size: 25px;
+	color: #fff;
+	padding: 2% 3%;
+}
+
+
+.create-field-line{
+	height: 2px;
+	width: 100%;
+	background: rgb(0,71,133);
+	background: -moz-linear-gradient(left, rgba(0,71,133,1) 0%, rgba(0,179,240,1) 50%, rgba(0,102,179,1) 51%, rgba(0,189,242,1) 100%);
+	background: -webkit-linear-gradient(left, rgba(0,71,133,1) 0%,rgba(0,179,240,1) 50%,rgba(0,102,179,1) 51%,rgba(0,189,242,1) 100%);
+	background: linear-gradient(to right, rgba(0,71,133,1) 0%,rgba(0,179,240,1) 50%,rgba(0,102,179,1) 51%,rgba(0,189,242,1) 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#004785', endColorstr='#00bdf2',GradientType=1 );	
+}
+
+input:focus{
+	outline:none;
+}
+::-webkit-input-placeholder { 
+  color:#fff;
+  font-family:col-thin;
+}
+::-moz-placeholder {
+  color:#fff;
+  font-family:col-thin;
+}
+:-ms-input-placeholder {
+  color:#fff;
+  font-family:col-thin;
+}
+:-moz-placeholder {
+  color:#fff;
+  font-family:col-thin;
+}
+
+textarea:focus{
+	outline:none;
+}
+
+textarea::-webkit-input-placeholder
+{
+  color:#101d33;
+}
+textarea:-moz-placeholder 
+{
+  color:#101d33;
+}
+textarea::-moz-placeholder 
+{
+  color:#101d33;
+}
+
+textarea:-ms-input-placeholder 
+{
+  color:#101d33;
+}
+
+
+#create .create-fileds .create-field textarea{
+	background: #fff;
+	border: 0;
+	resize: none;
+	font-family: col-thin;
+	font-size: 25px;
+	width: 100%;
+	border-radius: 4px;
+	color:#101d33;
+	height: 150px;
+	padding: 2% 3%;
+}
+#create .create-image{
+	width: 25%;
+	position: relative;
+	display: block;
+	float: left;
+	height: 82%;
+}
+#create .create-template{
+	width: 35%;
+	position: relative;
+	display: block;
+	float: left;
+	height: 82%;
+}
+#create .create-template i{
+	position: absolute;
+	font-size: 40px;
+	color: #fff;
+	top: calc(50% - 20px);
+	cursor: pointer;
+}
+#create .create-template i:nth-child(1){
+}
+#create .create-template i:nth-child(3){right: 0;}
+.create-templates{
+	width: 75%;
+	height: 100%;
+	display: block;
+	margin: 0 auto;
+}
+.create-templates div{
+	width: inherit;
+	height: 80%;
+	background-size: contain;
+	background-repeat: no-repeat;
+	position: relative;
+	top: 10%;
+	display: block;
+	margin: 0 auto;
+}
+.create-templates div:nth-child(1){
+	background-image: url(../img/template-1.png);
+}
+.create-templates div:nth-child(2){}
+.create-templates div:nth-child(3){}
+#create-buton{
+	width: 100%;
+	height: 10%;
+	position: relative;
+	display: block;
+	float: left;
+	background: /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#004587+0,0066b6+25,00b4f2+80,00bdf3+100 */ background: rgb(0,69,135); /* Old browsers */
+	background: -moz-linear-gradient(top,  rgba(0,69,135,1) 0%, rgba(0,102,182,1) 25%, rgba(0,180,242,1) 80%, rgba(0,189,243,1) 100%); /* FF3.6-15 */
+	background: -webkit-linear-gradient(top,  rgba(0,69,135,1) 0%,rgba(0,102,182,1) 25%,rgba(0,180,242,1) 80%,rgba(0,189,243,1) 100%); /* Chrome10-25,Safari5.1-6 */
+	background: linear-gradient(to bottom,  rgba(0,69,135,1) 0%,rgba(0,102,182,1) 25%,rgba(0,180,242,1) 80%,rgba(0,189,243,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#004587', endColorstr='#00bdf3',GradientType=0 ); /* IE6-9 */
+}
+#create-buton i{
+	color: #fff;
+	font-size: 35px;
+	position: absolute;
+	top: 22%;
+	cursor: pointer;
+}
+#create-buton i:nth-child(1){
+}
+#create-buton i:nth-child(3){right: 0;}
+#create-buton p{
+	font-family: col-reg;
+	color: #fff;
+	font-size: 25px;
+	margin: 0;
+	display: block;
+	text-align: center;
+	margin-top: 12px;
+}
+
+
