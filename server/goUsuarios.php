@@ -50,6 +50,7 @@
 
 		//printVar($cook);
 		
+		$smarty->assign('user',$cook);//nombre usuaro logueado
 		//$smarty->assing('nom',$no);//nombre usuaro logueado
 		//$smarty->assing('ape',$ap);//apelido de usario logueado
 		//$smarty->assing('ema',$em); //email del usuario logueado
