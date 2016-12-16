@@ -4,7 +4,7 @@ $error = -1;
 $data="";
 $General = new General();
 
-
+/*
 
 $idSubCategoria="1";
 $idUsuarioAdmin="1";
@@ -37,16 +37,16 @@ if ($idNoticia > 0) {
 }
 die;
 
-
+*/
 	
 	
 	
-	if (isset($_POST['control']) && !empty($_POST['control']) ) {
+	if (isset($_POST['accion']) && !empty($_POST['accion']) ) {
 		
-		$control = $_POST['control'];
+		$accion = $_POST['accion'];
 		$General = new General();
 		
-		switch ($control) {
+		switch ($accion) {
 			
 			//doLogin, comprueba datos de inicio de sesión para el administrador, crea cookie 'login' 
 			case 'doLogin':
@@ -70,11 +70,21 @@ die;
 				}
 			break;
 			
-			//control de paginador para usuarios
+			//accion de paginador para usuarios
 			case 'nextUsuarios':
 				
 				break;
 
+			case 'getPaginadorUsuario':
+					$usr = new Usuario();
+					$ini = $_POST['pagina'];
+					$ini = ((int)$ini == 1)? ((int)$ini-1) :( ( (int)$ini  * (int)$usr->getLimit() )- (int)$usr->getLimit() );	
+					//printVar($ini);
+					$pagina = $usr->getUsuariosLimitRange($ini);
+					echo json_encode($pagina);
+					exit();
+				break;
+				
 			case '':
 				
 				break;
