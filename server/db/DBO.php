@@ -11,7 +11,7 @@ if (!defined('PATH_SEPARATOR')) {
 }
 
 $include_path = ini_get("include_path");
-@ini_set("include_path", $include_path . PATH_SEPARATOR . $_SERVER["DOCUMENT_ROOT"]."/PEAR");
+@ini_set("include_path", $include_path . PATH_SEPARATOR . $_SERVER["DOCUMENT_ROOT"]."/libs/pear");
 //echo $include_path;
 
 require_once("DB.php");
@@ -20,7 +20,7 @@ require_once("DB/DataObject.php");
 /*LOCAL*/
 //
 $username_link = "root";
-$password_link = "1nt3r4ct1v3";
+$password_link = "root";
 $database_link = "vendedores";
 $serverdb_link = "127.0.0.1";
 /**/
