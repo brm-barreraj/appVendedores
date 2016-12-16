@@ -6,6 +6,7 @@ class General
 	* @param tabla: Nombre del DBO de la tabla
 	*/
 	function setInstancia($tabla){
+		DB_DataObject::debugLevel(1);
 		//Crea una nueva instancia de $tabla a partir de DataObject
 		$objDBO = DB_DataObject::Factory($tabla);
 		
@@ -180,7 +181,7 @@ class General
 		return ($campos);
 	}
 	function getTotalDatos($table = '',$fields = '',$conditions = '',$orden = '',$limiteInferior = -1,$limiteSuperior = -1,$notIn=''){
-			//DB_DataObject::debugLevel(1);
+		//DB_DataObject::debugLevel(1);
 		
 		//printVar($table,"tabla");
 		//printVar($fields,"Field");

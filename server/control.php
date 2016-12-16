@@ -1,19 +1,52 @@
 <?php 
+require 'db/requires.php';
+$error = -1;
+$data="";
+$General = new General();
+
+/*
+
+$idSubCategoria="1";
+$idUsuarioAdmin="1";
+$titulo="titulo";
+$subtitulo="subtitulo";
+$contenido="contenido";
+$imagen="6.jpg";
+$tipoTemplate="1";
+
+$idSubCategoria = $idSubCategoria;
+$idUsuarioAdmin = $idUsuarioAdmin;
+$Noticia = new General();
+$Noticia->idCategoria=$idSubCategoria;
+$Noticia->idUsuarioAdmin=$idUsuarioAdmin;
+$Noticia->titulo=utf8_encode($titulo);
+$Noticia->subtitulo=utf8_encode($subtitulo);
+$Noticia->contenido=utf8_encode($contenido);
+$Noticia->imagen=$imagen;
+$Noticia->estado='A';
+$Noticia->tipoTemplate=$tipoTemplate;
+$Noticia->fechaMod = date("Y-m-d H:i:s");
+$idNoticia = $Noticia->setInstancia('VenNoticia');
+//sendMessageAndroid($request->titulo);
+printVar($idNoticia);
+if ($idNoticia > 0) {
+	$data = $idNoticia;
+	$error = 1;
+}else{
+	$error = 0;
+}
+die;
+
+*/
 	
-	ini_set('display_errors', '1');
-	ini_set('display_errors', 1);
-	error_reporting(E_ALL);
-	require 'db/requires.php';
 	
-	$error = -1;
-	$data="";
 	
-	if (isset($_POST['control']) && !empty($_POST['control']) ) {
+	if (isset($_POST['accion']) && !empty($_POST['accion']) ) {
 		
-		$control = $_POST['control'];
+		$accion = $_POST['accion'];
 		$General = new General();
 		
-		switch ($control) {
+		switch ($accion) {
 			
 			//doLogin, comprueba datos de inicio de sesión para el administrador, crea cookie 'login' 
 			case 'doLogin':
@@ -37,11 +70,21 @@
 				}
 			break;
 			
-			//control de paginador para usuarios
+			//accion de paginador para usuarios
 			case 'nextUsuarios':
 				
 				break;
 
+			case 'getPaginadorUsuario':
+					$usr = new Usuario();
+					$ini = $_POST['pagina'];
+					$ini = ((int)$ini == 1)? ((int)$ini-1) :( ( (int)$ini  * (int)$usr->getLimit() )- (int)$usr->getLimit() );	
+					//printVar($ini);
+					$pagina = $usr->getUsuariosLimitRange($ini);
+					echo json_encode($pagina);
+					exit();
+				break;
+				
 			case '':
 				
 				break;

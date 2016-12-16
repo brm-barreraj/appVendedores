@@ -1,76 +1,4 @@
-<!doctype html>
-<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang=""> <![endif]-->
-<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8" lang=""> <![endif]-->
-<!--[if IE 8]>         <html class="no-js lt-ie9" lang=""> <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang=""> <!--<![endif]-->
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-        <title></title>
-        <meta name="description" content="">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-
-        <link rel="stylesheet" href="../css/normalize.min.css">
-        <link rel="stylesheet" href="../css/fonts.css">
-        <link rel="stylesheet" href="../css/main.css">
-
-        <script src="../js/vendor/modernizr-2.8.3.min.js"></script>
-    </head>
-    <body>
-
-
-		<section>
-
-			<nav>
-				<div id="logo">
-					<img src="../img/logo.png" alt="">
-				</div>
-				<ul id="nav-dashboard">
-					<li>
-						<a href="">
-							<i class="lnr lnr-home"></i>
-							<span>Inicio</span>
-						</a>
-					</li>
-					<li class="active">
-						<a href="">
-							<i class="lnr lnr-users"></i>
-							<span>Usuarios</span>
-						</a>
-					</li>
-					<li>
-						<a href="">
-							<i class="lnr lnr-spell-check"></i>
-							<span>Categorías</span>
-						</a>
-					</li>
-					<li>
-						<a href="">
-							<i class="lnr lnr-news"></i>
-							<span>Noticias</span>
-						</a>
-					</li>
-				</ul>
-				<ul id="nav-profile">
-					<li>
-						<a href="">
-							<p>Luis Guillermo</p>
-							<small>Director</small>
-						</a>
-					</li>
-					<li>
-						<a href="">
-							<i class="lnr lnr-cog"></i>
-						</a>
-					</li>
-					<li>
-						<a href="">
-							<i class="lnr lnr-power-switch"></i>
-						</a>
-					</li>
-					</li>
-				</ul>
-			</nav>
+{#include file="head.html" user=$user#}
 
 			<article>
 				
@@ -86,7 +14,7 @@
 						<div id="data-top-title">
 							<div>
 								<p>USUARIOS</p>
-								<small>13 a 18 de 250</small>
+								<small> <span id="pagI">1</span> a <span id="pagF">10</span> de {#$count#}</small>
 							</div>
 							<div>
 								<i class="lnr lnr-users"></i>
@@ -99,42 +27,41 @@
 
 						<div id="data-list-titles">
 							<p>Nombre</p>
-							<p>SO ID</p>
+							<p>Email</p>
 							<p>Cargo</p>
 							<p>Puntos</p>
 						</div>
 
-						<div id="data-list-fields">
-
-							<div class="data-list-field">
-								<div>
-									<p>Maria Luisa</p>
-									<small>Gonzales Fernandez</small>
-								</div>
-								<div>
-									<p>1016050764</p>
-								</div>
-								<div>
-									<p>Director</p>
-								</div>
-								<div>
-									<p>320</p>
-								</div>
-								<div class="data-list-field-option">
-									<em class="lnr lnr-pencil"></em>
-								</div>
+						<div id="data-list-fields" class="tabla">
+						{#foreach from=$datos item=dato#}
+		  				<div class="data-list-field">
+							<div>
+								<p>{#$dato.nombre#}</p>
+								<small>{#$dato.apellido#}</small>
 							</div>
+							<div>
+								<p>{#$dato.email#}</p>
+							</div>
+							<div>
+								<p>{#$dato.cargo#}</p>
+							</div>
+							<div>
+								<p>{#$dato.puntos#}</p>
+							</div>
+							<div class="data-list-field-option">
+								<em class="lnr lnr-pencil"></em>
+							</div>
+						</div>
+						{#/foreach#}
+							
 
 						</div>
 
 						<nav id="data-list-bottom">
 							<ul>
-								<li><a href="">1</a></li>
-								<li><a href="">2</a></li>
-								<li><a href="">3</a></li>
-								<li><a href="">4</a></li>
-								<li><a href="">5</a></li>
-								<li><a href="">6</a></li>
+							{#foreach from=$grupos item=numero#}
+		  						<li><a class="num" id="{#$numero#}" href="#">{#$numero#}</a></li>
+							{#/foreach#}
 							</ul>
 						</nav>
 
@@ -157,6 +84,6 @@
 		<footer>
 			
 		</footer>
-
-    </body>
-</html>
+	<script type="text/javascript" src="../server/js/paginador.js"></script>
+{#include file="footer.html"#}
+    
