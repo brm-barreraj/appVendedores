@@ -22,17 +22,17 @@ require_once("DB/DataObject.php");
 $username_link = "root";
 $password_link = "root";
 $database_link = "vendedores";
-$serverdb_link = "127.0.0.1";
+$serverdb_link = "localhost";
 /**/
 
 $optionsDataObject = &PEAR::getStaticProperty('DB_DataObject','options');
 $optionsDataObject = array(
 'debug'			   => 0, // Permite detallar las consultas que ejecuta, tiene hasta 3 niveles de detalle
 'database'         => "mysql://$username_link:$password_link@$serverdb_link/$database_link", // Configura la base de datos
-'schema_location'  => '/Library/WebServer/Documents/fbCurl/db/',
-'class_location'   => '/Library/WebServer/Documents/fbCurl/db/',
+'schema_location'  => '',
+'class_location'   => '',
 'require_prefix'   => 'db/',
-//'db_driver'		=> 'MDB2',
+'db_driver'		=> 'MDB2',
 'class_prefix'     => 'DataObject_',
 'generator_no_ini' => true);
 ?>

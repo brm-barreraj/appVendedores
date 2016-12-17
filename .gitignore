@@ -1,6 +1,7 @@
 # Specifies intentionally untracked files to ignore when using Git
 # http://git-scm.com/docs/gitignore
 
+appVendedores/www/js/services.js
 server/db/DBO.php
 server/db/requires.php
 server/templates_c/

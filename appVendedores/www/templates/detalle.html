@@ -1,26 +1,25 @@
-<ion-view id="page3" class="bg-detalle">
-  <ion-content class="has-header">
-    <div id="detalle-container4" class="detalle-info-noticia">
-      <div class="spacer" style="width: 300px; height: 50px;"></div>
-      <div id="detalle-markdown14" class="show-list-numbers-and-dots">
-        <p class="detalle-fecha">
-        <i class="detalle-icon-fecha"></i>{{detalleNoticia.fechaMod}}</p>
-      </div>
-      <div id="detalle-markdown18" class="show-list-numbers-and-dots">
-        <p class="detalle-title">{{detalleNoticia.titulo}}</p>
-      </div>
-      <div class="detalle-border-title azul-claro"></div>
-      <div id="detalle-markdown19" class="show-list-numbers-and-dots">
-        <p class="detalle-subtitle">{{detalleNoticia.subtitulo}}</p>
-      </div>
-    </div>
-    <div class="spacer" style="width: 300px; height: 85px;"></div>
+<ion-view id="page3" >
+  <ion-content id="ion-content-clear">
+		
+		<div id="top-new" style="background-image:url(img/imgs/bg-noticias.jpg)">
+				<p>{{detalleNoticia.titulo}}</p>
+				<div id="line-top-new"></div>
+				<strong>{{detalleNoticia.subtitulo}}</strong>
+        <small>
+        	<i class="lnr lnr-calendar-full"></i>
+				  {{detalleNoticia.fechaMod}}
+        </small>
+        <div id="diagonal"></div>
+		</div>
+
     <div id="detalle-container9">
+    	<!--acá va el contenido de la noticia principal y de ahi si las secciones-->
       <div id="detalle-markdown20"  class="detalle-text" ng-repeat="seccion in detalleNoticia.secciones ">
         <p ng-if='seccion.titulo'><strong>{{seccion.titulo}}</strong></p>
         <img ng-src="img/noticias/{{seccion.imagen}}">
         <p>{{seccion.contenido}}</p>
       </div>
     </div>
+
   </ion-content>
 </ion-view>
