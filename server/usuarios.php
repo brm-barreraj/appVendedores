@@ -2,11 +2,9 @@
 	
 	//php_value display_errors 1
 
-
 	require 'db/requires.php';
-	
-
-	if(isset($_COOKIE['login']) ){
+	$gen = new General();
+	if(isset($_COOKIE['login']) && $gen->validaCookie($_COOKIE['login']) ) {
 
 		if (isset($_POST['accion'])) {
 			

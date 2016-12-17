@@ -335,5 +335,21 @@ class General
 		$objDBO->free();
 		return($rows);
 	}
+
+	function validaCookie($val){
+		$d = base64_decode($val);
+		$d = explode('+', $d);
+		$objDBO = DB_DataObject::Factory('VenUsuario');
+		$objDBO->nombre = $d[0];
+		$objDBO->apellido = $d[1];
+		$objDBO->email = $d[2];
+		$objDBO->find();
+		$ret=false;
+		if($objDBO->fetch()){
+			$ret = true;
+		}
+		$objDBO->free();
+		return $ret;
+	}
 }
 ?>

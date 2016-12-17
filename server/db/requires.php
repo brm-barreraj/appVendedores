@@ -1,6 +1,10 @@
 <?php
 @ini_set("display_errors","0");
+<<<<<<< HEAD
+@error_reporting(E_ALL);
+=======
 @error_reporting(0);
+>>>>>>> f25a1d202d1b25be42e55d80dbe685813d4e8dc2
 session_start();
 
 global $prefijo;
@@ -18,7 +22,7 @@ require($prefijo."class/class.Usuario.inc.php");
 /*require($prefijo."class/class.MillerLite.inc.php");*/
 
 //Smarty
-require($_SERVER["DOCUMENT_ROOT"]."/libs/Smarty/libs/Smarty.class.php");
+require($_SERVER["DOCUMENT_ROOT"]."/Smarty/libs/Smarty.class.php");
 $smarty = new Smarty();
 
 $smarty->compile_check = true;
