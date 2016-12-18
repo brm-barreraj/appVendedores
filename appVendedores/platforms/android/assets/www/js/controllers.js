@@ -178,6 +178,8 @@ function ($scope, $stateParams, $ionicLoading, $state, ServiceGeneral) {
 	$scope.categoria = $stateParams.categoria;
 	$scope.nombreSubcategoria = $stateParams.nombreSubcategoria;
 	$scope.fechaSubcategoria = $stateParams.fechaSubcategoria;
+	
+	// Trae el listado de categorías
 	var idSubcategoria = $stateParams.idSubcategoria;
 	$ionicLoading.show({
 		template: 'Cargando...'
@@ -190,7 +192,10 @@ function ($scope, $stateParams, $ionicLoading, $state, ServiceGeneral) {
 	.then(function(result){
 		$ionicLoading.hide();
 		if(result.error == 1){
-			$scope.noticias = result.data;
+			$scope.noticia1 = result.data[0];
+			var noticias = result.data;
+			noticias.shift();
+			$scope.noticias = noticias;
 			console.log("lista noticias",result.data);
 		}else{
 			console.log("error","Ocurrio un error");
@@ -233,6 +238,9 @@ function ($scope, $stateParams, $ionicLoading, $state, ServiceGeneral) {
 	// Selecciona la nonticia y redirige al detalle de la noticia
 	$scope.selNoticia = function(idNoticia){
 		$state.go('menu.detalle',{idNoticia:idNoticia});
+	}
+	$scope.reducirTamTitle = function(str){
+		return (str.length > 64) ? str.substring(0,64)+"..." : str;
 	}
 }])
 
