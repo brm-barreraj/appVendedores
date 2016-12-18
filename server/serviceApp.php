@@ -48,7 +48,7 @@ switch ($request->accion) {
 	case 'getNoticias':
 		if (isset($request->idSubcategoria) && $request->idSubcategoria > 0) {
 			$idSubcategoria = $request->idSubcategoria;
-			$noticia = $General->getTotalDatos('VenNoticia',array('idNoticia','imagen','titulo'),array('idCategoria'=>$idSubcategoria,'estado'=>'A'));
+			$noticia = $General->getTotalDatos('VenNoticia',array('idNoticia','imagen','titulo','subtitulo','fechaMod'),array('idCategoria'=>$idSubcategoria,'estado'=>'A'));
 			if (count($noticia) > 0) {
 				$data = $noticia;
 				$error = 1;

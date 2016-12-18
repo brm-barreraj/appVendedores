@@ -1,38 +1,31 @@
 <ion-view  id="page2">
   <ion-content id="ion-content-clear">
-		
-		<div id="frist-new" style="background-image:url(img/imgs/bg-noticias.jpg)">
-			
-	    <div class="list-cat-tipo">
-	      <a ng-click="selCategoria(categoria1)">
-	      	<i class="lnr lnr-banknote"></i>
-	      </a>
-	      <span class="separador-icons"> / </span>
-	      	<a ng-click="selCategoria(categoria2)">
-	      	<i class="lnr lnr-news"></i>
-	      </a>
-	    </div>
-
-	    <div id="frist-new-info">
-        <p>{{noticia1.titulo}}</p>
-        <strong>{{noticia1.subtitulo}}</strong>
-        <small>
-        	<i class="lnr lnr-calendar-full"></i>
-        	{{noticia1.fecha}}
-        </small>
-	    </div>
-
+		<div id="frist-new" style="background-image:url(http://fbapp.brm.com.co/fbappFundacion/appVendedores/img/noticias/{{noticia1.imagen}})">
+		    <div class="list-cat-tipo">
+				<a ng-click="selCategoria(categoria1)">
+					<i class="lnr lnr-banknote"></i>
+				</a>
+				<span class="separador-icons"> / </span>
+				<a ng-click="selCategoria(categoria2)">
+					<i class="lnr lnr-news"></i>
+				</a>
+		    </div>
+		    <div id="frist-new-info" ng-click="selNoticia(noticia1.idNoticia)">
+	        <p>{{noticia1.titulo}}</p>
+	        <strong>{{noticia1.subtitulo}}</strong>
+	        <small>
+	        	<i class="lnr lnr-calendar-full"></i>
+	        	{{noticia1.fechaMod}}
+	        </small>
+		    </div>
 		</div>
-
 		<div id="news">
-
 			<div class="new" ng-repeat="noticia in noticias" ng-click="selNoticia(noticia.idNoticia)">
-        <img ng-src="img/noticias/{{noticia.imagen}}">
-        <p>{{noticia.titulo}}</p>
-        <strong>{{noticia.subtitulo}}</strong>
+		        <img ng-src="http://fbapp.brm.com.co/fbappFundacion/appVendedores/img/noticias/{{noticia.imagen}}">
+		        <p>{{reducirTamTitle(noticia.titulo)}}</p>
+		        <!-- <strong>{{noticia.subtitulo}}</strong> -->
 			</div>
 			
 		</div>
-
   </ion-content>
 </ion-view>

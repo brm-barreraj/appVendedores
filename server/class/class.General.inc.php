@@ -289,7 +289,10 @@ class General
 					$encoding= mb_detect_encoding($objDBO->$value, "auto");
 					//printVar($encoding);
 					if($encoding == 'UTF-8'){
+						// Local
 						$rows[$cont]->$value =  utf8_encode($objDBO->$value);
+						// Servidor
+						//$rows[$cont]->$value =  $objDBO->$value;
 					}else{
 						if($encoding == 'ASCII'){
 							$rows[$cont]->$value = utf8_decode($objDBO->$value);
