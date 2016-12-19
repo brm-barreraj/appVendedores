@@ -16,34 +16,48 @@
 					<div class="create-fileds">
 						
 						<div class="create-field">
-							<input type="text" name="titulo" id="titulo" placeholder="Titulo">
+							<input type="text" name="titulo" id="titulo" placeholder="Título">
 							<div class="create-field-line"></div>
 						</div>
 						<div class="create-field">
-							<input type="text" name="subtitulo" id="subtitulo" placeholder="Frase destacada titulo">
+							<input type="text" name="subtitulo" id="subtitulo" placeholder="Frase destacada título">
 							<div class="create-field-line"></div>
 						</div>
 						<div class="create-field">
-							<select name="idSubCategoria" id="idSubCategoria">
+							<select name="idCategoria" id="idCategoria">
 								
 								<option>Categoría</option>
-								{#foreach from=$subcategorias item=dato#}
-								<option value="{#$dato.idCategoria#}">{#$dato.nombre#}</option>
+								{#foreach from=$categorias item=dato#}
+								<option value="{#$dato->idCategoria#}">{#$dato->nombre#}</option>
 								{#/foreach#}
 							</select>	
 							<div class="create-field-line"></div>
 							
 						</div>
+						<div class="create-field" style="display:none;" id="idSubCategoriaDiv">
+							<select name="idSubCategoria" id="idSubCategoria" style="display:none;">
+							</select>	
+							<div class="create-field-line"></div>
+							
+						</div>
 						<div class="create-field">
+							<div style="padding: 2% 3%;font-family: col-thin; font-size: 12px; color: #fff;">
+								Imagen Noticia
+							</div>
 							<input type="file" name="image" id="image" placeholder="Imagen">
 							<input type="hidden" name="accion" value="setNoticia" id="accion">
 							<input type="hidden" name="idUsuarioAdmin" value="1" id="idUsuarioAdmin">
-							<input type="hidden" name="contenido" value="" id="contenido">
 							<input type="hidden" name="tipoTemplate" value="1" id="tipoTemplate">
 							<div class="create-field-line"></div>
 						</div>
 						<div class="create-field">
-							<textarea name="description" id="description" placeholder="Contenido noticia"></textarea>
+							<div style="padding: 2% 3%;font-family: col-thin; font-size: 12px; color: #fff;">
+								Imagen Contenido
+							</div>
+							<input type="file" name="image2" id="image2" placeholder="Imagen">
+						</div>
+						<div class="create-field">
+							<textarea name="contenido" id="contenido" placeholder="Contenido noticia"></textarea>
 						</div>
 
 					</div>
@@ -76,6 +90,7 @@
 		<footer>
 			
 		</footer>
+		<script type="text/javascript" src="js/validacion.js"></script>
 		<script type="text/javascript" src="js/noticia.js"></script>
     </body>
 </html>

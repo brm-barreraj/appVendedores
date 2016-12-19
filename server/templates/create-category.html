@@ -17,15 +17,15 @@
 						<div class="create-field">
 
 
-							<input type="text" name="category" id="idCategoria" placeholder="Categoría">
-							<select>
+							<!-- <input type="text" name="category" id="idCategoria" placeholder="Categoría"> -->
+							<select id="idCategoria">
 								<option>Categoría</option>
 								{#foreach from=$categorias item=dato#}
-								<option value="{#$dato.idCategoria#}">{#$dato.nombre#}</option>
+								<option value="{#$dato->idCategoria#}">{#$dato->nombre#}</option>
 								{#/foreach#}
 							</select>
 							<div class="create-field-line"></div>
-							<input type="text" name="category" id="nombreSubcategoria" placeholder="Categoría">
+							<input type="text" name="category" id="nombreSubcategoria" placeholder="Subcategoría">
 							<div class="create-field-line"></div>
 							<input type="button" id="btnInsertCat" value="crear">
 						</div>

@@ -574,7 +574,7 @@ article .link .link-nav b:nth-child(2){float: right;}
 	display: block;
 	float: left;
 	height: 82%;
-	padding: 9% 0 0 5%;
+	padding: 0 0 0 5%;
 }
 #create .create-fileds .create-field{
 	width: 100%;
@@ -588,7 +588,7 @@ article .link .link-nav b:nth-child(2){float: right;}
 	border: 0;
 	width: 100%;
 	font-family: col-thin;
-	font-size: 25px;
+	font-size: 12px;
 	color: #fff;
 	padding: 2% 3%;
 }
