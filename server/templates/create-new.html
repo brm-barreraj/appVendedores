@@ -28,19 +28,14 @@
 								
 								<option>Categoría</option>
 								{#foreach from=$categorias item=dato#}
-								<option value="{#$dato.idCategoria#}">{#$dato.nombre#}</option>
+								<option value="{#$dato->idCategoria#}">{#$dato->nombre#}</option>
 								{#/foreach#}
 							</select>	
 							<div class="create-field-line"></div>
 							
 						</div>
-						<div class="create-field">
+						<div class="create-field" style="display:none;" id="idSubCategoriaDiv">
 							<select name="idSubCategoria" id="idSubCategoria" style="display:none;">
-								
-								<option>Categoría</option>
-								{#foreach from=$categorias item=dato#}
-								<option value="{#$dato.idCategoria#}">{#$dato.nombre#}</option>
-								{#/foreach#}
 							</select>	
 							<div class="create-field-line"></div>
 							
@@ -49,12 +44,14 @@
 							<input type="file" name="image" id="image" placeholder="Imagen">
 							<input type="hidden" name="accion" value="setNoticia" id="accion">
 							<input type="hidden" name="idUsuarioAdmin" value="1" id="idUsuarioAdmin">
-							<input type="hidden" name="contenido" value="" id="contenido">
 							<input type="hidden" name="tipoTemplate" value="1" id="tipoTemplate">
 							<div class="create-field-line"></div>
 						</div>
 						<div class="create-field">
-							<textarea name="description" id="description" placeholder="Contenido noticia"></textarea>
+							<input type="file" name="image2" id="image2" placeholder="Imagen">
+						</div>
+						<div class="create-field">
+							<textarea name="contenido" id="contenido" placeholder="Contenido noticia"></textarea>
 						</div>
 
 					</div>

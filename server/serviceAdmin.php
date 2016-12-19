@@ -250,7 +250,7 @@ if (isset($_POST['accion']) && !empty($_POST['accion']) ) {
 
 		/* Lista subcategorías */
 		case 'getSubcategorias':
-			if (isset($_POST['idCategoria']) && $_POST['idCategoria'] > 0) {
+			if (isset($_POST['idCategoria']) && (int) $_POST['idCategoria'] > 0) {
 				$idCategoria = $_POST['idCategoria'];
 				$subcategorias = $General->getTotalDatos('VenCategoria',null,array('idPadre'=>$idCategoria,'estado'=>'A'));
 				if (count($subcategorias) > 0) {
@@ -343,6 +343,18 @@ if (isset($_POST['accion']) && !empty($_POST['accion']) ) {
 					//sendMessageAndroid($_POST['titulo']);
 					if ($idNoticia > 0) {
 						$data = $idNoticia;
+
+						// Set SeccionNoticia
+						$SeccionNoticia = new General();
+						$imagen2 = $General->moveFile($_FILES['image2'],"img/noticias/","2".$nNoticias);
+						$SeccionNoticia->idNoticia=$idNoticia;
+						$SeccionNoticia->imagen=$imagen2;
+						$SeccionNoticia->contenido=utf8_encode($_POST['contenido']);
+						$SeccionNoticia->estado='A';
+						$SeccionNoticia->fechaMod = date("Y-m-d H:i:s");
+						$idNoticia = $SeccionNoticia->setInstancia('VenSeccionNoticia');
+
+
 						$error = 1;
 					}else{
 						$error = 0;
