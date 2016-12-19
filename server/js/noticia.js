@@ -14,7 +14,7 @@ $('#guardar').click(function(){
 			$("#info").html('<span style="color:#f04124;">Por favor selecciona una imagen.</span>');
 		}
 
-	if (img) {
+	if (img && $('#create').valid()) {
 		var formData = new FormData(document.getElementById("create"));
 		$.ajax({
 			url:'serviceAdmin.php',
