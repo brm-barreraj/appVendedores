@@ -35,28 +35,48 @@
 						</div>
 
 						<div id="data-list-fields" class="tabla">
-						{#foreach from=$datos item=dato#}
-		  				<div class="data-list-field">
-							<div>
-								<p>{#$dato.nombre#}</p>
-								<small>{#$dato.apellido#}</small>
-							</div>
-							<div>
-								<p>{#$dato.email#}</p>
-							</div>
-							<div>
-								<p>{#$dato.cargo#}</p>
-							</div>
-							<div>
-								<p>{#$dato.puntos#}</p>
-							</div>
-							<div class="data-list-field-option">
-								<em class="lnr lnr-pencil"></em>
-							</div>
-						</div>
-						{#/foreach#}
-							
+							{#foreach from=$datos item=dato#}
+			  				<div class="data-list-field">
 
+									<div>
+										<p>{#$dato.nombre#}</p>
+										<small>{#$dato.apellido#}</small>
+									</div>
+
+									<div>
+										<p>{#$dato.email#}</p>
+									</div>
+
+									<div>
+										<p>{#$dato.cargo#}</p>
+									</div>
+
+									<div>
+										<p>{#$dato.puntos#}</p>
+									</div>
+
+									<div class="data-list-field-option" data-field="{#$dato.idUsuario#}">
+
+										<div class="edit" data-field="{#$dato.idUsuario#}">
+											<p>EDITAR</p>
+											<em class="lnr lnr-pencil"></em>
+										</div>
+
+										<div class="show-hide" data-field="{#$dato.idUsuario#}">
+											<p>OCULTAR</p>
+											<em class="lnr lnr-eye-hidden"></em>
+										</div>
+
+										<i class="close lnr lnr-cross" data-field="{#$dato.idUsuario#}"></i>
+
+									</div>
+
+									<div class="data-list-field-menu" data-field="{#$dato.idUsuario#}">
+										<em class="lnr lnr-menu"></em>
+									</div>
+
+							</div>
+							{#/foreach#}
 						</div>
 
 						<nav id="data-list-bottom">
@@ -93,7 +113,20 @@
 	<script type="text/javascript" src="js/paginador.js"></script>
 	<script type="text/javascript">
 
+		$( ".data-list-field-menu").on( "click", function() {
+			var field=$(this).attr("data-field");
+			$(".data-list-field-option[data-field='"+field+"']").show();
+
+		});
+
+		$( ".close").on( "click", function() {
+			var field=$(this).attr("data-field");
+			$(".data-list-field-option[data-field='"+field+"']").hide();
+		});
+
+
 		$('#guardar').click(function(){
+
 			var archivo = $("#forma input[name=archivo]").val();
 			var input = $("#archivo");
 			console.log(input.file);

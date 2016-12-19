@@ -183,28 +183,20 @@ section>nav ul#nav-dashboard li{
     cursor: pointer;
 }
 
-/*section>nav ul#nav-dashboard li:hover::before,
+section>nav ul#nav-dashboard li:hover::before,
 section>nav ul#nav-dashboard li.active::before{
 	content:"";
 	width: 100%;
 	height: 100%;
 	display: block;
 	position: absolute;
-/* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#02be9f+0,02be9f+52,02be9f+100&0+1,1+32,1+51,1+69,0+100 */
-	 /* FF3.6-15 */
-	 /* Chrome10-25,Safari5.1-6 */
-	 /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-	 /* IE6-9 fallback on horizontal gradient *
 	border-radius: 100%;
 	-webkit-filter: blur(20px);
-	z-index: 1;
-/* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#05fffa+0,05eaff+52,05fff6+100&0+1,1+32,1+51,1+69,0+100 */
-/*	background: -moz-radial-gradient(center, ellipse cover,  rgba(5,255,250,0) 0%, rgba(5,255,250,0) 1%, rgba(5,242,253,1) 32%, rgba(5,234,255,1) 51%, rgba(5,234,255,1) 52%, rgba(5,241,252,1) 69%, rgba(5,255,246,0) 100%); /* FF3.6-15 */
-/*	background: -webkit-radial-gradient(center, ellipse cover,  rgba(5,255,250,0) 0%,rgba(5,255,250,0) 1%,rgba(5,242,253,1) 32%,rgba(5,234,255,1) 51%,rgba(5,234,255,1) 52%,rgba(5,241,252,1) 69%,rgba(5,255,246,0) 100%); /* Chrome10-25,Safari5.1-6 */
-/*	background: radial-gradient(ellipse at center,  rgba(5,255,250,0) 0%,rgba(5,255,250,0) 1%,rgba(5,242,253,1) 32%,rgba(5,234,255,1) 51%,rgba(5,234,255,1) 52%,rgba(5,241,252,1) 69%,rgba(5,255,246,0) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-/*	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#0005fffa', endColorstr='#0005fff6',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
-/*}*/
-
+	background: -moz-radial-gradient(center, ellipse cover,  rgba(5,255,250,0) 0%, rgba(5,255,250,0) 1%, rgba(5,242,253,1) 32%, rgba(5,234,255,1) 51%, rgba(5,234,255,1) 52%, rgba(5,241,252,1) 69%, rgba(5,255,246,0) 100%); 
+	background: -webkit-radial-gradient(center, ellipse cover,  rgba(5,255,250,0) 0%,rgba(5,255,250,0) 1%,rgba(5,242,253,1) 32%,rgba(5,234,255,1) 51%,rgba(5,234,255,1) 52%,rgba(5,241,252,1) 69%,rgba(5,255,246,0) 100%); 
+	background: radial-gradient(ellipse at center,  rgba(5,255,250,0) 0%,rgba(5,255,250,0) 1%,rgba(5,242,253,1) 32%,rgba(5,234,255,1) 51%,rgba(5,234,255,1) 52%,rgba(5,241,252,1) 69%,rgba(5,255,246,0) 100%); 
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#0005fffa', endColorstr='#0005fff6',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+}
 
 section>nav ul#nav-dashboard li a{
     text-decoration: none;
@@ -423,7 +415,7 @@ article .link .link-nav b:nth-child(2){float: right;}
 	float: left;
 	color: #fff;
 	font-family: col-reg;
-	padding: 0 1%;
+	padding: 0 2%;
 }
 #data-list #data-list-fields{
 	width: 100%;
@@ -433,23 +425,75 @@ article .link .link-nav b:nth-child(2){float: right;}
 	height: calc(100%/10);
 	background-color: rgba(0, 10, 32, 0.76);
 	border-left: 2px solid #2be9ff;
-	overflow: hidden;
 	border-top-left-radius: 0;
 	border-top-right-radius: 5px;
 	border-bottom-right-radius: 5px;
 	border-bottom-left-radius: 0;
 	width: 100%;
 	margin-bottom: 10px;
+	position: relative;
+	display: block;
+	overflow: hidden;
 }
 #data-list #data-list-fields .data-list-field div{
 	width: calc(100% / 5);
 	float: left;
-	padding: 0 1%;
+	position: relative;
+	display: block;
+	overflow: hidden;
+	padding: 0 2%;
+	height: 100%;
 }
 #data-list #data-list-fields .data-list-field p{padding: 0;margin: 0;color: #fff;font-family: col-thin;}
 #data-list #data-list-fields .data-list-field small{color: #fff;font-family: col-thin;}
-#data-list #data-list-fields .data-list-field-option{}
+#data-list #data-list-fields .data-list-field div.data-list-field-option{
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	padding: 0;
+	display: none;
+	z-index: 2;
+}
+#data-list #data-list-fields .data-list-field-option div{
+	width: 50%;
+	float: left;
+	height: 100%;
+	cursor: pointer;
+}
+#data-list #data-list-fields .data-list-field-option i{
+	position: absolute;
+	top: 5px;
+	right: 5px;
+	color: #101d33;
+	font-size: 23px;
+	z-index: 3;
+	cursor: pointer;
+}
+#data-list #data-list-fields .data-list-field-option div:nth-child(1){background: #fff;}
+#data-list #data-list-fields .data-list-field-option div:nth-child(2){background: #f7f7f7;}
+#data-list #data-list-fields .data-list-field-option div:nth-child(2) em{
+	font-size: 44px;
+	top: calc(50% - 22px);
+	left: calc(50% - 2px);
+}
 #data-list #data-list-fields .data-list-field-option em{
+	position: absolute;
+	font-size: 30px;
+	top: calc(50% - 15px);
+	left: calc(50% - 15px);
+	color: #101d33;
+}
+#data-list #data-list-fields .data-list-field-option p{
+	color: #e6e6e6;
+	font-size: 27px;
+	letter-spacing: 61px;
+	display: block;
+	text-align: center;
+	margin-top: 7px;
+}
+
+#data-list #data-list-fields .data-list-field-menu{}
+#data-list #data-list-fields .data-list-field-menu em{
 	color: #fff;
 	font-size: 22px;
 	float: right;
