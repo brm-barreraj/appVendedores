@@ -72,7 +72,11 @@
 					<div id="data-bottom">
 
 						<div id="data-bottom-message">
-							
+							<form id="forma">
+								<input type="file" name="archivo" id="archivo">
+							</form>
+							<button id="guardar">Guardar</button>
+							<span id="info"></span>
 						</div>
 						
 					</div>
@@ -87,5 +91,31 @@
 			
 		</footer>
 	<script type="text/javascript" src="js/paginador.js"></script>
+	<script type="text/javascript">
+
+		$('#guardar').click(function(){
+			var archivo = $("#forma input[name=archivo]").val();
+			var input = $("#archivo");
+			console.log(input.file);
+				archivo= archivo.split('.');
+				var img= '';
+				var ext =false;
+				//console.log(archivo[(archivo.length -1)]);
+			    ext=archivo[(archivo.length -1)];
+				if (true ) { //
+					img=true;
+				}else { 
+					$("#info").addClass('error');
+					$("#info").html('<span style="color:#f04124;">Por favor selecciona un archivo con extensión xlsx (EXCEL).</span>');
+				}
+
+				if (img) {
+					alert('archivo correcto');
+				}else{
+					alert('archivo incorrecto');
+				}
+		});
+
+	</script>
 {#include file="footer.html"#}
     

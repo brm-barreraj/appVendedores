@@ -9,7 +9,7 @@
 						<div id="create-title-option">
 							<p>Terminar Noticia</p>
 							<em class="lnr lnr-checkmark-circle"></em>
-							<i class="lnr lnr-news"></i>
+							<i class="lnr lnr-news" id="guardar"></i>
 						</div>
 					</div>
 
@@ -24,7 +24,21 @@
 							<div class="create-field-line"></div>
 						</div>
 						<div class="create-field">
-							<input type="text" name="category" id="category" placeholder="Categoría">
+							<select name="category" id="category">
+								<option>Categoría</option>
+								<option value="1">1</option>
+								<option value="1">2</option>
+								<option value="1">3</option>
+								<option value="1">4</option>
+								<option value="1">5</option>
+								<option value="1">6</option>
+							</select>	
+							<div class="create-field-line"></div>
+							
+						</div>
+						<div class="create-field">
+							<input type="file" name="image" id="image" placeholder="Imagen">
+							<input type="hidden" name="accion" id="accion" placeholder="setNoticia">
 							<div class="create-field-line"></div>
 						</div>
 						<div class="create-field">
@@ -61,7 +75,7 @@
 		<footer>
 			
 		</footer>
-
+		<script type="text/javascript" src="js/noticia.js"></script>
     </body>
 </html>
 
