@@ -18,32 +18,30 @@ jQuery(document).ready(function () {
 	/*aquí comienza la validacion campo por campo, esta validacion
 	*se efectua a traves de la libreria jquery.validate*/
 
-		jQuery("#msform").validate({
+		jQuery("#create").validate({
 			rules: {
-				nombre:{
+				titulo:{
 					required: true,
-					string: true,
-					minlength: 3,
-					maxlength: 50
+					minlength: 2,
+					maxlength: 150
 				},
-				apellido:{
+				subtitulo:{
 					required: true,
-					string: true,
-					minlength: 4 ,
-					maxlength: 100
+					minlength: 2,
+					maxlength: 150
 				},
 
-				cedula: {
+				idCategoria: {
 					required: true,
 					number: true,
-					minlength: 5 ,
-					maxlength: 15
+					minlength: 1,
+					maxlength: 10
 				},
-				email:{
+				/*idSubCategoria:{
 					required: true,
 					email: true,
-				},
-				celular:{
+				},*/
+				/*celular:{
 					required: true,
 					number: true,
 					minlength: 10,
@@ -63,7 +61,7 @@ jQuery(document).ready(function () {
 				},
 				politica:{
 					required: true,
-				},
+				},*/
 				/*otroDepto:{
 					required:true,
 					minlength: 3,
@@ -78,26 +76,26 @@ jQuery(document).ready(function () {
 
 			},
 			messages: {
-				nombre:{
+				titulo:{
 					required:'Campo necesario',
-					string: 'Únicamente admite letras (a-z)',
-					minlength:'Nombre muy corto',
-					maxlength:'Nombre muy largo',
+					minlength: 'Titulo corto en longitud',
+					maxlength:'Titulo muy largo',
+					
 				},
-				apellido:{
+				subtitulo:{
 					required: 'Campo necesario',
-					string: 'Únicamente admite letras (a-z)',
-					minlength: 'Debe ser mayor a 4 carácteres',
-					maxlength: 'Debe ser menor a 50 carácteres',
+					minlength: 'Subtitulo corto en longitud',
+					maxlength: 'Subtitulo muy largo',
+					
 				},
 
-				cedula:{
+				idCategoria:{
 					required:'Campo necesario',
 					number: 'Únicamente admite digitos (0-9)',
-					minlength:'Número de cédula muy corto',
-					maxlength: 'Número de cédula muy largo',
+					minlength:'Número muy corto',
+					maxlength: 'Número muy largo',
 				},
-				fecha:{
+				/*fecha:{
 					required: 'Campo necesario',
 					date: 'Formato de fecha no válido',
 				},
@@ -125,7 +123,7 @@ jQuery(document).ready(function () {
 				},
 				politica:{
 					required: 'Campo necesario',
-				},
+				},*/
 				/*otroDepto:{
 					required:'Campo necesario',
 					minlength:'El nombre del departamento es muy corto',
