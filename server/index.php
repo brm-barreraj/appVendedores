@@ -1,6 +1,7 @@
 <?php 
 require 'db/requires.php';
-if(isset($_COOKIE['login']) ){
+$gen = new General();
+if(isset($_COOKIE['login']) && $gen->validaCookie($_COOKIE['login'])){
 	$general = new General();
 	$countUsuarios=$general->countRows('VenUsuario',"estado='A'");
 	$countNoticias=$general->countRows('VenNoticia',"estado='A'");

@@ -342,13 +342,13 @@ class General
 	function validaCookie($val){
 		$d = base64_decode($val);
 		$d = explode('+', $d);
-		$objDBO = DB_DataObject::Factory('VenUsuario');
+		$objDBO = DB_DataObject::Factory('VenUsuarioAdmin');
 		$objDBO->nombre = $d[0];
 		$objDBO->apellido = $d[1];
 		$objDBO->email = $d[2];
-		$objDBO->find();
+		$res = $objDBO->find();
 		$ret=false;
-		if($objDBO->fetch()){
+		if($res > 0){
 			$ret = true;
 		}
 		$objDBO->free();

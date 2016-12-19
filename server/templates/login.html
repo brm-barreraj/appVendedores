@@ -30,17 +30,18 @@
 		</section>
 
   <script>
-  $(document).ready(function(){
+$(document).ready(function(){
 
-    $("#login-buton").click(function(){
-  result = sendAjax("serviceAdmin.php", "doLogin", {usuario:$('#user').val(),pass:$('#password').val()});
-  if (result.error == 1){
-    location.href='index.php';
-  }else{
-    alert('Ocurrio un error, verifique sus datos de incio de sesión');
-  }
-    });
-  });
+	$("#login-buton").click(function(){
+		var result = sendAjax("serviceAdmin.php", "doLogin", {usuario:$('#user').val(),	pass:$('#password').val()});
+		console.log(result);
+		if (result.error == 1){
+			location.href='index.php';
+		}else{
+			alert('Ocurrio un error, verifique sus datos de incio de sesión');
+		}
+	});
+});
   </script>
 
     </body>

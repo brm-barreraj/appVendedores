@@ -15,20 +15,24 @@ if (isset($_POST['accion']) && !empty($_POST['accion']) ) {
 			$pass = $_POST['pass'];	
 			if (isset($user) && !empty($user) && !empty($pass)  ) {	
 				$usuario = $General->getTotalDatos('VenUsuarioAdmin',null,array('email'=>$user,'contrasena'=>$pass) );
+				//printVar($usuario);
 				if ($usuario) {
-					$data = $usuario;						
+					$data = $usuario;							
 					$error = 1;
 					/*
 						valor de la cookie = $nombre+$apellido+email
 					*/
 					$string = base64_encode($data[0]->nombre.'+'.$data[0]->apellido.'+'.$data[0]->email);
+					//var_dump($string);
 					setcookie("login", $string, time()+(3600*24*7) );
+
 				}else{
 					$error = 2;
 				}
 			} else {
 				$error = 3;
 			}
+			//echo "Salio";
 		break;
 
 		case 'logout':
