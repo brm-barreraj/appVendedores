@@ -25,13 +25,11 @@
 						</div>
 						<div class="create-field">
 							<select name="idSubCategoria" id="idSubCategoria">
+								
 								<option>Categoría</option>
-								<option value="3">1</option>
-								<option value="3">2</option>
-								<option value="3">3</option>
-								<option value="3">4</option>
-								<option value="3">5</option>
-								<option value="3">6</option>
+								{#foreach from=$subcategorias item=dato#}
+								<option value="{#$dato.idCategoria#}">{#$dato.nombre#}</option>
+								{#/foreach#}
 							</select>	
 							<div class="create-field-line"></div>
 							

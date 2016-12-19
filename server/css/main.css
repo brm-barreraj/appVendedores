@@ -439,6 +439,7 @@ article .link .link-nav b:nth-child(2){float: right;}
 	border-bottom-right-radius: 5px;
 	border-bottom-left-radius: 0;
 	width: 100%;
+	margin-bottom: 10px;
 }
 #data-list #data-list-fields .data-list-field div{
 	width: calc(100% / 5);
@@ -492,20 +493,36 @@ article .link .link-nav b:nth-child(2){float: right;}
 	position: relative;
 	float: left;
 }
-#create-title p{
-	font-family: col-reg;
+
+#create-title-option{
+	width: 24%;
+	position: absolute;
+	top: 10px;
+	right: 10px;
+	cursor: pointer;
+}
+
+#create-title-option p{
+	font-family: col-thin;
 	color: #fff;
 	margin: 0;
 	float: left;
+	font-size: 30px;
+	margin-top: 12px;
 }
-#create-title em{
+#create-title-option em{
 	position: absolute;
 	color: #bccc37;
-	margin-left: 26px;
+	margin-left: 27px;
+	right: 0;
+	font-size: 20px;
 }
-#create-title i{
+#create-title-option i{
 	color: #fff;
-	font-size: 25px;
+	font-size: 29px;
+	right: 12px;
+	position: absolute;
+	top: 16px;
 }
 #create .create-fileds{
 	width: 40%;
@@ -513,13 +530,16 @@ article .link .link-nav b:nth-child(2){float: right;}
 	display: block;
 	float: left;
 	height: 82%;
-	padding: 9% 0;
+	padding: 9% 0 0 5%;
 }
 #create .create-fileds .create-field{
 	width: 100%;
 	margin-bottom: 10px;
 }
-#create .create-fileds .create-field input{
+
+
+#create .create-fileds .create-field input,
+#create .create-fileds .create-field select{
 	background: transparent;
 	border: 0;
 	width: 100%;
