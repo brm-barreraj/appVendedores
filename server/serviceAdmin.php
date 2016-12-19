@@ -248,6 +248,22 @@ if (isset($_POST['accion']) && !empty($_POST['accion']) ) {
 			}
 		break;
 
+		/* Lista subcategorías */
+		case 'getSubcategorias':
+			if (isset($_POST['idCategoria']) && $_POST['idCategoria'] > 0) {
+				$idCategoria = $_POST['idCategoria'];
+				$subcategorias = $General->getTotalDatos('VenCategoria',null,array('idPadre'=>$idCategoria,'estado'=>'A'));
+				if (count($subcategorias) > 0) {
+					$data = $subcategorias;
+					$error = 1;
+				}else{
+					$error = 2;
+				}
+			} else {
+				$error = 3;
+			}
+		break;
+
 		/* Actualiza campos de una categoria */
 		case 'updateCategoria':
 			if (isset($_POST['idCategoria']) && $_POST['idCategoria'] != "") {
