@@ -15,11 +15,10 @@ require($prefijo."db/requires.ini.php");
 //Clases
 require($prefijo."class/class.General.inc.php");
 require($prefijo."class/class.Usuario.inc.php");
-require($prefijo."class/class.Notificaciones.php");
 /*require($prefijo."class/class.MillerLite.inc.php");*/
 
 //Smarty
-require($_SERVER["DOCUMENT_ROOT"]."/Smarty/libs/Smarty.class.php");
+require($_SERVER["DOCUMENT_ROOT"]."/libs/Smarty/libs/Smarty.class.php");
 $smarty = new Smarty();
 
 $smarty->compile_check = true;

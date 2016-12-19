@@ -35,7 +35,6 @@
 						</div>
 
 						<div id="data-list-fields" class="tabla">
-<<<<<<< HEAD
 							{#foreach from=$datos item=dato#}
 			  				<div class="data-list-field">
 
@@ -57,29 +56,6 @@
 									</div>
 
 									<div class="data-list-field-option" data-field="{#$dato.idUsuario#}">
-=======
-						{#foreach from=$datos item=dato#}
-		  				<div class="data-list-field">
-							<div>
-								<p>{#$dato.nombre#}</p>
-								<small>{#$dato.apellido#}</small>
-							</div>
-							<div>
-								<p>{#$dato.email#}</p>
-							</div>
-							<div>
-								<p>{#$dato.cargo#}</p>
-							</div>
-							<div>
-								<p>{#$dato.puntos#}</p>
-							</div>
-							<div class="data-list-field-option">
-								<!-- <em class="lnr lnr-pencil"></em> -->
-							</div>
-						</div>
-						{#/foreach#}
-							
->>>>>>> 81057c64115b3334c41da195744b0d05afe0a031
 
 										<div class="edit" data-field="{#$dato.idUsuario#}">
 											<p>EDITAR</p>
@@ -116,11 +92,11 @@
 					<div id="data-bottom">
 
 						<div id="data-bottom-message">
-							<!-- <form id="forma">
+							<form id="forma">
 								<input type="file" name="archivo" id="archivo">
 							</form>
 							<button id="guardar">Guardar</button>
-							<span id="info"></span> -->
+							<span id="info"></span>
 						</div>
 						
 					</div>
