@@ -3,7 +3,7 @@
 
 			<article>
 				
-				<form id="create" action="">
+				<form id="create">
 
 					<div id="create-title">
 						<div id="create-title-option">
@@ -16,29 +16,32 @@
 					<div class="create-fileds">
 						
 						<div class="create-field">
-							<input type="text" name="title" id="title" placeholder="Titulo">
+							<input type="text" name="titulo" id="titulo" placeholder="Titulo">
 							<div class="create-field-line"></div>
 						</div>
 						<div class="create-field">
-							<input type="text" name="title" id="title" placeholder="Frase destacada titulo">
+							<input type="text" name="subtitulo" id="subtitulo" placeholder="Frase destacada titulo">
 							<div class="create-field-line"></div>
 						</div>
 						<div class="create-field">
-							<select name="category" id="category">
+							<select name="idSubCategoria" id="idSubCategoria">
 								<option>Categoría</option>
-								<option value="1">1</option>
-								<option value="1">2</option>
-								<option value="1">3</option>
-								<option value="1">4</option>
-								<option value="1">5</option>
-								<option value="1">6</option>
+								<option value="3">1</option>
+								<option value="3">2</option>
+								<option value="3">3</option>
+								<option value="3">4</option>
+								<option value="3">5</option>
+								<option value="3">6</option>
 							</select>	
 							<div class="create-field-line"></div>
 							
 						</div>
 						<div class="create-field">
 							<input type="file" name="image" id="image" placeholder="Imagen">
-							<input type="hidden" name="accion" id="accion" placeholder="setNoticia">
+							<input type="hidden" name="accion" value="setNoticia" id="accion">
+							<input type="hidden" name="idUsuarioAdmin" value="1" id="idUsuarioAdmin">
+							<input type="hidden" name="contenido" value="" id="contenido">
+							<input type="hidden" name="tipoTemplate" value="1" id="tipoTemplate">
 							<div class="create-field-line"></div>
 						</div>
 						<div class="create-field">

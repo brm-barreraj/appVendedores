@@ -36,8 +36,8 @@ if (isset($_POST['accion']) && !empty($_POST['accion']) ) {
 		break;
 
 		case 'logout':
-		setcookie("login","",time()-1);
-		header('Location:login.php');
+			setcookie("login","",time()-1);
+			header('Location:login.php');
 		break;		
 
 		/* buscador usuario--------- Falta */
@@ -299,32 +299,40 @@ if (isset($_POST['accion']) && !empty($_POST['accion']) ) {
 
 		/* Inserta una noticia */
 		case 'setNoticia':
-			if (isset($_POST['idSubCategoria']) && $_POST['idSubCategoria'] > 0 &&
-				isset($_POST['idUsuarioAdmin']) && $_POST['idUsuarioAdmin'] > 0 &&
+			if (isset($_POST['idSubCategoria']) && (int) $_POST['idSubCategoria'] > 0 &&
+				isset($_POST['idUsuarioAdmin']) && (int) $_POST['idUsuarioAdmin'] > 0 &&
 				isset($_POST['titulo']) && $_POST['titulo'] != "" &&
 				isset($_POST['subtitulo']) && $_POST['subtitulo'] != "" &&
-				isset($_POST['contenido']) && $_POST['contenido'] != "" &&
-				isset($_POST['imagen']) && $_POST['imagen'] != "" &&
-				isset($_POST['tipoTemplate']) && $_POST['tipoTemplate'] != "") {
+				isset($_POST['contenido']) &&
+				isset($_FILES['image']) && $_FILES['image'] != "" &&
+				isset($_POST['tipoTemplate']) && (int) $_POST['tipoTemplate'] > 0) {
 				$idSubCategoria = $_POST['idSubCategoria'];
 				$idUsuarioAdmin = $_POST['idUsuarioAdmin'];
-				$Noticia = new General();
-				$Noticia->idCategoria=$idSubCategoria;
-				$Noticia->idUsuarioAdmin=$idUsuarioAdmin;
-				$Noticia->titulo=utf8_encode($_POST['titulo']);
-				$Noticia->subtitulo=utf8_encode($_POST['subtitulo']);
-				$Noticia->contenido=utf8_encode($_POST['contenido']);
-				$Noticia->imagen=$_POST['imagen'];
-				$Noticia->tipoTemplate=$_POST['tipoTemplate'];
-				$Noticia->estado='A';
-				$Noticia->fechaMod = date("Y-m-d H:i:s");
-				$idNoticia = $Noticia->setInstancia('VenNoticia');
-				sendMessageAndroid($_POST['titulo']);
-				if ($idNoticia > 0) {
-					$data = $idNoticia;
-					$error = 1;
+				$nNoticias = $General->countRows("VenNoticia");
+				$imagen = $General->moveFile($_FILES['image'],"img/noticias/",$nNoticias);
+				if ($imagen) {
+					$Noticia = new General();
+					$Noticia->idCategoria=$idSubCategoria;
+					$Noticia->idUsuarioAdmin=$idUsuarioAdmin;
+					$Noticia->titulo=utf8_encode($_POST['titulo']);
+					$Noticia->subtitulo=utf8_encode($_POST['subtitulo']);
+					$Noticia->contenido=utf8_encode($_POST['contenido']);
+					$Noticia->imagen=$imagen;
+					$Noticia->tipoTemplate=$_POST['tipoTemplate'];
+					$Noticia->estado='A';
+					$Noticia->fechaMod = date("Y-m-d H:i:s");
+					$idNoticia = $Noticia->setInstancia('VenNoticia');
+					$Notification = new Notification;
+					$Notification->sendMessageAndroid($_POST['titulo']);
+					//sendMessageAndroid($_POST['titulo']);
+					if ($idNoticia > 0) {
+						$data = $idNoticia;
+						$error = 1;
+					}else{
+						$error = 0;
+					}
 				}else{
-					$error = 0;
+					$error = 4;
 				}
 			} else {
 				$error = 3;
@@ -418,6 +426,7 @@ if (isset($_POST['accion']) && !empty($_POST['accion']) ) {
 	1 = La acción se realizó correctamente
 	2 = La acción se realizó correctamente pero no hay datos
 	3 = Campos incorrectos 
+	4 = Imagen no subio correctamente
 
 */
 

@@ -2,7 +2,6 @@
 header("Access-Control-Allow-Origin: *");
 header('Content-Type: application/json');
 require("db/requires.php");
-include("notificacion.php");
 $General = new General();
 $error=-1;
 $data="";

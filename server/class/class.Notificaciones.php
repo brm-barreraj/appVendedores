@@ -1,4 +1,10 @@
-<?php
+<?php  
+/**
+* 
+*/
+class Notification
+{
+	
 	function sendMessageAndroid($mensaje){
 		$content = array(
 			"en" => $mensaje
@@ -31,10 +37,13 @@
 		return $response;
 	}
 	
-/*	$response = sendMessageAndroid();
-	$return["allresponses"] = $response;
-	$return = json_encode( $return);
-	print("\n\nJSON received:\n");
-	print($return);
-	print("\n");*/
+	/*	
+		$response = sendMessageAndroid();
+		$return["allresponses"] = $response;
+		$return = json_encode( $return);
+		print("\n\nJSON received:\n");
+		print($return);
+		print("\n");
+	*/
+}
 ?>
