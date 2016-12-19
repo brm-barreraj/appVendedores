@@ -536,7 +536,10 @@ article .link .link-nav b:nth-child(2){float: right;}
 	width: 100%;
 	margin-bottom: 10px;
 }
-#create .create-fileds .create-field input{
+
+
+#create .create-fileds .create-field input,
+#create .create-fileds .create-field select{
 	background: transparent;
 	border: 0;
 	width: 100%;
