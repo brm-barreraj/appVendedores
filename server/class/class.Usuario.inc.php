@@ -149,7 +149,7 @@
 
 						$i++;
 					}
-					printVar($data);
+					//printVar($data);
 					return $data;
 				break;
 
