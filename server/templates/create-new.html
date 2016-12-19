@@ -24,10 +24,21 @@
 							<div class="create-field-line"></div>
 						</div>
 						<div class="create-field">
-							<select name="idSubCategoria" id="idSubCategoria">
+							<select name="idCategoria" id="idCategoria">
 								
 								<option>Categoría</option>
-								{#foreach from=$subcategorias item=dato#}
+								{#foreach from=$categorias item=dato#}
+								<option value="{#$dato.idCategoria#}">{#$dato.nombre#}</option>
+								{#/foreach#}
+							</select>	
+							<div class="create-field-line"></div>
+							
+						</div>
+						<div class="create-field">
+							<select name="idSubCategoria" id="idSubCategoria" style="display:none;">
+								
+								<option>Categoría</option>
+								{#foreach from=$categorias item=dato#}
 								<option value="{#$dato.idCategoria#}">{#$dato.nombre#}</option>
 								{#/foreach#}
 							</select>	

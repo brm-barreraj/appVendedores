@@ -48,3 +48,18 @@ $('#guardar').click(function(){
 		        });
 	}
 });
+
+$('#idCategoria').change(function(){
+	console.log($(this).val());
+	result = sendAjax("serviceAdmin.php", "VenCategoria ", {idCategoria:$(this).val()});
+	if (result.error == 1){
+		data = result.data;
+		var tabla='';
+		for (var i =0; i< data.length ; i++) {
+			tabla+='<option value="'+data[i].nombre +'">'+data[i].nombre+'</option>';
+		}
+		$('.tabla').html(tabla);
+	}else{
+		alert('Ocurrio un error en la consulta');
+	}
+});
