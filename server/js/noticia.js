@@ -37,6 +37,7 @@ $('#guardar').click(function(){
 	}
 });
 
+//cargar subcategorias con base a la categoria seleccionado
 $('#idCategoria').change(function(){
 	console.log($(this).val());
 	result = sendAjax("serviceAdmin.php", "getSubcategorias", {idCategoria:$(this).val()});
@@ -49,6 +50,19 @@ $('#idCategoria').change(function(){
 		$('#idSubCategoria').html(tabla).show();
 		$('#idSubCategoriaDiv').show();
 		
+	}else{
+		alert('Ocurrio un error en la consulta');
+	}
+});
+
+//eleminiar
+
+$('.eliminar').click(function(){
+	var id = $(this).attr('data-id');
+	result = sendAjax("serviceAdmin.php", "deleteNoticia", {idNoticia:id});
+	if (result.error == 1){
+		data = result.data;
+		alert('Registro Elemininado correctamente');
 	}else{
 		alert('Ocurrio un error en la consulta');
 	}

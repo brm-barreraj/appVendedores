@@ -8,3 +8,16 @@ $(document).ready(function(){
 		}
 	});
 });
+
+//eleminiar
+
+$('.eliminar').click(function(){
+	var id = $(this).attr('data-id');
+	result = sendAjax("serviceAdmin.php", "deleteCategoria", {idCategoria:id});
+	if (result.error == 1){
+		data = result.data;
+		alert('Registro Elemininado correctamente');
+	}else{
+		alert('Ocurrio un error en la consulta');
+	}
+});
