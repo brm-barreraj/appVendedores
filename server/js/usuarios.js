@@ -111,7 +111,7 @@ jQuery(document).ready(function () {
 			}
 		});
 
-	//eliminar
+	// Eliminar
 
 	$('.eliminar').click(function(){
 		var id = $(this).attr('data-field');
@@ -125,14 +125,8 @@ jQuery(document).ready(function () {
 		}
 	});
 
-	//Editar
 
-	$('.editar').click(function(){
-
-	});
-
-
-	//agregar
+	// Agregar y editar
 	$('#btnForm').click(function(){
 
 		if($('#create').valid()){
@@ -160,7 +154,6 @@ jQuery(document).ready(function () {
 		var field=$(this).attr("data-field");
 		$(".data-list-field-option[data-field='"+field+"']").hide();
 	});
-	
 
 });
 

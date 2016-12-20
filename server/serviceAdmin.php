@@ -54,9 +54,10 @@ if (isset($_POST['accion']) && !empty($_POST['accion']) ) {
 
 		/* Buscador Categoría */
 		case 'buscadorCategoria':
-			$usr = new Usuario();
+			$cat = new Categoria();
 			$termino = $_POST['termino'];
-			$result = $usr->serchTermUser($termino);
+			$result = $cat->serchTermCat($termino);
+			//printVar($result);
 			if (count($result) > 0) {
 				$data = $result;
 				$error = 1;
@@ -181,7 +182,7 @@ if (isset($_POST['accion']) && !empty($_POST['accion']) ) {
 				$Categoria = new General();
 				$Categoria->nombre = $_POST['nombre'];
 				$Categoria->imagen = $_POST['imagen'];
-				$Categoria->idPadre = (isset($_POST['idCategoria']) && $_POST['idCategoria'] > 0) ? $_POST['idCategoria'] : 0;
+				$Categoria->idPadre = (isset($_POST['idPadre']) && $_POST['idPadre'] > 0) ? $_POST['idPadre'] : 0;
 				$Categoria->estado='A';
 				$Categoria->fechaMod = date("Y-m-d H:i:s");
 				$idCategoria = $Categoria->setInstancia('VenCategoria');

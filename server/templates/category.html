@@ -13,7 +13,7 @@
 							<input type="text" name="search" id="search">
 						</div>
 						<div>
-							<a href="usuariosForm.php">
+							<a href="categoriasForm.php">
 								<i class="lnr lnr-magnifier"></i>
 							</a>
 						</div>
@@ -49,24 +49,24 @@
 										<p>{#$dato.padre#}</p>
 									</div>
 
-									<div class="data-list-field-option" data-field="{#$dato.idUsuario#}">
-										<a href="usuariosForm.php?idUsuario={#$dato.idUsuario#}">
-											<div class="edit" data-field="{#$dato.idUsuario#}">
+									<div class="data-list-field-option" data-field="{#$dato.idCategoria#}">
+										<a href="categoriasForm.php?idCategoria={#$dato.idCategoria#}">
+											<div class="edit" data-field="{#$dato.idCategoria#}">
 												<p>EDITAR</p>
 												<em class="lnr lnr-pencil"></em>
 											</div>
 										</a>
 
-										<div class="show-hide eliminar" data-field="{#$dato.idUsuario#}">
+										<div class="show-hide eliminar" data-field="{#$dato.idCategoria#}">
 											<p>OCULTAR</p>
 											<em class="lnr lnr-eye-hidden"></em>
 										</div>
 
-										<i class="close lnr lnr-cross" data-field="{#$dato.idUsuario#}"></i>
+										<i class="close lnr lnr-cross" data-field="{#$dato.idCategoria#}"></i>
 
 									</div>
 
-									<div class="data-list-field-menu" data-field="{#$dato.idUsuario#}">
+									<div class="data-list-field-menu" data-field="{#$dato.idCategoria#}">
 										<em class="lnr lnr-menu"></em>
 									</div>
 
@@ -87,11 +87,7 @@
 					<div id="data-bottom">
 
 						<div id="data-bottom-message">
-							<form id="forma">
-								<input type="file" name="archivo" id="archivo">
-							</form>
-							<button id="guardar">Guardar</button>
-							<span id="info"></span>
+							
 						</div>
 						
 					</div>

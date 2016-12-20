@@ -114,7 +114,7 @@
 			
 			switch ($control) {
 				case 'numb':
-					$obj->whereAdd('idPadre LIKE "'.$obj->escape($termino).'%"');
+					/*$obj->whereAdd('idPadre LIKE "'.$obj->escape($termino).'%"');
 					//$obj->whereAdd('age > 30', 'OR');
 					$obj->find();
 					$i=0;
@@ -132,23 +132,21 @@
 						$i++;
 					}
 					//printVar($data);
-					return $data;
+					return $data;*/
 				break;
 
 				case 'stri':
 					$obj->whereAdd('nombre LIKE "'.$obj->escape($termino).'%"');
-					$obj->whereAdd('imagen LIKE "'.$obj->escape($termino).'%"', 'OR');
+					//$obj->whereAdd('imagen LIKE "'.$obj->escape($termino).'%"', 'OR');
 					$obj->find();
 					$i=0;
 					while($obj->fetch()){
 						$data[$i]['idCategoria']=$obj->idCategoria;
-						$data[$i]['nombre']=$obj->nombre;
-
-						
+						$data[$i]['nombre']=utf8_encode($obj->nombre);
 						$data[$i]['imagen']=$obj->imagen;
 						$data[$i]['idPadre']=$obj->idPadre;
 						$nomPa=$this->getCategoriaById($obj->idPadre);
-				$data[$i]['padre']=$nomPa;
+						$data[$i]['padre']=$nomPa;
 						$data[$i]['estado']=$obj->estado;
 						$data[$i]['fecha']=$obj->fecha;
 						
@@ -161,12 +159,12 @@
 				break;
 				
 			}
-			$obj->limit($ini,$this->limite);
+			/*$obj->limit($ini,$this->limite);
 			$obj->find();
 			$i = 0;
 			$data='';
 			while($obj->fetch()){
-		}
+			}*/
 	}
 
 		function getCategoriaById($idC){

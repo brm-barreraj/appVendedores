@@ -15,19 +15,23 @@
 
 					<div class="create-fileds">
 						<div class="create-field">
-
+							<input type="hidden" name="idCategoria" id="idCategoria" value="{#$subcategoria->idCategoria#}">
 
 							<!-- <input type="text" name="category" id="idCategoria" placeholder="Categoría"> -->
-							<select id="idCategoria">
+							<select name="idPadre" id="idPadre">
 								<option>Categoría</option>
 								{#foreach from=$categorias item=dato#}
-								<option value="{#$dato->idCategoria#}">{#$dato->nombre#}</option>
+									{#if isset($dato->idCategoria) && $dato->idCategoria == $subcategoria->idPadre#}
+										<option selected value="{#$dato->idCategoria#}">{#$dato->nombre#}</option>
+									{#else#}
+										<option value="{#$dato->idCategoria#}">{#$dato->nombre#}</option>
+									{#/if#}
 								{#/foreach#}
 							</select>
 							<div class="create-field-line"></div>
-							<input type="text" name="category" id="nombreSubcategoria" placeholder="Subcategoría">
+							<input type="text" name="nombre" id="nombre" value="{#$subcategoria->nombre#}" placeholder="Subcategoría">
 							<div class="create-field-line"></div>
-							<input type="button" id="btnInsertCat" value="crear">
+							<input type="button" id="btnForm" value="crear">
 						</div>
 					</div>
 
@@ -36,6 +40,6 @@
 			</article>
 			
 		</section>
-		<script type="text/javascript" src="js/categoria.js"></script>
+		<script type="text/javascript" src="js/categorias.js"></script>
 {#include file="footer.html"#}
 
