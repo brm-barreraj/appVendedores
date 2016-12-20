@@ -103,7 +103,7 @@ jQuery(document).ready(function () {
 			}
 		});
 
-	//eliminar
+	// Eliminar
 
 	$('.eliminar').click(function(){
 		var id = $(this).attr('data-field');
@@ -117,14 +117,8 @@ jQuery(document).ready(function () {
 		}
 	});
 
-	//Editar
 
-	$('.editar').click(function(){
-
-	});
-
-
-	//agregar
+	// Agregar y editar
 	$('#btnForm').click(function(){
 
 		if($('#create').valid()){
@@ -187,6 +181,7 @@ jQuery(document).ready(function () {
 			if(result.error == 1){
 				$('#data-list-bottom').hide();
 				$('#data-list').css('overflow-y','scroll');
+				
 				data = result.data;
 				var tabla='';
 				for (var i =0; i< data.length ; i++) {
