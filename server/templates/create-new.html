@@ -1,0 +1,131 @@
+{#include file="head.html"#}
+{#include file="menu.html"#}
+
+			<article>
+				
+				<form id="create">
+
+					<div id="create-title">
+						<div id="create-title-option">
+							<p>Terminar Noticia</p>
+							<em class="lnr lnr-checkmark-circle"></em>
+							<i class="lnr lnr-news" id="guardar"></i>
+						</div>
+					</div>
+					
+					<div id="main-new">
+						
+						<div class="create-fileds">
+							
+							<div class="create-field">
+								<label for="titulo">Título</label>
+								<input type="text" name="titulo" id="titulo" placeholder="Título de la noticia">
+								<div class="create-field-line"></div>
+								<i id="title" class="create-field-marker"></i>
+							</div>
+
+							<div class="create-field">
+								<label for="subtitulo">Frase destacada</label>
+								<input type="text" name="subtitulo" id="subtitulo" placeholder="Escoge del título una frase destacada">
+								<div class="create-field-line"></div>
+								<i id="featured" class="create-field-marker"></i>
+							</div>
+
+							<div class="create-field">
+								<textarea class="contenido" name="contenido" id="contenido" placeholder="Contenido noticia"></textarea>
+							</div>
+
+						</div>
+
+						<div class="create-fileds">
+
+							<div class="create-field">
+								<label for="idCategoria">Categoría</label>
+								<select name="idCategoria" id="idCategoria">
+									<option>Categoría</option>
+									{#foreach from=$categorias item=dato#}
+									<option value="{#$dato->idCategoria#}">{#$dato->nombre#}</option>
+									{#/foreach#}
+								</select>	
+								<div class="create-field-line"></div>
+							</div>
+
+							<div class="create-field" style="display:none;" id="idSubCategoriaDiv">
+								<label for="idSubCategoria">Categoría</label>
+								<select name="idSubCategoria" id="idSubCategoria" style="display:none;">
+								</select>	
+								<div class="create-field-line"></div>
+							</div>
+
+							<div class="create-image-area">
+									<input type="file" name="image" id="image" class="inputfile inputfile-3"/>
+									<label for="image"><span>Selecciona la imagen principal de la noticia</span></label>
+							</div>
+
+						</div>
+
+						<div class="create-template">
+
+							<i class="lnr lnr-chevron-left"></i>
+							<div class="create-templates">
+								<div></div>
+								<div></div>
+								<div></div>
+							</div>
+							<i class="lnr lnr-chevron-right"></i>
+						</div>
+						
+					</div>
+
+					<div class="dinamico">
+					</div>
+
+
+					</div>
+					<div id="create-buton">
+						<div>
+							<p>Contenido principal</p>
+							<i class="lnr lnr-chevron-left" data-pos="0"></i>
+						</div>
+						<div>
+							<p>Contenido principal</p>
+						</div>
+						<div>
+							<p>Agregar sección a la noticia</p>
+							<i class="lnr lnr-plus"></i>
+						</div>
+					</div>
+
+					<input type="hidden" name="accion" value="setNoticia" id="accion">
+					<input type="hidden" name="idUsuarioAdmin" value="1" id="idUsuarioAdmin">
+					<input type="hidden" name="tipoTemplate" value="1" id="tipoTemplate">
+				</form>
+
+			</article>
+			
+		</section>
+
+		<footer>
+			
+		</footer>
+		<script type="text/javascript" src="js/validacion.js"></script>
+		<script type="text/javascript" src="js/noticias.js"></script>
+		<script type="text/javascript" src="js/vendor/trumbowyg.min.js"></script>
+		<script>
+			$('.contenido').trumbowyg({
+			    btns: [
+			        ['viewHTML'],
+			        ['formatting'],
+			        'btnGrp-semantic',
+			        ['link'],
+			        'btnGrp-justify',
+			        'btnGrp-lists',
+			        ['horizontalRule'],
+			        ['removeformat'],
+			        ['fullscreen']
+			    ]
+			});
+		</script>
+    </body>
+</html>
+

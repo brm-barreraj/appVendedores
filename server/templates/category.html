@@ -20,7 +20,12 @@
 								</small>
 							</div>
 							<div>
-								<i class="lnr lnr-users"></i>
+								<i class="lnr lnr-spell-check"></i>
+							</div>
+							<div>
+								<a href="categoriasForm.php">
+									<i class="lnr lnr-plus"></i>
+								</a>
 							</div>
 						</div>
 
@@ -29,8 +34,10 @@
 					<div id="data-list">
 
 						<div id="data-list-titles">
-							<p>Subcategoría</p>
 							<p>Categoría</p>
+							<p>Subcategoría</p>
+							<p></p>
+							<p></p>
 						</div>
 
 						<div id="data-list-fields">
@@ -38,13 +45,15 @@
 			  				<div class="data-list-field">
 
 									<div>
-										<p class="data-search">{#$dato.nombre#}</p>
-									</div>
-
-									<div>
 										<p class="data-search">{#$dato.padre#}</p>
 									</div>
 
+									<div>
+										<p class="data-search">{#$dato.nombre#}</p>
+									</div>
+
+									<div></div>
+									<div></div>
 									<div class="data-list-field-option" data-field="{#$dato.idCategoria#}">
 										<a href="categoriasForm.php?idCategoria={#$dato.idCategoria#}">
 											<div class="edit" data-field="{#$dato.idCategoria#}">
@@ -78,22 +87,19 @@
 					</div>
 
 					<div id="data-bottom">
-
 						<div id="data-bottom-message">
-							
 						</div>
-						
 					</div>
-
 				</div>
 
 			</article>
 			
 		</section>
 
-	<script type="text/javascript" src="js/categorias.js"></script>
-	<script type="text/javascript" src="js/vendor/jplist.core.min.js"></script>
-	<script type="text/javascript" src="js/vendor/jplist.pagination-bundle.min.js"></script>
-	<script type="text/javascript" src="js/vendor/jplist.textbox-filter.min.js"></script>
+	<script type="text/javascript" src="js/usuarios.js"></script>
+  <script type="text/javascript" src="js/vendor/jplist.core.min.js"></script>
+  <script type="text/javascript" src="js/vendor/jplist.pagination-bundle.min.js"></script>
+  <script type="text/javascript" src="js/vendor/jplist.textbox-filter.min.js"></script>
+
 {#include file="footer.html"#}
     
