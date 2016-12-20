@@ -178,13 +178,7 @@
 
 			$obj->find();
 			if($obj->fetch()){
-				$data['idCategoria']=$obj->idCargo;
-				$data['nombre']=$obj->nombre;
-				$data['imagen']=$obj->imagen;
-				$data['idPadre']=$obj->idPadre;
-				$data['estado']=$obj->estado;
-				$data['fechaMod']=$obj->fechaMod;
-				$data['fecha']=$obj->fecha;			
+				$data=$obj->nombre;
 			}
 			$obj->free();
 			//printVar($data,'getCargoById');
