@@ -162,6 +162,10 @@ section>nav{
     display: block;
     overflow: hidden;
     background: #101d33;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 5px;
 }
 section>nav ul#nav-dashboard{
     margin: 0;
@@ -269,6 +273,7 @@ section>nav ul#nav-profile li a p{
     font-family: col-reg;
     line-height: 13px;
     margin: 0;
+    padding: 0 2%;
 }
 section>nav ul#nav-profile li a small{
     text-align: center;
@@ -532,12 +537,22 @@ article .link .link-nav b:nth-child(2){float: right;}
 }
 #create-title{
 	width: 100%;
-	height: 8%;
+	height: 12%;
 	display: block;
 	position: relative;
 	float: left;
 }
-
+#main-new,.section-new{
+	position: relative;
+	display: block;
+	width: 100%;
+	height: 76%;
+	float: left;
+	padding: 2% 3%;
+}
+.section-new{
+	display:none;
+}
 #create-title-option{
 	width: 24%;
 	position: absolute;
@@ -569,18 +584,33 @@ article .link .link-nav b:nth-child(2){float: right;}
 	top: 16px;
 }
 #create .create-fileds{
-	width: 40%;
+	width: 35%;
 	position: relative;
 	display: block;
 	float: left;
-	height: 82%;
-	padding: 0 0 0 5%;
+	height: 100%;
 }
 #create .create-fileds .create-field{
 	width: 100%;
-	margin-bottom: 10px;
+	margin-bottom: 20px;
+	position: relative;
+	padding: 0 4%;
 }
 
+#create .create-fileds .create-field #featured,
+#create .create-fileds .create-field #title{
+	position: absolute;
+	width: 15px;
+	height: 15px;
+	border-radius: 100%;
+	right: 14px;
+	top: 27px;
+}
+
+#create .create-fileds .create-field #featured{ background: #c23437; }
+#create .create-fileds .create-field #title{ background: #bccc37; }
+
+#create .create-fileds .create-field label{color: #fff;font-family: col-thin;float: right;font-size: 13px;text-transform: uppercase;letter-spacing: 6px;opacity: 0.8;}
 
 #create .create-fileds .create-field input,
 #create .create-fileds .create-field select{
@@ -588,9 +618,9 @@ article .link .link-nav b:nth-child(2){float: right;}
 	border: 0;
 	width: 100%;
 	font-family: col-thin;
-	font-size: 12px;
+	font-size: 19px;
 	color: #fff;
-	padding: 2% 3%;
+	padding: 2% 21px 2% 0;
 }
 
 .create-field-line,
@@ -666,12 +696,59 @@ textarea:-ms-input-placeholder
 	float: left;
 	height: 82%;
 }
+#create .create-image-area{
+	padding: 0 4%;
+	width: 100%;
+	height: 80px;
+}
+#create .create-image-area input {
+    width: 0.1px;
+    height: 0.1px;
+    opacity: 0;
+    overflow: hidden;
+    position: absolute;
+    z-index: -1;
+}
+
+#create .create-image-area input + label {
+    width: 100%;
+    font-size: 16px;
+    text-overflow: ellipsis;
+    cursor: pointer;
+    display: inline-table;
+    overflow: hidden;
+    height: 100%;
+}
+
+#create .create-image-area label span {margin-top: 5px;display: block;}
+
+#create .create-image-area input:focus + label,
+#create .create-image-area input.has-focus + label {
+    outline: 1px dotted #000;
+    outline: -webkit-focus-ring-color auto 5px;
+}
+
+#create .create-image-area input + label {
+    color: #ffffff;
+    font-family: col-thin;
+    border: 0.099em dashed #29dbf1;
+    padding: 0;
+    text-align: center;
+}
+
+#create .create-image-area input:focus + label,
+#create .create-image-area input.has-focus + label,
+#create .create-image-area input + label:hover {
+    color: #bccc37;
+    outline:none;
+}
+
 #create .create-template{
-	width: 35%;
+	width: 30%;
 	position: relative;
 	display: block;
 	float: left;
-	height: 82%;
+	height: 100%;
 }
 #create .create-template i{
 	position: absolute;
@@ -684,7 +761,7 @@ textarea:-ms-input-placeholder
 }
 #create .create-template i:nth-child(3){right: 0;}
 .create-templates{
-	width: 75%;
+	width: 80%;
 	height: 100%;
 	display: block;
 	margin: 0 auto;
@@ -706,35 +783,42 @@ textarea:-ms-input-placeholder
 .create-templates div:nth-child(3){}
 #create-buton{
 	width: 100%;
-	height: 10%;
+	height: 12%;
 	position: relative;
 	display: block;
 	float: left;
-	background: /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#004587+0,0066b6+25,00b4f2+80,00bdf3+100 */ background: rgb(0,69,135); /* Old browsers */
-	background: -moz-linear-gradient(top,  rgba(0,69,135,1) 0%, rgba(0,102,182,1) 25%, rgba(0,180,242,1) 80%, rgba(0,189,243,1) 100%); /* FF3.6-15 */
-	background: -webkit-linear-gradient(top,  rgba(0,69,135,1) 0%,rgba(0,102,182,1) 25%,rgba(0,180,242,1) 80%,rgba(0,189,243,1) 100%); /* Chrome10-25,Safari5.1-6 */
-	background: linear-gradient(to bottom,  rgba(0,69,135,1) 0%,rgba(0,102,182,1) 25%,rgba(0,180,242,1) 80%,rgba(0,189,243,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#004587', endColorstr='#00bdf3',GradientType=0 ); /* IE6-9 */
+	background: background: rgb(0,69,135);
+	background: -moz-linear-gradient(top,  rgba(0,69,135,1) 0%, rgba(0,102,182,1) 25%, rgba(0,180,242,1) 80%, rgba(0,189,243,1) 100%);
+	background: -webkit-linear-gradient(top,  rgba(0,69,135,1) 0%,rgba(0,102,182,1) 25%,rgba(0,180,242,1) 80%,rgba(0,189,243,1) 100%);
+	background: linear-gradient(to bottom,  rgba(0,69,135,1) 0%,rgba(0,102,182,1) 25%,rgba(0,180,242,1) 80%,rgba(0,189,243,1) 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#004587', endColorstr='#00bdf3',GradientType=0 );
+	border-top-left-radius: 0;
+	border-top-right-radius: 5px;
+	border-bottom-right-radius: 5px;
+	border-bottom-left-radius: 0;
 }
+#create-buton div{width: calc(100%/3);float: left;height: 100%;position: relative;}
+
+#create-buton div:nth-child(1) p{font-family: col-thin;color: #fff;font-size: 18px;margin: 0;display: block;text-align: left;margin-top: 23px;margin-left: 41px;}
+#create-buton div:nth-child(2) p{font-family: col-reg;color: #fff;font-size: 23px;margin: 0;display: block;text-align: center;margin-top: 18px;}
+#create-buton div:nth-child(3) p{font-family: col-thin;color: #fff;font-size: 18px;margin: 0;display: block;text-align: right;margin-top: 19px;margin-right: 45px;}
+
+#create-buton div:nth-child(1) i{top: 16px;}
+#create-buton div:nth-child(2) i{
+}
+#create-buton div:nth-child(3) i{
+	right: 5px;
+	top: 14px;
+}
+
 #create-buton i{
 	color: #fff;
 	font-size: 35px;
 	position: absolute;
-	top: 22%;
 	cursor: pointer;
 }
-#create-buton i:nth-child(1){
-}
-#create-buton i:nth-child(3){right: 0;}
-#create-buton p{
-	font-family: col-reg;
-	color: #fff;
-	font-size: 25px;
-	margin: 0;
-	display: block;
-	text-align: center;
-	margin-top: 12px;
-}
+
+
 
 #login{
 	position: relative;
