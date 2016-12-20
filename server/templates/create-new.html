@@ -32,14 +32,6 @@
 							</div>
 
 							<div class="create-field">
-								<textarea class="contenido" name="contenido" id="contenido" placeholder="Contenido noticia"></textarea>
-							</div>
-
-						</div>
-
-						<div class="create-fileds">
-
-							<div class="create-field">
 								<label for="idCategoria">Categoría</label>
 								<select name="idCategoria" id="idCategoria">
 									<option>Categoría</option>
@@ -51,28 +43,41 @@
 							</div>
 
 							<div class="create-field" style="display:none;" id="idSubCategoriaDiv">
-								<label for="idSubCategoria">Categoría</label>
+								<label for="idSubCategoria">SubCategoría</label>
 								<select name="idSubCategoria" id="idSubCategoria" style="display:none;">
 								</select>	
 								<div class="create-field-line"></div>
 							</div>
 
 							<div class="create-image-area">
+									<div class="icon-upload-new">
+										<i class="lnr lnr-upload"></i>
+										<i class="lnr lnr-picture"></i>
+									</div>
 									<input type="file" name="image" id="image" class="inputfile inputfile-3"/>
 									<label for="image"><span>Selecciona la imagen principal de la noticia</span></label>
 							</div>
 
 						</div>
 
+						<div class="create-fileds">
+
+							<div class="create-field">
+								<textarea name="contenido" id="contenido" placeholder="Contenido noticia"></textarea>
+							</div>
+
+						</div>
+
 						<div class="create-template">
 
-							<i class="lnr lnr-chevron-left"></i>
+							<i class="lnr lnr-chevron-left" data-now="1" data-template="3"></i>
 							<div class="create-templates">
-								<div></div>
-								<div></div>
-								<div></div>
+								<div id="template-1"></div>
+								<div id="template-2"></div>
+								<div id="template-3"></div>
 							</div>
-							<i class="lnr lnr-chevron-right"></i>
+							<i class="lnr lnr-chevron-right" data-now="1" data-template="2"></i>
+							<input type="hidden" name="tipoTemplate" value="1" id="tipoTemplate">
 						</div>
 						
 					</div>
@@ -83,22 +88,21 @@
 
 					</div>
 					<div id="create-buton">
-						<div>
-							<p>Contenido principal</p>
-							<i id="atrasSec" class="lnr lnr-chevron-left" data-pos="0"></i>
+						<div id="atrasSec" class="hide">
+							<p></p>
+							<i class="lnr lnr-chevron-left" data-pos="0"></i>
 						</div>
-						<div>
+						<div id="tituloCentro">
 							<p>Contenido principal</p>
 						</div>
-						<div>
+						<div id="adenlanteSec" >
 							<p>Agregar sección a la noticia</p>
-							<i id="adenlanteSec" class="lnr lnr-plus"></i>
+							<i class="lnr lnr-plus"></i>
 						</div>
 					</div>
 
 					<input type="hidden" name="accion" value="setNoticia" id="accion">
 					<input type="hidden" name="idUsuarioAdmin" value="1" id="idUsuarioAdmin">
-					<input type="hidden" name="tipoTemplate" value="1" id="tipoTemplate">
 				</form>
 
 			</article>
@@ -108,24 +112,9 @@
 		<footer>
 			
 		</footer>
+		<script type="text/javascript" src="js/vendor/trumbowyg.min.js"></script>
 		<script type="text/javascript" src="js/validacion.js"></script>
 		<script type="text/javascript" src="js/noticias.js"></script>
-		<script type="text/javascript" src="js/vendor/trumbowyg.min.js"></script>
-		<script>
-			$('.contenido').trumbowyg({
-			    btns: [
-			        ['viewHTML'],
-			        ['formatting'],
-			        'btnGrp-semantic',
-			        ['link'],
-			        'btnGrp-justify',
-			        'btnGrp-lists',
-			        ['horizontalRule'],
-			        ['removeformat'],
-			        ['fullscreen']
-			    ]
-			});
-		</script>
     </body>
 </html>
 
