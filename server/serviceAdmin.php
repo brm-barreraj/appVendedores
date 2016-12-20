@@ -38,73 +38,32 @@ if (isset($_POST['accion']) && !empty($_POST['accion']) ) {
 		case 'logout':
 			setcookie("login","",time()-1);
 			header('Location:login.php');
+		break;
+		/* Buscador Usuario */
+		case 'buscadorUsuario':
+			$usr = new Usuario();
+			$termino = $_POST['termino'];
+			$result = $usr->serchTermUser($termino);
+			if (count($result) > 0) {
+				$data = $result;
+				$error = 1;
+			}else{
+				$error = 2;
+			}
 		break;		
 
-		/* buscador usuario--------- Falta */
-		case 'buscadorUsuario':
-			if (isset($_POST['nombre']) && $_POST['nombre'] != "" && 
-				isset($_POST['imagen']) && $_POST['imagen'] != "") {
-				$Categoria = new General();
-				$Categoria->nombre = $_POST['nombre'];
-				$Categoria->imagen = $_POST['imagen'];
-				$Categoria->idPadre = (isset($_POST['idCategoria']) && $_POST['idCategoria'] > 0) ? $_POST['idCategoria'] : 0;
-				$Categoria->estado='A';
-				$Categoria->fechaMod = date("Y-m-d H:i:s");
-				$idCategoria = $Categoria->setInstancia('VenCategoria');
-				if ($idCategoria > 0) {
-					$data = $idCategoria;
-					$error = 1;
-				} else {
-					$error = 0;
-				}
-			}else{
-				$error=3;
-			}
-		break;
-
-		/* buscador categoria--------- Falta */
+		/* Buscador Categoría */
 		case 'buscadorCategoria':
-			if (isset($_POST['nombre']) && $_POST['nombre'] != "" && 
-				isset($_POST['imagen']) && $_POST['imagen'] != "") {
-				$Categoria = new General();
-				$Categoria->nombre = $_POST['nombre'];
-				$Categoria->imagen = $_POST['imagen'];
-				$Categoria->idPadre = (isset($_POST['idCategoria']) && $_POST['idCategoria'] > 0) ? $_POST['idCategoria'] : 0;
-				$Categoria->estado='A';
-				$Categoria->fechaMod = date("Y-m-d H:i:s");
-				$idCategoria = $Categoria->setInstancia('VenCategoria');
-				if ($idCategoria > 0) {
-					$data = $idCategoria;
-					$error = 1;
-				} else {
-					$error = 0;
-				}
+			$usr = new Usuario();
+			$termino = $_POST['termino'];
+			$result = $usr->serchTermUser($termino);
+			if (count($result) > 0) {
+				$data = $result;
+				$error = 1;
 			}else{
-				$error=3;
+				$error = 2;
 			}
-		break;
-
-		/* buscador noticia--------- Falta */
-		case 'buscadorNoticia':
-			if (isset($_POST['nombre']) && $_POST['nombre'] != "" && 
-				isset($_POST['imagen']) && $_POST['imagen'] != "") {
-				$Categoria = new General();
-				$Categoria->nombre = $_POST['nombre'];
-				$Categoria->imagen = $_POST['imagen'];
-				$Categoria->idPadre = (isset($_POST['idCategoria']) && $_POST['idCategoria'] > 0) ? $_POST['idCategoria'] : 0;
-				$Categoria->estado='A';
-				$Categoria->fechaMod = date("Y-m-d H:i:s");
-				$idCategoria = $Categoria->setInstancia('VenCategoria');
-				if ($idCategoria > 0) {
-					$data = $idCategoria;
-					$error = 1;
-				} else {
-					$error = 0;
-				}
-			}else{
-				$error=3;
-			}
-		break;
+		break;	
 
 		/* Inserta Usuario */
 		case 'setUsuario':
@@ -239,6 +198,23 @@ if (isset($_POST['accion']) && !empty($_POST['accion']) ) {
 
 		/* Lista categorías */
 		case 'getCategorias':
+
+			if (isset($_POST['pagina']) && $_POST['pagina'] > 0) {
+				$usr = new Categoria();
+				$ini = $_POST['pagina'];
+				$ini = ((int)$ini == 1)? ((int)$ini-1) :( ( (int)$ini  * (int)$usr->getLimit() )- (int)$usr->getLimit() );	
+				$pagina = $usr->getCategoriaLimitRange($ini);
+				if (count($pagina) > 0) {
+					$data = $pagina;
+					$error = 1;
+				}else{
+					$error = 2;
+				}
+			}else{
+				$error = 3;
+			}
+
+
 			$categorias = $General->getTotalDatos('VenCategoria',null,array('idPadre'=>0,'estado'=>'A'));
 			if (count($categorias) > 0) {
 				$data = $categorias;

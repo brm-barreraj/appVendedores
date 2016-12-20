@@ -360,6 +360,7 @@ class General
 		$objDBO->nombre = $d[0];
 		$objDBO->apellido = $d[1];
 		$objDBO->email = $d[2];
+		$objDBO->estado = 'A';
 		$res = $objDBO->find();
 		$ret=false;
 		if($res > 0){

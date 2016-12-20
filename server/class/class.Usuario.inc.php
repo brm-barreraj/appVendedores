@@ -55,6 +55,7 @@
 			DB_DataObject::debugLevel(0);
 			$obj = DB_DataObject::Factory('VenUsuario');
 			$obj->limit($this->limite);
+			$obj->estado = 'A';
 			$obj->find();
 			$i = 0;
 			$data='';
