@@ -22,7 +22,7 @@ require_once("DB/DataObject.php");
 $username_link = "root";
 $password_link = "1nt3r4ct1v3";
 $database_link = "vendedores";
-$serverdb_link = "localhost";
+$serverdb_link = "127.0.0.1";
 /**/
 
 $optionsDataObject = &PEAR::getStaticProperty('DB_DataObject','options');

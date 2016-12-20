@@ -338,17 +338,6 @@ if (isset($_POST['accion']) && !empty($_POST['accion']) ) {
 							}
 							sleep(1);
 						}
-						// Set SeccionNoticia
-						/*$SeccionNoticia = new General();
-						$imagen2 = $General->moveFile($_FILES['image2'],"img/noticias/","2".$nNoticias);
-						$SeccionNoticia->idNoticia=$idNoticia;
-						$SeccionNoticia->imagen=$imagen2;
-						$SeccionNoticia->contenido=utf8_encode($_POST['contenido']);
-						$SeccionNoticia->estado='A';
-						$SeccionNoticia->fechaMod = date("Y-m-d H:i:s");
-						$idNoticia = $SeccionNoticia->setInstancia('VenSeccionNoticia');*/
-
-
 						$error = 1;
 					}else{
 						$error = 0;
