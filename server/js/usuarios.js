@@ -155,6 +155,43 @@ jQuery(document).ready(function () {
 		$(".data-list-field-option[data-field='"+field+"']").hide();
 	});
 
+	/* Subir excel */
+	$('#guardarImage').click(function(){
+
+		var excel = $("#create-excel input[name=excel]").val();
+		excel= excel.split('.');
+		var img= '';
+		var ext =false;
+		//console.log(excel[(excel.length -1)]);
+	    ext=excel[(excel.length -1)];
+		if ( ext === 'xls') {
+			img=true;
+		}else { 
+			$("#info").addClass('error');
+			$("#info").html('<span style="color:#f04124;">Por favor selecciona una excel.</span>');
+		}
+		if (img) {
+			var formData = new FormData(document.getElementById("create-excel"));
+			$.ajax({
+				url:'serviceAdmin.php',
+				method: 'POST',
+				data: formData,
+				cache: false,
+				dataType: 'json',
+				contentType: false,
+				processData: false,
+				enctype: 'multipart/form-data'
+			}).success(function (data){
+				if (data.error==1){
+					location.reload();
+					alert("Guardo el excel correctamente");
+				}else{
+					alert("Ocurrio un error al guardar la noticia");
+				}
+			});
+		}
+	});
+
 });
 
 

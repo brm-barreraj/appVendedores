@@ -40,35 +40,6 @@ if (isset($_POST['accion']) && !empty($_POST['accion']) ) {
 			header('Location:login.php');
 		break;
 
-
-
-		/* Buscador Usuario */
-		case 'buscadorUsuario':
-			$usr = new Usuario();
-			$termino = $_POST['termino'];
-			$result = $usr->serchTermUser($termino);
-			if (count($result) > 0) {
-				$data = $result;
-				$error = 1;
-			}else{
-				$error = 2;
-			}
-		break;		
-
-		/* Buscador Categoría */
-		case 'buscadorCategoria':
-			$cat = new Categoria();
-			$termino = $_POST['termino'];
-			$result = $cat->serchTermCat($termino);
-			//printVar($result);
-			if (count($result) > 0) {
-				$data = $result;
-				$error = 1;
-			}else{
-				$error = 2;
-			}
-		break;	
-
 		/* Inserta Usuario */
 		case 'setUsuario':
 			if (isset($_POST['idCargo']) && $_POST['idCargo'] != "" && 
@@ -104,7 +75,7 @@ if (isset($_POST['accion']) && !empty($_POST['accion']) ) {
 		case 'setUsuariosExcel':
 			if (isset($_FILES['excel']) && $_FILES['excel'] != "") {
 
-				$rutaExcel = $General->moveFile($_FILES['excel'],"xls/","usuarios");
+				$rutaExcel = "xls/".$General->moveFile($_FILES['excel'],"xls/","usuarios");
 
 				require_once 'libs/phpexcel/Read/reader.php';
 
@@ -116,7 +87,7 @@ if (isset($_POST['accion']) && !empty($_POST['accion']) ) {
 				$nCorrectos = 0;
 				$nIncorrectos = 0;
 				for ($i = 2; $i <= $nrows; $i++) {
-					$nombreCargo = ltrim(trim(rtrim(strtolower($data -> sheets[0]['cells'][$i][1]))));
+					$nombreCargo = ltrim(trim(rtrim(strtolower($data -> sheets[0]['cells'][$i][4]))));
 					$cargo = $General->getTotalDatos('VenCargo',array("idCargo"),array('nombre'=>$nombreCargo));
 					if ($cargo && is_array($cargo) && count($cargo) > 0) {
 						$idCargo = $cargo[0]->idCargo;
@@ -129,9 +100,9 @@ if (isset($_POST['accion']) && !empty($_POST['accion']) ) {
 					}
 					$camposUsuario = array();
 					$camposUsuario['idCargo'] = $idCargo;
-					$camposUsuario['nombre'] = ltrim(trim(rtrim(strtolower($data -> sheets[0]['cells'][$i][2]))));
-					$camposUsuario['apellido'] = ltrim(trim(rtrim(strtolower($data -> sheets[0]['cells'][$i][3]))));
-					$camposUsuario['email'] = ltrim(trim(rtrim(strtolower($data -> sheets[0]['cells'][$i][4]))));
+					$camposUsuario['nombre'] = ltrim(trim(rtrim(strtolower($data -> sheets[0]['cells'][$i][1]))));
+					$camposUsuario['apellido'] = ltrim(trim(rtrim(strtolower($data -> sheets[0]['cells'][$i][2]))));
+					$camposUsuario['email'] = ltrim(trim(rtrim(strtolower($data -> sheets[0]['cells'][$i][3]))));
 					$camposUsuario['usuario'] = ltrim(trim(rtrim(strtolower($data -> sheets[0]['cells'][$i][5]))));
 					$camposUsuario['contrasena'] = ltrim(trim(rtrim(strtolower($data -> sheets[0]['cells'][$i][6]))));
 					$camposUsuario['puntos'] = ltrim(trim(rtrim(strtolower($data -> sheets[0]['cells'][$i][7]))));
@@ -150,21 +121,14 @@ if (isset($_POST['accion']) && !empty($_POST['accion']) ) {
 			}
 		break;
 
-		/* Lista Usuarios */
+		/* Lista usuarios */
 		case 'getUsuarios':
-			if (isset($_POST['pagina']) && $_POST['pagina'] > 0) {
-				$usr = new Usuario();
-				$ini = $_POST['pagina'];
-				$ini = ((int)$ini == 1)? ((int)$ini-1) :( ( (int)$ini  * (int)$usr->getLimit() )- (int)$usr->getLimit() );	
-				$pagina = $usr->getUsuariosLimitRange($ini);
-				if (count($pagina) > 0) {
-					$data = $pagina;
-					$error = 1;
-				}else{
-					$error = 2;
-				}
+			$categorias = $General->getTotalDatos('VenUsuarios',null,array('estado'=>'A'));
+			if (count($categorias) > 0) {
+				$data = $categorias;
+				$error = 1;
 			}else{
-				$error = 3;
+				$error = 2;
 			}
 		break;
 
@@ -252,23 +216,6 @@ if (isset($_POST['accion']) && !empty($_POST['accion']) ) {
 
 		/* Lista categorías */
 		case 'getCategorias':
-
-			if (isset($_POST['pagina']) && $_POST['pagina'] > 0) {
-				$usr = new Categoria();
-				$ini = $_POST['pagina'];
-				$ini = ((int)$ini == 1)? ((int)$ini-1) :( ( (int)$ini  * (int)$usr->getLimit() )- (int)$usr->getLimit() );	
-				$pagina = $usr->getCategoriaLimitRange($ini);
-				if (count($pagina) > 0) {
-					$data = $pagina;
-					$error = 1;
-				}else{
-					$error = 2;
-				}
-			}else{
-				$error = 3;
-			}
-
-
 			$categorias = $General->getTotalDatos('VenCategoria',null,array('idPadre'=>0,'estado'=>'A'));
 			if (count($categorias) > 0) {
 				$data = $categorias;
