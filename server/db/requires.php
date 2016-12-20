@@ -17,6 +17,7 @@ require($prefijo."class/class.General.inc.php");
 require($prefijo."class/class.Usuario.inc.php");
 require($prefijo."class/class.Notificaciones.php");
 require($prefijo."class/class.Categoria.inc.php");
+require($prefijo."class/class.Noticia.inc.php");
 /*require($prefijo."class/class.MillerLite.inc.php");*/
 
 //Smarty
