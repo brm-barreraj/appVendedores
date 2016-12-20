@@ -103,7 +103,7 @@ $('.eliminar').click(function(){
 var contador = 0;
 $('.lnr-plus').click(function(){
 	if(contador > 0){
-		$('.lnr-chevron-left').attr('data-pos','contador');
+		$('.lnr-chevron-left').attr('data-pos',contador);
 		$('.'+ contador +'').hide();
 	}
 	contador++;
@@ -129,6 +129,12 @@ function pintarSeccion(){
 
 }
 
-function retroceder(){
+$('.lnr-chevron-left').click(function(){
+	var mostrar = $('.lnr-chevron-left').attr('data-pos');
 
-}
+	$('.section-new').hide();
+	var ver = $('.section-new').get(mostrar);
+	$(ver).show();
+	contador--;
+	$('.lnr-chevron-left').attr('data-pos',(contador-1));
+});
