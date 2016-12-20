@@ -29,7 +29,7 @@
 								</div>
 
 								<div class="create-field">
-									<input type="text" name="contenido" value="{#$noticia.contenido#}" id="contenido" placeholder="Contenido">
+									<textarea name="contenido" value="{#$noticia.contenido#}" id="contenido" placeholder="Contenido"></textarea>
 									<div class="create-field-line"></div>
 								</div>
 
@@ -41,19 +41,23 @@
 
 						</div>
 						<div class="create-fileds">
+							{#counter start=0 skip=1#}
 							{#foreach from=$noticia.secciones item=dato#}
+							{#counter#}
 								<div class="create-field">
-									<input type="hidden" name="idSeccionNoticia" id="idSeccionNoticia" value="{#$dato.idSeccionNoticia#}">
-									<input type="text" name="seccionTitulo" id="seccionTitulo" value="{#$dato.titulo#}">
+									<input type="hidden" name="idSeccionNoticia{#counter#}" id="idSeccionNoticia{#counter#}" value="{#$dato.idSeccionNoticia#}">
+									<input type="text" name="seccionTitulo{#counter#}" id="seccionTitulo{#counter#}" value="{#$dato.titulo#}">
 									<div class="create-field-line"></div>
 								</div>
 								<div class="create-field">
-									<input type="text" name="seccionContenido" id="seccionContenido" value="{#$dato.contenido#}">
+									<textarea name="seccionContenido{#counter#}" id="seccionContenido{#counter#}" value="{#$dato.contenido#}"></textarea>
 									<div class="create-field-line"></div>
 								</div>
 								<div class="create-field">
+								{#if isset($dato.imagen) && !empty($dato.imagen)#}
 									<img width="120px" src="images/{#$dato.imagen#}">
-									<input type="file" name="seccionImagen" id="seccionImagen" value="">
+								{#/if#}
+									<input type="file" name="seccionImagen{#counter#}" id="seccionImagen{#counter#}" value="">
 									<div class="create-field-line"></div>
 								</div> 
 							{#/foreach#}
@@ -66,6 +70,27 @@
 			</article>
 			
 		</section>
-		<script type="text/javascript" src="js/usuarios.js"></script>
+		<script type="text/javascript" src="js/vendor/trumbowyg.min.js"></script>
+		<script type="text/javascript" src="js/functions.js"></script>
+		<script type="text/javascript" src="js/noticias.js"></script>
+		<script type="text/javascript">
+			$('textarea').each(function(){
+				$(this).trumbowyg({
+			 	autogrow: true,
+			  resetCss: true,
+		    btns: [
+		        ['viewHTML'],
+		        ['formatting'],
+		        ['removeformat'],
+		        ['fullscreen'],
+		        'btnGrp-semantic',
+		        ['link'],
+		        'btnGrp-justify',
+		        'btnGrp-lists',
+		        ['horizontalRule'],
+		    ]
+		});
+			});
+		</script>
 {#include file="footer.html"#}
 

@@ -270,3 +270,13 @@ function pintarSeccion(){
 
 
 }
+
+$('#create-title-option').click(function(){
+	result = sendAjax("serviceAdmin.php", "updateNoticia", {data:$('#create').serialize()});
+	if (result.error == 1){
+		data = result.data;
+		alert('Registro Elemininado correctamente');
+	}else{
+		alert('Ocurrio un error en la consulta');
+	}
+});
