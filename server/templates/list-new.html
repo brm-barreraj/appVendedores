@@ -34,10 +34,10 @@
 					<div id="data-list">
 
 						<div id="data-list-titles">
-							<p>Nombre</p>
-							<p>Email</p>
-							<p>Cargo</p>
-							<p>Puntos</p>
+							<p>Titulo</p>
+							<p>Subtitulo</p>
+							<p>Categoria</p>
+							
 						</div>
 
 						<div id="data-list-fields">
@@ -45,40 +45,37 @@
 			  				<div class="data-list-field">
 
 									<div>
-										<p class="data-search">{#$dato.nombre#}</p>
-										<small class="data-search">{#$dato.apellido#}</small>
+										<p class="data-search">{#$dato->titulo#}</p>
+										
 									</div>
 
 									<div>
-										<p class="data-search">{#$dato.email#}</p>
+										<p class="data-search">{#$dato->subtitulo#}</p>
 									</div>
 
 									<div>
-										<p class="data-search">{#$dato.cargo#}</p>
+										<p class="data-search">{#$dato->idCategoria#}</p>
 									</div>
 
-									<div>
-										<p class="data-search">{#$dato.puntos#}</p>
-									</div>
 
-									<div class="data-list-field-option" data-field="{#$dato.idUsuario#}">
-										<a href="usuariosForm.php?idUsuario={#$dato.idUsuario#}">
-											<div class="edit" data-field="{#$dato.idUsuario#}">
+									<div class="data-list-field-option" data-field="{#$dato->idNoticia#}">
+										<a href="noticiasForm.php?idNoticia={#$dato->idNoticia#}">
+											<div class="edit" data-field="{#$dato->idNoticia#}">
 												<p>EDITAR</p>
 												<em class="lnr lnr-pencil"></em>
 											</div>
 										</a>
 
-										<div class="show-hide eliminar" data-field="{#$dato.idUsuario#}">
+										<div class="show-hide eliminar" data-field="{#$dato->idNoticia#}">
 											<p>OCULTAR</p>
 											<em class="lnr lnr-eye-hidden"></em>
 										</div>
 
-										<i class="close lnr lnr-cross" data-field="{#$dato.idUsuario#}"></i>
+										<i class="close lnr lnr-cross" data-field="{#$dato->idNoticia#}"></i>
 
 									</div>
 
-									<div class="data-list-field-menu" data-field="{#$dato.idUsuario#}">
+									<div class="data-list-field-menu" data-field="{#$dato->idNoticia#}">
 										<em class="lnr lnr-menu"></em>
 									</div>
 
@@ -98,7 +95,7 @@
 					<div id="data-bottom">
 
 						<div id="data-bottom-message">
-							<form id="create-excel">
+							<!-- <form id="create-excel">
 								<input type="hidden" name="accion" id="accion" value="setUsuariosExcel"/>
 								<input type="file" name="excel" id="excel" class="upload-file" />
 								<label for="excel"><span>Carga masiva de usuarios, <br> Seleccione el archivo</span></label>
@@ -106,7 +103,7 @@
 									<i class="lnr lnr-upload"></i>
 									<i class="lnr lnr-file-empty"></i>
 								</div>
-							</form>
+							</form> -->
 						</div>
 						
 					</div>

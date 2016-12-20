@@ -20,7 +20,7 @@ require($prefijo."class/class.Categoria.inc.php");
 /*require($prefijo."class/class.MillerLite.inc.php");*/
 
 //Smarty
-require($_SERVER["DOCUMENT_ROOT"]."/libs/Smarty/libs/Smarty.class.php");
+require($_SERVER["DOCUMENT_ROOT"]."/Smarty/libs/Smarty.class.php");
 $smarty = new Smarty();
 
 $smarty->compile_check = true;
