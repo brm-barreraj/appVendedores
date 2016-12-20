@@ -127,7 +127,7 @@ jQuery(document).ready(function () {
 
 
 	// Agregar y editar
-	$('#btnForm').click(function(){
+	$('#create-title-option').click(function(){
 
 		if($('#create').valid()){
 			var accion = ($("#idUsuario").val() != "") ? "updateUsuario" : "setUsuario";

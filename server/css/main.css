@@ -301,13 +301,18 @@ article #links{
 }
 article .link{
     width: calc(100% / 3);
-    height: 72%;
     float: left;
     overflow: hidden;
-    top: 12%;
+    top: 10%;
     display: block;
     position: relative;
     cursor: pointer;
+    padding: 2% 1%;
+    border-radius:4px;
+}
+
+article .link:hover{
+	background:rgba(255, 255, 255, 0.17);
 }
 
 article .link .link-circle {
@@ -353,15 +358,17 @@ article .link .link-nav{
 	width: 64%;
 	display: block;
 	margin: 0 auto;
+	overflow: hidden;
 }
-article .link .link-nav b{
+article .link .link-nav a{position: relative;display: block;}
+article .link .link-nav a b{
 	color: #fff;
 	font-size: 40px;
 }
 
-article .link .link-nav b:nth-child(1){float: left;}
+article .link .link-nav a:nth-child(1) b{float: left;}
 
-article .link .link-nav b:nth-child(2){float: right;}
+article .link .link-nav a:nth-child(2) b{float: right;}
 
 
 #data{
@@ -549,7 +556,6 @@ article .link .link-nav b:nth-child(2){float: right;}
 	height: 12%;
 	display: block;
 	position: relative;
-	float: left;
 }
 #main-new,.section-new{
 	position: relative;
@@ -952,5 +958,18 @@ textarea:-ms-input-placeholder
 .upload-file.has-focus + label,
 .upload-file + label:hover {
     color: #722040;
+}
+
+
+#create-user{
+	position: relative;
+	height: 88%;
+	width: 88%;
+	display: block;
+	margin: 0 auto;
+	padding-top: 7%;
+}
+#create-user .create-fileds{
+	width: 50%;
 }
 
