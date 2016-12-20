@@ -156,6 +156,10 @@ section::after{
 	z-index: -1;
 	border-radius: 34%;
 	-webkit-filter: blur(20px);
+	-moz-filter: blur(20px);
+	-o-filter: blur(20px);
+	-ms-filter: blur(20px);
+	filter: blur(20px);
 	opacity: 0.8;
 }
 
@@ -200,7 +204,12 @@ section>nav ul#nav-dashboard li.active::before{
 	display: block;
 	position: absolute;
 	border-radius: 100%;
+	border-radius: 34%;
 	-webkit-filter: blur(20px);
+	-moz-filter: blur(20px);
+	-o-filter: blur(20px);
+	-ms-filter: blur(20px);
+	filter: blur(20px);
 	background: -moz-radial-gradient(center, ellipse cover,  rgba(5,255,250,0) 0%, rgba(5,255,250,0) 1%, rgba(5,242,253,1) 32%, rgba(5,234,255,1) 51%, rgba(5,234,255,1) 52%, rgba(5,241,252,1) 69%, rgba(5,255,246,0) 100%); 
 	background: -webkit-radial-gradient(center, ellipse cover,  rgba(5,255,250,0) 0%,rgba(5,255,250,0) 1%,rgba(5,242,253,1) 32%,rgba(5,234,255,1) 51%,rgba(5,234,255,1) 52%,rgba(5,241,252,1) 69%,rgba(5,255,246,0) 100%); 
 	background: radial-gradient(ellipse at center,  rgba(5,255,250,0) 0%,rgba(5,255,250,0) 1%,rgba(5,242,253,1) 32%,rgba(5,234,255,1) 51%,rgba(5,234,255,1) 52%,rgba(5,241,252,1) 69%,rgba(5,255,246,0) 100%); 
