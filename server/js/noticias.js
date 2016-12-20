@@ -1,4 +1,28 @@
 
+	$( ".create-template .lnr-chevron-left").on( "click", function() {
+
+		var template=parseInt( $(this).attr("data-template") );
+		$(".create-templates div").hide();
+		$(".create-templates #template-"+template).show();
+		$(".create-template i").attr("data-now",template);
+		$("#tipoTemplate").val(template);
+		template=(template == 1) ? 3 : template-1;
+		$(this).attr("data-template",template);
+
+	});
+
+	$( ".create-template .lnr-chevron-right").on( "click", function() {
+
+		var template=parseInt( $(this).attr("data-template") );
+		$(".create-templates div").hide();
+		$(".create-templates #template-"+template).show();
+		$(".create-template i").attr("data-now",template);
+		$("#tipoTemplate").val(template);
+		template=(template == 3) ? 1 : template+1;
+		$(this).attr("data-template",template);
+
+	});
+
 $('#guardar').click(function(){
 
 	var imagen = $("#create input[name=image]").val();
@@ -35,6 +59,23 @@ $('#guardar').click(function(){
 			}
 		});
 	}
+});
+
+$('#contenido').trumbowyg({
+	 autogrow: true,
+	  resetCss: true,
+    btns: [
+        ['viewHTML'],
+        ['formatting'],
+        ['removeformat'],
+        ['fullscreen'],
+        'btnGrp-semantic',
+        ['link'],
+        'btnGrp-justify',
+        'btnGrp-lists',
+        ['horizontalRule'],
+
+    ]
 });
 
 //cargar subcategorias con base a la categoria seleccionado
@@ -103,21 +144,39 @@ $('.eliminar').click(function(){
 var contador = 0;
 $('#adenlanteSec').click(function(){
 	contador++;
+	$("#atrasSec").removeClass("hide");
 	var nSecciones = $(".dinamico").find('.section-new').length;
 	if(contador > nSecciones){
+		letreroAtras = (contador == 1) ? "Contenido principal" : "Sección "+(contador-1);
+		$("#atrasSec p").text(letreroAtras);
+		$("#tituloCentro p").text("Seccion "+contador);
+		$("#adenlanteSec p").text("Agregar sección a la noticia");
+
 		pintarSeccion();
-		$(this).removeClass("lnr-chevron-right");
-		$(this).addClass("lnr-plus");
+		$(this).find("i").removeClass("lnr-chevron-right");
+		$(this).find("i").addClass("lnr-plus");
 	}else if(contador == nSecciones){
+		letreroAtras = (contador == 1) ? "Contenido principal" : "Sección "+(contador-1);
+		$("#atrasSec p").text(letreroAtras);
+		$("#tituloCentro p").text("Seccion "+contador);
+		$("#adenlanteSec p").text("Agregar sección a la noticia");
 		$('.section-new').hide();
+		$('.dinamico').hide();
 		$('.sec'+contador).show();
-		$(this).removeClass("lnr-chevron-right");
-		$(this).addClass("lnr-plus");
+		$('.dinamico').show();
+		$(this).find("i").removeClass("lnr-chevron-right");
+		$(this).find("i").addClass("lnr-plus");
 	}else{
+		letreroAtras = (contador == 1) ? "Contenido principal" : "Sección "+(contador-1);
+		$("#atrasSec p").text(letreroAtras);
+		$("#tituloCentro p").text("Seccion "+contador);
+		$("#adenlanteSec p").text("Seccion "+(contador+1));
 		$('.section-new').hide();
+		$('.dinamico').hide();
 		$('.sec'+contador).show();
-		$(this).removeClass("lnr-plus");
-		$(this).addClass("lnr-chevron-right");
+		$('.dinamico').show();
+		$(this).find("i").removeClass("lnr-plus");
+		$(this).find("i").addClass("lnr-chevron-right");
 	}
 	
 	console.log(contador);
@@ -125,23 +184,58 @@ $('#adenlanteSec').click(function(){
 });
 
 $('#atrasSec').click(function(){
-	contador--;
-	var nSecciones = $(".dinamico").find('.section-new').length;
-	$("#adenlanteSec").removeClass("lnr-plus");
-	$("#adenlanteSec").addClass("lnr-chevron-right");
-	if (contador == 0) {
-		$('.section-new').hide();
-		$('#main-new').show();
-	}else{
-		$('.section-new').hide();
-		$('.sec'+contador).show();
-	};	
-	console.log(contador);
+	if (contador > 0) {
+		$("#atrasSec").removeClass("hide");
+		contador--;
+		var nSecciones = $(".dinamico").find('.section-new').length;
+		$("#adenlanteSec").find("i").removeClass("lnr-plus");
+		$("#adenlanteSec").find("i").addClass("lnr-chevron-right");
+		if (contador == 0) {
+			$("#atrasSec").addClass("hide");
+			$("#atrasSec p").text("");
+			$("#tituloCentro p").text("Contenido principal");
+			$("#adenlanteSec p").text("Agregar sección a la noticia");
+
+			$('.section-new').hide();
+			$('.dinamico').hide();
+			$('#main-new').show();
+		}else{
+			letreroAtras = (contador == 1) ? "Contenido principal" : "Sección "+(contador-1);
+			$("#atrasSec p").text(letreroAtras);
+			$("#tituloCentro p").text("Seccion "+contador);
+			$("#adenlanteSec p").text("Seccion "+(contador+1));
+
+			$('.section-new').hide();
+			$('.dinamico').hide();
+			$('.sec'+contador).show();
+		$('.dinamico').show();
+		}	
+		console.log(contador);
+	}
 });
 
 function pintarSeccion(){
 	
-	var seccion = '<div class="section-new '+contador+' sec'+contador+'"><div class="create-field"><div style="padding: 2% 3%;font-family: col-thin; font-size: 12px; color: #fff;">Imagen Contenido</div> <input type="file" name="image'+contador+'" id="image'+contador+'" placeholder="Imagen"> </div> <div class="create-field"> <textarea style="background-color:white;" name="contenido'+contador+'" id="contenido'+contador+'" placeholder="Contenido noticia"></textarea></div></div>';
+	var seccion = '';
+	seccion+='<div class="section-new '+contador+' sec'+contador+'">';
+	seccion+='<div class="create-fileds">';
+	seccion+='<div class="create-image-area">';
+	seccion+='<div class="icon-upload-new">';
+	seccion+='<i class="lnr lnr-upload"></i>';
+	seccion+='<i class="lnr lnr-picture"></i>';
+	seccion+='</div>';
+	seccion+='<input type="file" name="image'+contador+'" id="image'+contador+'" class="inputfile inputfile-3"/>';
+	seccion+='<label for="image"><span>Selecciona la imagen principal de la noticia</span></label>';
+	seccion+='</div>';
+	seccion+='</div>';
+	seccion+='<div class="create-fileds">';
+	seccion+='<div class="create-field">';
+	seccion+='<textarea style="background-color:white;" name="contenido'+contador+'" id="contenido'+contador+'" placeholder="Contenido sección '+contador+'"></textarea>';
+	seccion+='</div>';
+	seccion+='</div>';
+	seccion+='</div>';
+
+
 	var actual = $('.dinamico').html();
 	if(actual !=''){
 		$('.dinamico').append(seccion);
@@ -151,9 +245,28 @@ function pintarSeccion(){
 		$('.dinamico').html(actual);
 	}
 		$('.section-new').show();
+		$('.dinamico').show();
+
 		for (var i = 0; i < ($('.section-new').length -1); i++) {
 			var ocultar=$('.section-new').get(i);
 			$(ocultar).hide();
 		};
+
+		$('#contenido'+contador).trumbowyg({
+			 	autogrow: true,
+			  resetCss: true,
+		    btns: [
+		        ['viewHTML'],
+		        ['formatting'],
+		        ['removeformat'],
+		        ['fullscreen'],
+		        'btnGrp-semantic',
+		        ['link'],
+		        'btnGrp-justify',
+		        'btnGrp-lists',
+		        ['horizontalRule'],
+		    ]
+		});
+
 
 }
