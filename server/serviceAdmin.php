@@ -104,7 +104,7 @@ if (isset($_POST['accion']) && !empty($_POST['accion']) ) {
 		case 'setUsuariosExcel':
 			if (isset($_FILES['excel']) && $_FILES['excel'] != "") {
 
-				$rutaExcel = $General->moveFile($_FILES['excel'],"xls/","usuarios");
+				$rutaExcel = "xls/".$General->moveFile($_FILES['excel'],"xls/","usuarios");
 
 				require_once 'libs/phpexcel/Read/reader.php';
 
@@ -116,7 +116,7 @@ if (isset($_POST['accion']) && !empty($_POST['accion']) ) {
 				$nCorrectos = 0;
 				$nIncorrectos = 0;
 				for ($i = 2; $i <= $nrows; $i++) {
-					$nombreCargo = ltrim(trim(rtrim(strtolower($data -> sheets[0]['cells'][$i][1]))));
+					$nombreCargo = ltrim(trim(rtrim(strtolower($data -> sheets[0]['cells'][$i][4]))));
 					$cargo = $General->getTotalDatos('VenCargo',array("idCargo"),array('nombre'=>$nombreCargo));
 					if ($cargo && is_array($cargo) && count($cargo) > 0) {
 						$idCargo = $cargo[0]->idCargo;
@@ -129,9 +129,9 @@ if (isset($_POST['accion']) && !empty($_POST['accion']) ) {
 					}
 					$camposUsuario = array();
 					$camposUsuario['idCargo'] = $idCargo;
-					$camposUsuario['nombre'] = ltrim(trim(rtrim(strtolower($data -> sheets[0]['cells'][$i][2]))));
-					$camposUsuario['apellido'] = ltrim(trim(rtrim(strtolower($data -> sheets[0]['cells'][$i][3]))));
-					$camposUsuario['email'] = ltrim(trim(rtrim(strtolower($data -> sheets[0]['cells'][$i][4]))));
+					$camposUsuario['nombre'] = ltrim(trim(rtrim(strtolower($data -> sheets[0]['cells'][$i][1]))));
+					$camposUsuario['apellido'] = ltrim(trim(rtrim(strtolower($data -> sheets[0]['cells'][$i][2]))));
+					$camposUsuario['email'] = ltrim(trim(rtrim(strtolower($data -> sheets[0]['cells'][$i][3]))));
 					$camposUsuario['usuario'] = ltrim(trim(rtrim(strtolower($data -> sheets[0]['cells'][$i][5]))));
 					$camposUsuario['contrasena'] = ltrim(trim(rtrim(strtolower($data -> sheets[0]['cells'][$i][6]))));
 					$camposUsuario['puntos'] = ltrim(trim(rtrim(strtolower($data -> sheets[0]['cells'][$i][7]))));
