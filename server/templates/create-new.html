@@ -79,11 +79,9 @@
 
 					<div class="section-new">
 						
-						<div class="create-field">
-							<div style="padding: 2% 3%;font-family: col-thin; font-size: 12px; color: #fff;">
-								Imagen Contenido
-							</div>
-							<input type="file" name="image2" id="image2" placeholder="Imagen">
+						<div class="create-image-area">
+								<input type="file" name="image2" id="image2" class="inputfile inputfile-3"/>
+								<label for="image2"><span>Selecciona la imagen principal de la noticia</span></label>
 						</div>
 
 						<div class="create-field">
@@ -91,7 +89,6 @@
 						</div>
 
 					</div>
-
 
 					<div id="create-buton">
 						<div>
@@ -121,6 +118,8 @@
 		</footer>
 		<script type="text/javascript" src="js/validacion.js"></script>
 		<script type="text/javascript" src="js/noticias.js"></script>
+		<script src="http://js.nicedit.com/nicEdit-latest.js" type="text/javascript"></script>
+		<script type="text/javascript">bkLib.onDomLoaded(nicEditors.allTextAreas);</script>
     </body>
 </html>
 
