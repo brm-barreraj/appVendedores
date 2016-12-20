@@ -101,26 +101,67 @@ $('.eliminar').click(function(){
 
 
 var contador = 0;
+$('#adenlanteSec').click(function(){
+	contador++;
+	var nSecciones = $(".dinamico").find('.section-new').length;
+	if(contador > nSecciones){
+		pintarSeccion();
+		$(this).removeClass("lnr-chevron-right");
+		$(this).addClass("lnr-plus");
+	}else if(contador == nSecciones){
+		$('.section-new').hide();
+		$('.sec'+contador).show();
+		$(this).removeClass("lnr-chevron-right");
+		$(this).addClass("lnr-plus");
+	}else{
+		$('.section-new').hide();
+		$('.sec'+contador).show();
+		$(this).removeClass("lnr-plus");
+		$(this).addClass("lnr-chevron-right");
+	}
+	
+	console.log(contador);
+	$('#main-new').hide();
+});
+
+$('#atrasSec').click(function(){
+	contador--;
+	var nSecciones = $(".dinamico").find('.section-new').length;
+	$("#adenlanteSec").removeClass("lnr-plus");
+	$("#adenlanteSec").addClass("lnr-chevron-right");
+	if (contador == 0) {
+		$('.section-new').hide();
+		$('#main-new').show();
+	}else{
+		$('.section-new').hide();
+		$('.sec'+contador).show();
+	};	
+	console.log(contador);
+});
+/*var retroceso =0;
 $('.lnr-plus').click(function(){
 	if(contador > 0){
-		$('.lnr-chevron-left').attr('data-pos','contador');
-		$('.'+ contador +'').hide();
+		$('.lnr-chevron-left').attr('data-pos',contador);
+		//$('.'+ contador +'').hide();
 	}
 	contador++;
+	retroceso=contador;
+
 	$('#main-new').hide();
 	pintarSeccion();
 });
-
+*/
 function pintarSeccion(){
 	
-	var seccion = '<div class="section-new '+contador+'"><div class="create-field"><div style="padding: 2% 3%;font-family: col-thin; font-size: 12px; color: #fff;">Imagen Contenido</div> <input type="file" name="image'+contador+'" id="image'+contador+'" placeholder="Imagen"> </div> <div class="create-field"> <textarea style="background-color:white;" name="contenido'+contador+'" id="contenido'+contador+'" placeholder="Contenido noticia"></textarea></div></div>';
+	var seccion = '<div class="section-new '+contador+' sec'+contador+'"><div class="create-field"><div style="padding: 2% 3%;font-family: col-thin; font-size: 12px; color: #fff;">Imagen Contenido</div> <input type="file" name="image'+contador+'" id="image'+contador+'" placeholder="Imagen"> </div> <div class="create-field"> <textarea style="background-color:white;" name="contenido'+contador+'" id="contenido'+contador+'" placeholder="Contenido noticia"></textarea></div></div>';
 	var actual = $('.dinamico').html();
 	if(actual !=''){
-		actual = actual + seccion;
+		$('.dinamico').append(seccion);
+		//actual = actual + seccion;
 	}else{
 		actual = seccion;
-	}
 		$('.dinamico').html(actual);
+	}
 		$('.section-new').show();
 		for (var i = 0; i < ($('.section-new').length -1); i++) {
 			var ocultar=$('.section-new').get(i);
@@ -128,7 +169,23 @@ function pintarSeccion(){
 		};
 
 }
+/*
+$('.lnr-chevron-left').click(function(){
+	console.log('click',retroceso);
+		var mostrar = $('.lnr-chevron-left').attr('data-pos');
+		var mostrar2 = mostrar-1;
+	if(mostrar2 == '0'){
+		$('#main-new').show();
+		$('.section-new').hide();
+	}else{
+		console.log('click',retroceso);
+		$('.section-new').hide();
+		var ver = $('.section-new').get(mostrar);
+		$(ver).show();
+		$('.lnr-chevron-left').attr('data-pos',(retroceso-1));
+		retroceso--;
+	}
 
-function retroceder(){
-
-}
+	
+});
+*/

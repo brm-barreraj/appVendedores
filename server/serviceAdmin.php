@@ -35,6 +35,7 @@ if (isset($_POST['accion']) && !empty($_POST['accion']) ) {
 			//echo "Salio";
 		break;
 
+		// Se desloguea y mata cookie 
 		case 'logout':
 			setcookie("login","",time()-1);
 			header('Location:login.php');
@@ -319,8 +320,6 @@ if (isset($_POST['accion']) && !empty($_POST['accion']) ) {
 					$Notification->sendMessageAndroid($_POST['titulo']);
 					//sendMessageAndroid($_POST['titulo']);
 					if ($idNoticia > 0) {
-						$data = $idNoticia;
-
 						// Set SeccionNoticia
 						$SeccionNoticia = new General();
 						$imagen2 = $General->moveFile($_FILES['image2'],"img/noticias/","2".$nNoticias);
@@ -332,6 +331,37 @@ if (isset($_POST['accion']) && !empty($_POST['accion']) ) {
 						$idNoticia = $SeccionNoticia->setInstancia('VenSeccionNoticia');
 
 
+						$error = 1;
+					}else{
+						$error = 0;
+					}
+				}else{
+					$error = 4;
+				}
+			} else {
+				$error = 3;
+			}
+		break;
+
+
+		/* Inserta una seccion de una noticia */
+		case 'setSeccionNoticia':
+			if (isset($_FILES['image']) && $_FILES['image'] != "" &&
+				isset($_POST['contenido']) && $_POST['contenido'] != "" &&
+				isset($_POST['idNoticia']) && $_POST['idNoticia'] > 0) {
+				$idNoticia = $_POST['idNoticia'];
+				$nSeccionesNoticias = $General->countRows("VenSeccionNoticia");
+				$keyName = $idNoticia.'-'.$nSeccionesNoticias;
+				$imagen = $General->moveFile($_FILES['image'],"img/noticias/",$keyName);
+				if ($imagen) {
+					$SeccionNoticia = new General();
+					$SeccionNoticia->idNoticia=$idNoticia;
+					$SeccionNoticia->imagen=$imagen;
+					$SeccionNoticia->contenido=utf8_encode($_POST['contenido']);
+					$SeccionNoticia->estado='A';
+					$SeccionNoticia->fechaMod = date("Y-m-d H:i:s");
+					$idSeccionNoticia = $SeccionNoticia->setInstancia('VenSeccionNoticia');
+					if ($idSeccionNoticia > 0) {
 						$error = 1;
 					}else{
 						$error = 0;

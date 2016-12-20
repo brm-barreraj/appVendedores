@@ -57,7 +57,7 @@
 			$data='';
 			while($obj->fetch()){
 				$data[$i]['idCategoria']=$obj->idCategoria;
-				$data[$i]['nombre']=$obj->nombre;
+				$data[$i]['nombre']=utf8_encode($obj->nombre);
 				$data[$i]['imagen']=$obj->imagen;
 				$data[$i]['idPadre']=$obj->idPadre;
 
