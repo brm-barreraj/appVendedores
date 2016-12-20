@@ -22,6 +22,11 @@
 							<div>
 								<i class="lnr lnr-users"></i>
 							</div>
+							<div>
+								<a href="usuariosForm.php">
+									<i class="lnr lnr-plus"></i>
+								</a>
+							</div>
 						</div>
 
 					</div>
@@ -94,14 +99,14 @@
 
 						<div id="data-bottom-message">
 							<form id="create-excel">
-
 								<input type="hidden" name="accion" id="accion" value="setUsuariosExcel"/>
-								<input type="file" name="excel" id="excel"/>
-								<label for="file-4"><span>Choose a file&hellip;</span></label>
-
+								<input type="file" name="excel" id="excel" class="upload-file" />
+								<label for="excel"><span>Carga masiva de usuarios, <br> Seleccione el archivo</span></label>
+								<div class="icon-upload-file">
+									<i class="lnr lnr-upload"></i>
+									<i class="lnr lnr-file-empty"></i>
+								</div>
 							</form>
-							<button id="guardarImage">Guardar</button>
-							<span id="info"></span>
 						</div>
 						
 					</div>

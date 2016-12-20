@@ -381,7 +381,20 @@ article .link .link-nav a:nth-child(2) b{float: right;}
 }
 #data-top{width: 100%;height: 10%;display: block;position: relative;overflow: hidden;padding: 15px 0 0 0;}
 #data-bottom{width: 100%;height: 10%;position: relative;display: block;float: left;}
-
+#data-bottom-message{
+	width: 35%;
+	height: 100%;
+	position: relative;
+	display: block;
+	float: right;
+	overflow: hidden;
+}
+#create-excel{
+	width: 100%;
+	height: 100%;
+	position: relative;
+	display: block;
+}
 #data-top-search{
 	width: 20%;
 	height: 100%;
@@ -408,17 +421,26 @@ article .link .link-nav a:nth-child(2) b{float: right;}
 	padding: 2% 5%;
 }
 #data-top-title{
-	width: 16%;
+	width: 20%;
 	float: right;
 	height: 100%;
 	position: relative;
 	display: block;
 }
-#data-top-title div:nth-child(1){width: 65%;height: 100%;float: left;}
+#data-top-title div:nth-child(1){width: 50%;height: 100%;float: left;}
 #data-top-title div:nth-child(1) p{color: #fff;font-family: col-reg;width: 100%;float: left;margin: 0;}
 #data-top-title div:nth-child(1) small{font-family: col-thin;color: #fff;}
-#data-top-title div:nth-child(2){width: 35%;float: left;height: 100%;}
+#data-top-title div:nth-child(2){width: 25%;float: left;height: 100%;}
 #data-top-title div:nth-child(2) i{color: #fff;font-size: 49px;}
+#data-top-title div:nth-child(3) {width: 25%;float: left;height: 100%;cursor: pointer;text-align: center;}
+#data-top-title div:nth-child(3) a i{color: #fff;font-size: 32px;top: 5px;margin-top: 5px;display: block;}
+#data-top-title div:nth-child(3) a{
+	text-decoration: none;
+	width: 100%;
+	height: 100%;
+	position: relative;
+	display: block;
+}
 #data-list{
 	width: 100%;
 	height: 80%;
@@ -469,8 +491,8 @@ article .link .link-nav a:nth-child(2) b{float: right;}
 	padding: 0 2%;
 	height: 100%;
 }
-#data-list #data-list-fields .data-list-field p{padding: 0;margin: 0;color: #fff;font-family: col-thin;}
-#data-list #data-list-fields .data-list-field small{color: #fff;font-family: col-thin;}
+#data-list #data-list-fields .data-list-field p{padding: 0;margin: 0;color: #fff;font-family: col-thin;margin-top: 11px;}
+#data-list #data-list-fields .data-list-field small{color: #fff;font-family: col-thin;margin-top: -6px;display: block;}
 #data-list #data-list-fields .data-list-field div.data-list-field-option{
 	position: absolute;
 	width: 100%;
@@ -522,7 +544,7 @@ article .link .link-nav a:nth-child(2) b{float: right;}
 	color: #fff;
 	font-size: 22px;
 	float: right;
-	top: 9px;
+	top: 16px;
 	display: block;
 	position: relative;
 	cursor: pointer;
@@ -931,17 +953,17 @@ textarea:-ms-input-placeholder
 }
 
 .upload-file + label {
-    max-width: 80%;
-    font-size: 1.25rem;
-    /* 20px */
-    font-weight: 700;
+    width: 100%;
+    height: 100%;
     text-overflow: ellipsis;
-    white-space: nowrap;
     cursor: pointer;
     display: inline-block;
     overflow: hidden;
-    padding: 0.625rem 1.25rem;
-    /* 10px 20px */
+    font-family: col-thin;
+    font-size: 18px;
+    text-align: center;
+    z-index: 1;
+    position: absolute;
 }
 
 .upload-file:focus + label,
@@ -951,13 +973,17 @@ textarea:-ms-input-placeholder
 }
 
 .upload-file + label {
-    color: #d3394c;
+    color: #fdfdfd;
+}
+
+.upload-file + label span{
 }
 
 .upload-file:focus + label,
 .upload-file.has-focus + label,
 .upload-file + label:hover {
-    color: #722040;
+    color: #2be9ff;
+    outline: none;
 }
 
 
@@ -973,3 +999,27 @@ textarea:-ms-input-placeholder
 	width: 50%;
 }
 
+.icon-upload-file{
+	position: absolute;
+	right: 0;
+	top: 0;
+	overflow: hidden;
+	width: 31px;
+	height: 45px;
+	z-index: 0;
+}
+.icon-upload-file i{
+	position: absolute;
+	color: #fff;
+	display: block;
+	text-align: center;
+	width: 100%;
+}
+.icon-upload-file i:nth-child(1){
+	top: 0;
+	font-size: 23px;
+}
+.icon-upload-file i:nth-child(2){
+	bottom: 0;
+	font-size: 22px;
+}

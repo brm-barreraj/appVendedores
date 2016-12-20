@@ -155,8 +155,9 @@ jQuery(document).ready(function () {
 		$(".data-list-field-option[data-field='"+field+"']").hide();
 	});
 
-	/* Subir excel */
-	$('#guardarImage').click(function(){
+
+
+	$("#create-excel").on('change','#excel' , function(){ 
 
 		var excel = $("#create-excel input[name=excel]").val();
 		excel= excel.split('.');
@@ -167,8 +168,8 @@ jQuery(document).ready(function () {
 		if ( ext === 'xls') {
 			img=true;
 		}else { 
-			$("#info").addClass('error');
-			$("#info").html('<span style="color:#f04124;">Por favor selecciona una excel.</span>');
+			$("#message").addClass('error');
+			$("#message").html('<span style="color:#f04124;">Por favor selecciona una excel.</span>');
 		}
 		if (img) {
 			var formData = new FormData(document.getElementById("create-excel"));
@@ -190,6 +191,7 @@ jQuery(document).ready(function () {
 				}
 			});
 		}
+
 	});
 
 });
