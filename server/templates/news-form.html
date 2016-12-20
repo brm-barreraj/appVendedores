@@ -18,48 +18,45 @@
 						<div class="create-fileds">
 
 								<div class="create-field create-fileds-two">
-									<input type="text" name="nombre" value="{#$usuario->nombre#}"nombre" placeholder="Nombre">
+									<input type="hidden" name="idNoticia" id="idNoticia" value="{#$noticia.idNoticia#}">
+									<input type="text" name="titulon" id="titulon"value="{#$noticia.titulo#}"  placeholder="Titulo">
 									<div class="create-field-line"></div>
 								</div>
 
 								<div class="create-field">
-									<input type="text" name="apellido" value="{#$usuario->apellido#}" id="apellido" placeholder="Apellido">
+									<input type="text" name="subtitulo" value="{#$noticia.subtitulo#}" id="subtitulo" placeholder="Subtitulo">
 									<div class="create-field-line"></div>
 								</div>
 
 								<div class="create-field">
-									<input type="hidden" name="idUsuario" id="idUsuario" value="{#$usuario->idUsuario#}">
-									<select name="idCargo" id="idCargo">
-										<option>Cargo</option>
-										{#foreach from=$cargos item=dato#}
-											{#if isset($usuario->idCargo) && $usuario->idCargo == $dato->idCargo#}
-											<option selected value="{#$dato->idCargo#}">{#$dato->nombre#}</option>
-											{#else#}
-											<option value="{#$dato->idCargo#}">{#$dato->nombre#}</option>
-											{#/if#}
-										{#/foreach#}
-									</select>
+									<input type="text" name="contenido" value="{#$noticia.contenido#}" id="contenido" placeholder="Contenido">
 									<div class="create-field-line"></div>
 								</div>
 
 								<div class="create-field">
-									<input type="text" name="email" value="{#$usuario->email#}" id="email" placeholder="Email">
+									<input type="text" name="tipoTemplate" value="{#$noticia.tipoTemplate#}" id="tipoTemplate" placeholder="Tipo Template">
 									<div class="create-field-line"></div>
 								</div>
+
+
 						</div>
 						<div class="create-fileds">
-							<div class="create-field">
-								<input type="text" name="usuario" value="{#$usuario->usuario#}" id="usuario" placeholder="Usuario">
-								<div class="create-field-line"></div>
-							</div>
-							<div class="create-field">
-								<input type="text" name="contrasena" value="{#$usuario->contrasena#}" id="contrasena" placeholder="Contraseña">
-								<div class="create-field-line"></div>
-							</div>
-							<div class="create-field">
-								<input type="text" name="puntos" value="{#$usuario->puntos#}" id="puntos" placeholder="Puntos">
-								<div class="create-field-line"></div>
-							</div>
+							{#foreach from=$noticia.secciones item=dato#}
+								<div class="create-field">
+									<input type="hidden" name="idSeccionNoticia" id="idSeccionNoticia" value="{#$dato.idSeccionNoticia#}">
+									<input type="text" name="seccionTitulo" id="seccionTitulo" value="{#$dato.titulo#}">
+									<div class="create-field-line"></div>
+								</div>
+								<div class="create-field">
+									<input type="text" name="seccionContenido" id="seccionContenido" value="{#$dato.contenido#}">
+									<div class="create-field-line"></div>
+								</div>
+								<div class="create-field">
+									<img width="120px" src="images/{#$dato.imagen#}">
+									<input type="file" name="seccionImagen" id="seccionImagen" value="">
+									<div class="create-field-line"></div>
+								</div> 
+							{#/foreach#}
 						</div>
 
 					</div>

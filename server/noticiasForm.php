@@ -6,7 +6,7 @@
 		if (isset($_GET['idNoticia']) && (int) $_GET['idNoticia'] > 0) {
 			$accion = "Editar";
 			$noticia=$not->getNoticiaById($_GET['idNoticia']);
-			printVar($noticia);
+			//printVar($noticia);
 			//$usuario = $gen->getTotalDatos('VenNoticia',null,array('idUsuario'=> $_GET['idUsuario'],'estado'=>'A'));
 			
 			$smarty->assign('noticia',$noticia);

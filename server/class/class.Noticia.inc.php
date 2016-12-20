@@ -37,7 +37,7 @@
 				$i++;
 			}
 			$obj->free();
-			printVar($data,'getAllNoticias');
+			//printVar($data,'getAllNoticias');
 			//return $data;
 		}
 
@@ -49,14 +49,13 @@
 			$find=$obj->find();
 			//printVar($obj);
 			$data='';
-			if($find>0){
+			if($obj->fetch()){
 				$data['idNoticia']=$obj->idNoticia;
 				$data['contenido']=$obj->contenido;
 				$data['idCategoria']=$obj->idCategoria;
 				
 				$nombreCategoria=$this->getCategoriaById($obj->idCategoria);
-				$nombre=$nombreCategoria['nombre'];
-				$data['categoria']= $nombre;
+				$data['categoria']= $nombreCategoria;
 
 				//obteniendo el array con secciones
 
@@ -88,7 +87,7 @@
 				$data=$obj->nombre;
 			}
 			$obj->free();
-			//printVar($data,'getCargoById');
+			//printVar($data ,'getCargoById');
 			return $data;
 		}
 
@@ -102,14 +101,14 @@
 			$i=0;
 			$data='';
 			while($obj->fetch()){
-				$data['idSeccionNoticia']=$obj->idSeccionNoticia ;
-				$data['idNoticia']=$obj->idNoticia ;
-				$data['titulo']=$obj->titulo ;
-				$data['imagen']=$obj->imagen ;
-				$data['contenido']=$obj->contenido ;
-				$data['estado']=$obj->estado ;
-				$data['fechaMod']=$obj->fechaMod ;
-				$data['fecha']=$obj->fecha ;
+				$data[$i]['idSeccionNoticia']=$obj->idSeccionNoticia ;
+				$data[$i]['idNoticia']=$obj->idNoticia ;
+				$data[$i]['titulo']=$obj->titulo ;
+				$data[$i]['imagen']=$obj->imagen ;
+				$data[$i]['contenido']=$obj->contenido ;
+				$data[$i]['estado']=$obj->estado ;
+				$data[$i]['fechaMod']=$obj->fechaMod ;
+				$data[$i]['fecha']=$obj->fecha ;
 				$i++;
 			}
 			$obj->free();
