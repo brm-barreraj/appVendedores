@@ -98,3 +98,37 @@ $('.eliminar').click(function(){
 		.on( 'blur', function(){ $input.removeClass( 'has-focus' ); });
 	});
 })( jQuery, window, document );
+
+
+var contador = 0;
+$('.lnr-plus').click(function(){
+	if(contador > 0){
+		$('.lnr-chevron-left').attr('data-pos','contador');
+		$('.'+ contador +'').hide();
+	}
+	contador++;
+	$('#main-new').hide();
+	pintarSeccion();
+});
+
+function pintarSeccion(){
+	
+	var seccion = '<div class="section-new '+contador+'"><div class="create-field"><div style="padding: 2% 3%;font-family: col-thin; font-size: 12px; color: #fff;">Imagen Contenido</div> <input type="file" name="image'+contador+'" id="image'+contador+'" placeholder="Imagen"> </div> <div class="create-field"> <textarea style="background-color:white;" name="contenido'+contador+'" id="contenido'+contador+'" placeholder="Contenido noticia"></textarea></div></div>';
+	var actual = $('.dinamico').html();
+	if(actual !=''){
+		actual = actual + seccion;
+	}else{
+		actual = seccion;
+	}
+		$('.dinamico').html(actual);
+		$('.section-new').show();
+		for (var i = 0; i < ($('.section-new').length -1); i++) {
+			var ocultar=$('.section-new').get(i);
+			$(ocultar).hide();
+		};
+
+}
+
+function retroceder(){
+
+}
