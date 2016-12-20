@@ -138,19 +138,7 @@ $('#atrasSec').click(function(){
 	};	
 	console.log(contador);
 });
-/*var retroceso =0;
-$('.lnr-plus').click(function(){
-	if(contador > 0){
-		$('.lnr-chevron-left').attr('data-pos',contador);
-		//$('.'+ contador +'').hide();
-	}
-	contador++;
-	retroceso=contador;
 
-	$('#main-new').hide();
-	pintarSeccion();
-});
-*/
 function pintarSeccion(){
 	
 	var seccion = '<div class="section-new '+contador+' sec'+contador+'"><div class="create-field"><div style="padding: 2% 3%;font-family: col-thin; font-size: 12px; color: #fff;">Imagen Contenido</div> <input type="file" name="image'+contador+'" id="image'+contador+'" placeholder="Imagen"> </div> <div class="create-field"> <textarea style="background-color:white;" name="contenido'+contador+'" id="contenido'+contador+'" placeholder="Contenido noticia"></textarea></div></div>';
@@ -169,23 +157,3 @@ function pintarSeccion(){
 		};
 
 }
-/*
-$('.lnr-chevron-left').click(function(){
-	console.log('click',retroceso);
-		var mostrar = $('.lnr-chevron-left').attr('data-pos');
-		var mostrar2 = mostrar-1;
-	if(mostrar2 == '0'){
-		$('#main-new').show();
-		$('.section-new').hide();
-	}else{
-		console.log('click',retroceso);
-		$('.section-new').hide();
-		var ver = $('.section-new').get(mostrar);
-		$(ver).show();
-		$('.lnr-chevron-left').attr('data-pos',(retroceso-1));
-		retroceso--;
-	}
-
-	
-});
-*/
