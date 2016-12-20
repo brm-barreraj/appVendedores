@@ -162,6 +162,10 @@ section>nav{
     display: block;
     overflow: hidden;
     background: #101d33;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 5px;
 }
 section>nav ul#nav-dashboard{
     margin: 0;
@@ -783,16 +787,20 @@ textarea:-ms-input-placeholder
 	position: relative;
 	display: block;
 	float: left;
-	background: background: rgb(0,69,135); 
-	background: -moz-linear-gradient(top,  rgba(0,69,135,1) 0%, rgba(0,102,182,1) 25%, rgba(0,180,242,1) 80%, rgba(0,189,243,1) 100%); 
-	background: -webkit-linear-gradient(top,  rgba(0,69,135,1) 0%,rgba(0,102,182,1) 25%,rgba(0,180,242,1) 80%,rgba(0,189,243,1) 100%); 
-	background: linear-gradient(to bottom,  rgba(0,69,135,1) 0%,rgba(0,102,182,1) 25%,rgba(0,180,242,1) 80%,rgba(0,189,243,1) 100%); 
+	background: background: rgb(0,69,135);
+	background: -moz-linear-gradient(top,  rgba(0,69,135,1) 0%, rgba(0,102,182,1) 25%, rgba(0,180,242,1) 80%, rgba(0,189,243,1) 100%);
+	background: -webkit-linear-gradient(top,  rgba(0,69,135,1) 0%,rgba(0,102,182,1) 25%,rgba(0,180,242,1) 80%,rgba(0,189,243,1) 100%);
+	background: linear-gradient(to bottom,  rgba(0,69,135,1) 0%,rgba(0,102,182,1) 25%,rgba(0,180,242,1) 80%,rgba(0,189,243,1) 100%);
 	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#004587', endColorstr='#00bdf3',GradientType=0 );
+	border-top-left-radius: 0;
+	border-top-right-radius: 5px;
+	border-bottom-right-radius: 5px;
+	border-bottom-left-radius: 0;
 }
 #create-buton div{width: calc(100%/3);float: left;height: 100%;position: relative;}
 
 #create-buton div:nth-child(1) p{font-family: col-thin;color: #fff;font-size: 18px;margin: 0;display: block;text-align: left;margin-top: 23px;margin-left: 41px;}
-#create-buton div:nth-child(2) p{font-family: col-reg;color: #fff;font-size: 23px;margin: 0;display: block;text-align: center;margin-top: 18px;margin-left: 41px;}
+#create-buton div:nth-child(2) p{font-family: col-reg;color: #fff;font-size: 23px;margin: 0;display: block;text-align: center;margin-top: 18px;}
 #create-buton div:nth-child(3) p{font-family: col-thin;color: #fff;font-size: 18px;margin: 0;display: block;text-align: right;margin-top: 19px;margin-right: 45px;}
 
 #create-buton div:nth-child(1) i{top: 16px;}
