@@ -297,17 +297,10 @@ if (isset($_POST['accion']) && !empty($_POST['accion']) ) {
 				isset($_POST['idUsuarioAdmin']) && (int) $_POST['idUsuarioAdmin'] > 0 &&
 				isset($_POST['titulo']) && $_POST['titulo'] != "" &&
 				isset($_POST['subtitulo']) && $_POST['subtitulo'] != "" &&
-				isset($_POST['contenido']) && $_POST['contenido'] != "" &&
+				isset($_POST['contenido']) && 
 				isset($_FILES['image']) && $_FILES['image'] != "" &&
 				isset($_POST['tipoTemplate']) && (int) $_POST['tipoTemplate'] > 0) {
 
-
-				foreach ($_FILES as $key => $value) {
-					if ($key != "image") {
-						printVar($_FILES[$key]);
-					}
-				}
-				die;
 				$idSubCategoria = $_POST['idSubCategoria'];
 				$idUsuarioAdmin = $_POST['idUsuarioAdmin'];
 				$nNoticias = $General->countRows("VenNoticia");
@@ -328,16 +321,32 @@ if (isset($_POST['accion']) && !empty($_POST['accion']) ) {
 					$Notification->sendMessageAndroid($_POST['titulo']);
 					//sendMessageAndroid($_POST['titulo']);
 					if ($idNoticia > 0) {
-
 						// Set SeccionNoticia
-						$SeccionNoticia = new General();
+						foreach ($_FILES as $key => $value) {
+							if ($key != "image") {
+								$keySeccion = split("image", $key);
+								$idFoto = $keySeccion[1];
+								$keyContent = 'contenido'.$keySeccion[1];
+								$SeccionNoticia = new General();
+								$imagenTemp = $General->moveFile($_FILES[$key],"img/noticias/",$idFoto.$nNoticias);
+								$SeccionNoticia->idNoticia=$idNoticia;
+								$SeccionNoticia->imagen=$imagenTemp;
+								$SeccionNoticia->contenido=utf8_encode($_POST[$keyContent]);
+								$SeccionNoticia->estado='A';
+								$SeccionNoticia->fechaMod = date("Y-m-d H:i:s");
+								$idSeccionNoticia = $SeccionNoticia->setInstancia('VenSeccionNoticia');
+							}
+							sleep(1);
+						}
+						// Set SeccionNoticia
+						/*$SeccionNoticia = new General();
 						$imagen2 = $General->moveFile($_FILES['image2'],"img/noticias/","2".$nNoticias);
 						$SeccionNoticia->idNoticia=$idNoticia;
 						$SeccionNoticia->imagen=$imagen2;
 						$SeccionNoticia->contenido=utf8_encode($_POST['contenido']);
 						$SeccionNoticia->estado='A';
 						$SeccionNoticia->fechaMod = date("Y-m-d H:i:s");
-						$idNoticia = $SeccionNoticia->setInstancia('VenSeccionNoticia');
+						$idNoticia = $SeccionNoticia->setInstancia('VenSeccionNoticia');*/
 
 
 						$error = 1;
