@@ -20,121 +20,123 @@ jQuery(document).ready(function () {
 
 		jQuery("#create").validate({
 			rules: {
-				nombre:{
+				titulo:{
 					required: true,
-					string:true,
 					minlength: 2,
 					maxlength: 150
 				},
-				apellido:{
+				subtitulo:{
 					required: true,
 					minlength: 2,
 					maxlength: 150
 				},
 
-				idCargo: {
+				idCategoria: {
 					required: true,
 					number: true,
 					minlength: 1,
 					maxlength: 10
 				},
-				email:{
+				/*idSubCategoria:{
 					required: true,
 					email: true,
-				},
-				usuario:{
+				},*/
+				/*celular:{
 					required: true,
-				},
-				
-
-				contrasena:{
-					required: true,
-				},
-
-				puntos:{
-					required:true,
 					number: true,
-					minlength: 1,
-					maxlength: 10
+					minlength: 10,
+					maxlength: 15,
 				},
+				idPais:{
+					required: true,
+				},
+				ciudad:{
+					required: true,
+				},
+				sexo:{
+					required:true,
+				},
+				terminos:{
+					required: true,
+				},
+				politica:{
+					required: true,
+				},*/
+				/*otroDepto:{
+					required:true,
+					minlength: 3,
+					maxlength: 50
+				},
+				otroCiudad:{
+					required:true,
+					minlength: 3,
+					maxlength: 50
+				}*/
+
+
 			},
 			messages: {
-				nombre:{
+				titulo:{
 					required:'Campo necesario',
-					string:'Ingrese unicamente letras',
 					minlength: 'Titulo corto en longitud',
 					maxlength:'Titulo muy largo',
 					
 				},
-				apellido:{
+				subtitulo:{
 					required: 'Campo necesario',
-					string:'Ingrese unicamente letras',
 					minlength: 'Subtitulo corto en longitud',
 					maxlength: 'Subtitulo muy largo',
 					
 				},
 
-				idCargo:{
+				idCategoria:{
 					required:'Campo necesario',
 					number: 'Únicamente admite digitos (0-9)',
 					minlength:'Número muy corto',
 					maxlength: 'Número muy largo',
 				},
-
+				/*fecha:{
+					required: 'Campo necesario',
+					date: 'Formato de fecha no válido',
+				},
 				email:{
 					required: 'Campo necesario',
 					email: 'Formato de correo electrónico no válido',
 				},
-
-
-				usuario:{
+				celular:{
 					required: 'Campo necesario',
-				},
-
-				contrasena:{
-					required: 'Campo necesario',
-				},
-				puntos:{
-					required:'Campo necesario',
 					number: 'Únicamente admite digitos (0-9)',
-					minlength:'Número muy corto',
-					maxlength: 'Número muy largo',
+					minlength:'Debe ser mayor a 10 dígitos',
+					maxlength: 'Debe ser menor a 15 dígitos',
 				},
+				idPais:{
+					required: 'Campo necesario',
+				},
+				sexo:{
+					required:'Campo necesario',
+				},
+				ciudad:{
+					required: 'Campo necesario',
+				},
+				terminos:{
+					required: 'Campo necesario',
+				},
+				politica:{
+					required: 'Campo necesario',
+				},*/
+				/*otroDepto:{
+					required:'Campo necesario',
+					minlength:'El nombre del departamento es muy corto',
+					maxlength:'El nombre del departamento largo',
+
+				},
+				otroCiudad:{
+					required:'Campo necesario',
+					minlength:'El nombre de la ciudad es muy corto',
+					maxlength:'El nombre de la ciudad largo',
+
+				}*/
+
 			}
 		});
-});
-
-//eliminar
-
-$('.eliminar').click(function(){
-	var id = $(this).attr('data-id');
-	result = sendAjax("serviceAdmin.php", "deleteUsuario", {idUsuario:id});
-	if (result.error == 1){
-		data = result.data;
-		alert('Registro Elemininado correctamente');
-	}else{
-		alert('Ocurrio un error en la consulta');
-	}
-});
-
-//Editar
-
-$('.editar').click(function(){
-
-});
-
-
-//agregar
-$('#btnForm').click(function(){
-
-	if($('#create').valid()){
-		var serial = $('#create').serialize();
-		result = sendAjax("serviceAdmin.php", "setUsuario",serial);
-		if (result.error == 1){
-			data = result.data;
-			alert('Registro Agregado correctamente');
-		}else{
-			alert('Ocurrio un error en el registro del usuario');
-		}
-	}
 });
