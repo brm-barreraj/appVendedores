@@ -39,6 +39,9 @@ if (isset($_POST['accion']) && !empty($_POST['accion']) ) {
 			setcookie("login","",time()-1);
 			header('Location:login.php');
 		break;
+
+
+
 		/* Buscador Usuario */
 		case 'buscadorUsuario':
 			$usr = new Usuario();
@@ -54,9 +57,10 @@ if (isset($_POST['accion']) && !empty($_POST['accion']) ) {
 
 		/* Buscador Categoría */
 		case 'buscadorCategoria':
-			$usr = new Usuario();
+			$cat = new Categoria();
 			$termino = $_POST['termino'];
-			$result = $usr->serchTermUser($termino);
+			$result = $cat->serchTermCat($termino);
+			//printVar($result);
 			if (count($result) > 0) {
 				$data = $result;
 				$error = 1;
@@ -91,6 +95,56 @@ if (isset($_POST['accion']) && !empty($_POST['accion']) ) {
 				} else {
 					$error = 0;
 				}
+			}else{
+				$error=3;
+			}
+		break;
+
+		/* Inserta Usuarios Excel */
+		case 'setUsuariosExcel':
+			if (isset($_FILES['excel']) && $_FILES['excel'] != "") {
+
+				$rutaExcel = $General->moveFile($_FILES['excel'],"xls/","usuarios");
+
+				require_once 'libs/phpexcel/Read/reader.php';
+
+				$data = new Spreadsheet_Excel_Reader('.xls');
+				$data -> setOutputEncoding('CP1251');
+				$data -> read($rutaExcel);
+				$nrows = $data -> sheets[0]['numRows'];
+				$ncols = $data -> sheets[0]['numCols'];
+				$nCorrectos = 0;
+				$nIncorrectos = 0;
+				for ($i = 2; $i <= $nrows; $i++) {
+					$nombreCargo = ltrim(trim(rtrim(strtolower($data -> sheets[0]['cells'][$i][1]))));
+					$cargo = $General->getTotalDatos('VenCargo',array("idCargo"),array('nombre'=>$nombreCargo));
+					if ($cargo && is_array($cargo) && count($cargo) > 0) {
+						$idCargo = $cargo[0]->idCargo;
+					}else{
+						$Cargo = new General();
+						$Cargo->nombre = $nombreCargo;
+						$Cargo->estado='A';
+						$Cargo->fechaMod = date("Y-m-d H:i:s");
+						$idCargo = $Cargo->setInstancia('VenCargo');
+					}
+					$camposUsuario = array();
+					$camposUsuario['idCargo'] = $idCargo;
+					$camposUsuario['nombre'] = ltrim(trim(rtrim(strtolower($data -> sheets[0]['cells'][$i][2]))));
+					$camposUsuario['apellido'] = ltrim(trim(rtrim(strtolower($data -> sheets[0]['cells'][$i][3]))));
+					$camposUsuario['email'] = ltrim(trim(rtrim(strtolower($data -> sheets[0]['cells'][$i][4]))));
+					$camposUsuario['usuario'] = ltrim(trim(rtrim(strtolower($data -> sheets[0]['cells'][$i][5]))));
+					$camposUsuario['contrasena'] = ltrim(trim(rtrim(strtolower($data -> sheets[0]['cells'][$i][6]))));
+					$camposUsuario['puntos'] = ltrim(trim(rtrim(strtolower($data -> sheets[0]['cells'][$i][7]))));
+					$campoWhere = array("email" => $camposUsuario['email']);
+					$resUsuario = $General->setUpdateInstancia('VenUsuario',$camposUsuario,$campoWhere);
+					if ($resUsuario > 0) {
+						$nCorrectos++;
+					}else{
+						$nIncorrectos++;
+					}
+				}
+				$data = array("nCorrectos"=>$nCorrectos,"nIncorrectos"=>$nIncorrectos);
+				$error = 1;
 			}else{
 				$error=3;
 			}
@@ -181,7 +235,7 @@ if (isset($_POST['accion']) && !empty($_POST['accion']) ) {
 				$Categoria = new General();
 				$Categoria->nombre = $_POST['nombre'];
 				$Categoria->imagen = $_POST['imagen'];
-				$Categoria->idPadre = (isset($_POST['idCategoria']) && $_POST['idCategoria'] > 0) ? $_POST['idCategoria'] : 0;
+				$Categoria->idPadre = (isset($_POST['idPadre']) && $_POST['idPadre'] > 0) ? $_POST['idPadre'] : 0;
 				$Categoria->estado='A';
 				$Categoria->fechaMod = date("Y-m-d H:i:s");
 				$idCategoria = $Categoria->setInstancia('VenCategoria');

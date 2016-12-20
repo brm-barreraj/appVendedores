@@ -13,10 +13,10 @@
 		$cook = explode('+', $cook);
 		$smarty->assign('user',$cook);
 		
-		$categoria = $gen->getTotalDatos('VenCategoria',null,array('estado'=>'A'));
-		$smarty->assign('categoria',$categoria);
+		$categorias = $gen->getTotalDatos('VenCategoria',null,array('idPadre'=>'0','estado'=>'A'));
+		$smarty->assign('categorias',$categorias);
 		$smarty->assign('titleForm',$accion);
-		$smarty->display('users-form.html');
+		$smarty->display('category-form.html');
 	}else{
 		header('Location:login.php');
 	}

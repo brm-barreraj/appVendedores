@@ -69,7 +69,7 @@ $('.eliminar').click(function(){
 });
 
 
-;( function( $, window, document, undefined )
+( function( $, window, document, undefined )
 {
 	$( '.inputfile' ).each( function()
 	{
