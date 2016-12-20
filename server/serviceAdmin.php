@@ -297,9 +297,17 @@ if (isset($_POST['accion']) && !empty($_POST['accion']) ) {
 				isset($_POST['idUsuarioAdmin']) && (int) $_POST['idUsuarioAdmin'] > 0 &&
 				isset($_POST['titulo']) && $_POST['titulo'] != "" &&
 				isset($_POST['subtitulo']) && $_POST['subtitulo'] != "" &&
-				isset($_POST['contenido']) &&
+				isset($_POST['contenido']) && $_POST['contenido'] != "" &&
 				isset($_FILES['image']) && $_FILES['image'] != "" &&
 				isset($_POST['tipoTemplate']) && (int) $_POST['tipoTemplate'] > 0) {
+
+
+				foreach ($_FILES as $key => $value) {
+					if ($key != "image") {
+						printVar($_FILES[$key]);
+					}
+				}
+				die;
 				$idSubCategoria = $_POST['idSubCategoria'];
 				$idUsuarioAdmin = $_POST['idUsuarioAdmin'];
 				$nNoticias = $General->countRows("VenNoticia");
@@ -320,6 +328,7 @@ if (isset($_POST['accion']) && !empty($_POST['accion']) ) {
 					$Notification->sendMessageAndroid($_POST['titulo']);
 					//sendMessageAndroid($_POST['titulo']);
 					if ($idNoticia > 0) {
+
 						// Set SeccionNoticia
 						$SeccionNoticia = new General();
 						$imagen2 = $General->moveFile($_FILES['image2'],"img/noticias/","2".$nNoticias);
@@ -342,7 +351,6 @@ if (isset($_POST['accion']) && !empty($_POST['accion']) ) {
 				$error = 3;
 			}
 		break;
-
 
 		/* Inserta una seccion de una noticia */
 		case 'setSeccionNoticia':
