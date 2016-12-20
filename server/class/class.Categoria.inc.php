@@ -50,14 +50,14 @@
 			DB_DataObject::debugLevel(0);
 			$obj = DB_DataObject::Factory('VenCategoria');
 			$obj->whereAdd('idPadre > 0');
-			$obj->limit($this->limite);
+			//$obj->limit($this->limite);
 			$obj->estado = 'A';
 			$obj->find();
 			$i = 0;
 			$data='';
 			while($obj->fetch()){
 				$data[$i]['idCategoria']=$obj->idCategoria;
-				$data[$i]['nombre']=$obj->nombre;
+				$data[$i]['nombre']=utf8_encode($obj->nombre);
 				$data[$i]['imagen']=$obj->imagen;
 				$data[$i]['idPadre']=$obj->idPadre;
 

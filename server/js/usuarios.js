@@ -127,7 +127,7 @@ jQuery(document).ready(function () {
 
 
 	// Agregar y editar
-	$('#btnForm').click(function(){
+	$('#create-title-option').click(function(){
 
 		if($('#create').valid()){
 			var accion = ($("#idUsuario").val() != "") ? "updateUsuario" : "setUsuario";
@@ -153,6 +153,45 @@ jQuery(document).ready(function () {
 	$( ".close").on( "click", function() {
 		var field=$(this).attr("data-field");
 		$(".data-list-field-option[data-field='"+field+"']").hide();
+	});
+
+
+
+	$("#create-excel").on('change','#excel' , function(){ 
+
+		var excel = $("#create-excel input[name=excel]").val();
+		excel= excel.split('.');
+		var img= '';
+		var ext =false;
+		//console.log(excel[(excel.length -1)]);
+	    ext=excel[(excel.length -1)];
+		if ( ext === 'xls') {
+			img=true;
+		}else { 
+			$("#message").addClass('error');
+			$("#message").html('<span style="color:#f04124;">Por favor selecciona una excel.</span>');
+		}
+		if (img) {
+			var formData = new FormData(document.getElementById("create-excel"));
+			$.ajax({
+				url:'serviceAdmin.php',
+				method: 'POST',
+				data: formData,
+				cache: false,
+				dataType: 'json',
+				contentType: false,
+				processData: false,
+				enctype: 'multipart/form-data'
+			}).success(function (data){
+				if (data.error==1){
+					location.reload();
+					alert("Guardo el excel correctamente");
+				}else{
+					alert("Ocurrio un error al guardar la noticia");
+				}
+			});
+		}
+
 	});
 
 });
