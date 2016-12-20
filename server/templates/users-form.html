@@ -3,7 +3,7 @@
 
 			<article>
 				
-				<form id="create">
+				<form id="create" class="">
 
 					<div id="create-title">
 						<div id="create-title-option">
@@ -13,34 +13,55 @@
 						</div>
 					</div>
 
-					<div class="create-fileds">
-						<div class="create-field">
-						<input type="hidden" name="idUsuario" id="idUsuario" value="{#$usuario->idUsuario#}">
-							<select name="idCargo" id="idCargo">
-								<option>Cargo</option>
-								{#foreach from=$cargos item=dato#}
-									{#if isset($usuario->idCargo) && $usuario->idCargo == $dato->idCargo#}
-									<option selected value="{#$dato->idCargo#}">{#$dato->nombre#}</option>
-									{#else#}
-									<option value="{#$dato->idCargo#}">{#$dato->nombre#}</option>
-									{#/if#}
-								{#/foreach#}
-							</select>
-							<div class="create-field-line"></div>
-							<input type="text" name="nombre" value="{#$usuario->nombre#}"nombre" placeholder="Nombre">
-							<div class="create-field-line"></div>
-							<input type="text" name="apellido" value="{#$usuario->apellido#}" id="apellido" placeholder="Apellido">
-							<div class="create-field-line"></div>
-							<input type="text" name="email" value="{#$usuario->email#}" id="email" placeholder="Email">
-							<div class="create-field-line"></div>
-							<input type="text" name="usuario" value="{#$usuario->usuario#}" id="usuario" placeholder="Usuario">
-							<div class="create-field-line"></div>
-							<input type="text" name="contrasena" value="{#$usuario->contrasena#}" id="contrasena" placeholder="Contraseña">
-							<div class="create-field-line"></div>
-							<input type="text" name="puntos" value="{#$usuario->puntos#}" id="puntos" placeholder="Puntos">
-							<div class="create-field-line"></div>
-							<input type="button" id="btnForm" value="crear">
+					<div id="create-two">
+
+						<div class="create-fileds">
+
+								<div class="create-field create-fileds-two">
+									<input type="text" name="nombre" value="{#$usuario->nombre#}"nombre" placeholder="Nombre">
+									<div class="create-field-line"></div>
+								</div>
+
+								<div class="create-field">
+									<input type="text" name="apellido" value="{#$usuario->apellido#}" id="apellido" placeholder="Apellido">
+									<div class="create-field-line"></div>
+								</div>
+
+								<div class="create-field">
+									<input type="hidden" name="idUsuario" id="idUsuario" value="{#$usuario->idUsuario#}">
+									<select name="idCargo" id="idCargo">
+										<option>Cargo</option>
+										{#foreach from=$cargos item=dato#}
+											{#if isset($usuario->idCargo) && $usuario->idCargo == $dato->idCargo#}
+											<option selected value="{#$dato->idCargo#}">{#$dato->nombre#}</option>
+											{#else#}
+											<option value="{#$dato->idCargo#}">{#$dato->nombre#}</option>
+											{#/if#}
+										{#/foreach#}
+									</select>
+									<div class="create-field-line"></div>
+								</div>
+
+								<div class="create-field">
+									<input type="text" name="email" value="{#$usuario->email#}" id="email" placeholder="Email">
+									<div class="create-field-line"></div>
+								</div>
 						</div>
+						<div class="create-fileds">
+							<div class="create-field">
+								<input type="text" name="usuario" value="{#$usuario->usuario#}" id="usuario" placeholder="Usuario">
+								<div class="create-field-line"></div>
+							</div>
+							<div class="create-field">
+								<input type="text" name="contrasena" value="{#$usuario->contrasena#}" id="contrasena" placeholder="Contraseña">
+								<div class="create-field-line"></div>
+							</div>
+							<div class="create-field">
+								<input type="text" name="puntos" value="{#$usuario->puntos#}" id="puntos" placeholder="Puntos">
+								<div class="create-field-line"></div>
+							</div>
+						</div>
+
 					</div>
 
 				</form>

@@ -131,7 +131,7 @@ jQuery(document).ready(function () {
 
 
 	// Agregar y editar
-	$('#btnForm').click(function(){
+	$('#create-title-option').click(function(){
 
 		if($('#create').valid()){
 			var accion = ($("#idCategoria").val() != "") ? "updateCategoria" : "setCategoria";
