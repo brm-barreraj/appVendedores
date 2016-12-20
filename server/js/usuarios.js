@@ -107,11 +107,12 @@ jQuery(document).ready(function () {
 //eliminar
 
 $('.eliminar').click(function(){
-	var id = $(this).attr('data-id');
+	var id = $(this).attr('data-field');
 	result = sendAjax("serviceAdmin.php", "deleteUsuario", {idUsuario:id});
 	if (result.error == 1){
 		data = result.data;
 		alert('Registro Elemininado correctamente');
+		location.reload();
 	}else{
 		alert('Ocurrio un error en la consulta');
 	}
@@ -128,13 +129,27 @@ $('.editar').click(function(){
 $('#btnForm').click(function(){
 
 	if($('#create').valid()){
+		var accion = ($("#idUsuario").val() != "") ? "updateUsuario" : "setUsuario";
 		var serial = $('#create').serialize();
-		result = sendAjax("serviceAdmin.php", "setUsuario",serial);
+		result = sendAjax("serviceAdmin.php", accion,serial);
 		if (result.error == 1){
 			data = result.data;
 			alert('Registro Agregado correctamente');
+			window.location="usuarios.php";
 		}else{
 			alert('Ocurrio un error en el registro del usuario');
 		}
 	}
+});
+
+
+$( ".data-list-field-menu").on( "click", function() {
+	var field=$(this).attr("data-field");
+	$(".data-list-field-option[data-field='"+field+"']").show();
+
+});
+
+$( ".close").on( "click", function() {
+	var field=$(this).attr("data-field");
+	$(".data-list-field-option[data-field='"+field+"']").hide();
 });

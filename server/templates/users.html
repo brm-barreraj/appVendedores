@@ -12,6 +12,11 @@
 							<i class="lnr lnr-magnifier"></i>
 							<input type="text" name="search" id="search">
 						</div>
+						<div>
+							<a href="usuariosForm.php">
+								<i class="lnr lnr-magnifier"></i>
+							</a>
+						</div>
 
 						<div id="data-top-title">
 							<div>
@@ -56,13 +61,14 @@
 									</div>
 
 									<div class="data-list-field-option" data-field="{#$dato.idUsuario#}">
+										<a href="usuariosForm.php?idUsuario={#$dato.idUsuario#}">
+											<div class="edit" data-field="{#$dato.idUsuario#}">
+												<p>EDITAR</p>
+												<em class="lnr lnr-pencil"></em>
+											</div>
+										</a>
 
-										<div class="edit" data-field="{#$dato.idUsuario#}">
-											<p>EDITAR</p>
-											<em class="lnr lnr-pencil"></em>
-										</div>
-
-										<div class="show-hide" data-field="{#$dato.idUsuario#}">
+										<div class="show-hide eliminar" data-field="{#$dato.idUsuario#}">
 											<p>OCULTAR</p>
 											<em class="lnr lnr-eye-hidden"></em>
 										</div>
@@ -111,44 +117,6 @@
 			
 		</footer>
 	<script type="text/javascript" src="js/paginador.js"></script>
-	<script type="text/javascript">
-
-		$( ".data-list-field-menu").on( "click", function() {
-			var field=$(this).attr("data-field");
-			$(".data-list-field-option[data-field='"+field+"']").show();
-
-		});
-
-		$( ".close").on( "click", function() {
-			var field=$(this).attr("data-field");
-			$(".data-list-field-option[data-field='"+field+"']").hide();
-		});
-
-
-		$('#guardar').click(function(){
-
-			var archivo = $("#forma input[name=archivo]").val();
-			var input = $("#archivo");
-			console.log(input.file);
-				archivo= archivo.split('.');
-				var img= '';
-				var ext =false;
-				//console.log(archivo[(archivo.length -1)]);
-			    ext=archivo[(archivo.length -1)];
-				if (true ) { //
-					img=true;
-				}else { 
-					$("#info").addClass('error');
-					$("#info").html('<span style="color:#f04124;">Por favor selecciona un archivo con extensión xlsx (EXCEL).</span>');
-				}
-
-				if (img) {
-					alert('archivo correcto');
-				}else{
-					alert('archivo incorrecto');
-				}
-		});
-
-	</script>
+	<script type="text/javascript" src="js/usuarios.js"></script>
 {#include file="footer.html"#}
     
