@@ -40,35 +40,6 @@ if (isset($_POST['accion']) && !empty($_POST['accion']) ) {
 			header('Location:login.php');
 		break;
 
-
-
-		/* Buscador Usuario */
-		case 'buscadorUsuario':
-			$usr = new Usuario();
-			$termino = $_POST['termino'];
-			$result = $usr->serchTermUser($termino);
-			if (count($result) > 0) {
-				$data = $result;
-				$error = 1;
-			}else{
-				$error = 2;
-			}
-		break;		
-
-		/* Buscador Categoría */
-		case 'buscadorCategoria':
-			$cat = new Categoria();
-			$termino = $_POST['termino'];
-			$result = $cat->serchTermCat($termino);
-			//printVar($result);
-			if (count($result) > 0) {
-				$data = $result;
-				$error = 1;
-			}else{
-				$error = 2;
-			}
-		break;	
-
 		/* Inserta Usuario */
 		case 'setUsuario':
 			if (isset($_POST['idCargo']) && $_POST['idCargo'] != "" && 
@@ -150,21 +121,14 @@ if (isset($_POST['accion']) && !empty($_POST['accion']) ) {
 			}
 		break;
 
-		/* Lista Usuarios */
+		/* Lista usuarios */
 		case 'getUsuarios':
-			if (isset($_POST['pagina']) && $_POST['pagina'] > 0) {
-				$usr = new Usuario();
-				$ini = $_POST['pagina'];
-				$ini = ((int)$ini == 1)? ((int)$ini-1) :( ( (int)$ini  * (int)$usr->getLimit() )- (int)$usr->getLimit() );	
-				$pagina = $usr->getUsuariosLimitRange($ini);
-				if (count($pagina) > 0) {
-					$data = $pagina;
-					$error = 1;
-				}else{
-					$error = 2;
-				}
+			$categorias = $General->getTotalDatos('VenUsuarios',null,array('estado'=>'A'));
+			if (count($categorias) > 0) {
+				$data = $categorias;
+				$error = 1;
 			}else{
-				$error = 3;
+				$error = 2;
 			}
 		break;
 
@@ -252,23 +216,6 @@ if (isset($_POST['accion']) && !empty($_POST['accion']) ) {
 
 		/* Lista categorías */
 		case 'getCategorias':
-
-			if (isset($_POST['pagina']) && $_POST['pagina'] > 0) {
-				$usr = new Categoria();
-				$ini = $_POST['pagina'];
-				$ini = ((int)$ini == 1)? ((int)$ini-1) :( ( (int)$ini  * (int)$usr->getLimit() )- (int)$usr->getLimit() );	
-				$pagina = $usr->getCategoriaLimitRange($ini);
-				if (count($pagina) > 0) {
-					$data = $pagina;
-					$error = 1;
-				}else{
-					$error = 2;
-				}
-			}else{
-				$error = 3;
-			}
-
-
 			$categorias = $General->getTotalDatos('VenCategoria',null,array('idPadre'=>0,'estado'=>'A'));
 			if (count($categorias) > 0) {
 				$data = $categorias;
