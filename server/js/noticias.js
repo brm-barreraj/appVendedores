@@ -271,12 +271,55 @@ function pintarSeccion(){
 
 }
 
+//editar 
+
 $('#create-title-option').click(function(){
-	result = sendAjax("serviceAdmin.php", "updateNoticia", {data:$('#create').serialize()});
-	if (result.error == 1){
-		data = result.data;
-		alert('Registro Elemininado correctamente');
-	}else{
-		alert('Ocurrio un error en la consulta');
-	}
+	var formData = new FormData(document.getElementById("create"));
+	$.ajax({
+			url:'serviceAdmin.php',
+			method: 'POST',
+			data: formData,
+			cache: false,
+			dataType: 'json',
+			contentType: false,
+			processData: false,
+			enctype: 'multipart/form-data'
+		}).success(function (data){ 
+			console.log(data.error);
+			if (data.error==1){
+				//location.reload();
+				alert("Guardo la noticia correctamente");
+			}else{
+				alert("Ocurrio un error al guardar la noticia");
+			}
+		});
 });
+
+//ocultar seccion
+var manten=0;
+$('.oculta').click(function(){
+
+	var id = $(this).attr('data-ids');
+	manten=id;
+	result = sendAjax("serviceAdmin.php", "ocultaSeccionNoticia", {idSeccionNoticia : id});
+		if (result.error == 1){
+			data = result.data;
+			alert('Registro Elemininado correctamente');
+			//console.log(data);
+			remover();
+			
+			//location.reload();
+		}else{
+			alert('Ocurrio un error en la consulta');
+		}
+});
+
+function remover(){
+	$('.dinamic').each(function(){
+		var id = $(this).attr('data-id');
+		if (id == manten) {
+			$(this).remove();
+		};
+			
+	});
+}
