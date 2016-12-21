@@ -19,7 +19,7 @@
 							<div class="create-field">
 								<input type="hidden" name="idCategoria" id="idCategoria" value="{#$subcategoria->idCategoria#}">
 									<select name="idPadre" id="idPadre">
-										<option>Categoría</option>
+										<option value="">Categoría</option>
 										{#foreach from=$categorias item=dato#}
 											{#if isset($dato->idCategoria) && $dato->idCategoria == $subcategoria->idPadre#}
 												<option selected value="{#$dato->idCategoria#}">{#$dato->nombre#}</option>
