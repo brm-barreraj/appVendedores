@@ -35,7 +35,7 @@ if (isset($_POST['accion']) && !empty($_POST['accion']) ) {
 			//echo "Salio";
 		break;
 
-		// Se desloguea y mata cookie 
+		// Se desloguea y mata cookie
 		case 'logout':
 			setcookie("login","",time()-1);
 			header('Location:login.php');
@@ -300,11 +300,15 @@ if (isset($_POST['accion']) && !empty($_POST['accion']) ) {
 				isset($_POST['contenido']) && 
 				isset($_FILES['image']) && $_FILES['image'] != "" &&
 				isset($_POST['tipoTemplate']) && (int) $_POST['tipoTemplate'] > 0) {
-
 				$idSubCategoria = $_POST['idSubCategoria'];
 				$idUsuarioAdmin = $_POST['idUsuarioAdmin'];
 				$nNoticias = $General->countRows("VenNoticia");
 				$imagen = $General->moveFile($_FILES['image'],"img/noticias/",$nNoticias);
+				// Crop Imagen
+				$imagenFinArr = explode(".",$imagen);
+				$rutaImagen2 = $imagenFinArr[0]."-crop.".$imagenFinArr[1];
+				$General->cropImage("img/noticias/".$imagen, "img/noticias/".$rutaImagen2,80,80);
+				// Fin Crop Imagen
 				if ($imagen) {
 					$Noticia = new General();
 					$Noticia->idCategoria=$idSubCategoria;
@@ -419,6 +423,11 @@ if (isset($_POST['accion']) && !empty($_POST['accion']) ) {
 				if (isset($_FILES['image']) && $_FILES['image'] != "") {
 					$nNoticias = $General->countRows("VenNoticia");
 					$imagen = $General->moveFile($_FILES['image'],"img/noticias/",'up-'.$nNoticias);
+					// Crop Imagen
+					$imagenFinArr = explode(".",$imagen);
+					$rutaImagen2 = $imagenFinArr[0]."-crop.".$imagenFinArr[1];
+					$General->cropImage("img/noticias/".$imagen, "img/noticias/".$rutaImagen2,80,80);
+					// Fin Crop Imagen
 					$camposUpdate['imagen'] = $imagen;
 				}
 				if (isset($_POST['tipoTemplate']) && $_POST['tipoTemplate'] != "") {
@@ -452,20 +461,6 @@ if (isset($_POST['accion']) && !empty($_POST['accion']) ) {
 									$camposUpdate['imagen'] = $imagen;
 								}
 								$idMod = $General->setUpdateInstancia("VenSeccionNoticia",$camposUpdate,array("idSeccionNoticia"=>$idTupla));
-
-
-
-								
-								
-								/*$keyContent = 'contenido'.$keySeccion[1];
-								$SeccionNoticia = new General();
-								$imagenTemp = $General->moveFile($_FILES[$key],"img/noticias/",$idFoto.$nNoticias);
-								$SeccionNoticia->idNoticia=$idNoticia;
-								$SeccionNoticia->imagen=$imagenTemp;
-								$SeccionNoticia->contenido=utf8_encode($_POST[$keyContent]);
-								$SeccionNoticia->estado='A';
-								$SeccionNoticia->fechaMod = date("Y-m-d H:i:s");
-								$idSeccionNoticia = $SeccionNoticia->setInstancia('VenSeccionNoticia');*/
 							}
 							sleep(1);
 						}

@@ -1,4 +1,11 @@
 
+	 $('#data').jplist({				
+	    itemsBox: '#data-list-fields', 
+	    itemPath: '.data-list-field', 
+	    panelPath: '.data-panel'	
+	 });
+
+	 
 	$( ".create-template .lnr-chevron-left").on( "click", function() {
 
 		var template=parseInt( $(this).attr("data-template") );
