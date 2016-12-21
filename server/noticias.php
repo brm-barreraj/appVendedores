@@ -6,6 +6,7 @@ if(isset($_COOKIE['login']) && $gen->validaCookie($_COOKIE['login'])){
 	$cook= explode('+', $cook);
 	$categorias = $gen->getTotalDatos('VenCategoria',null,array('idPadre'=>0,'estado'=>'A'));
 	$smarty->assign('categorias',$categorias);//lista de categorias
+	$smarty->assign('seccion','noticia');//nombre de la seccion en la que estamos actualmente
 	$smarty->assign('user',$cook);//nombre usuaro logueado
 	$smarty->display('create-new.html');
 }else{

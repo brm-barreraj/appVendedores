@@ -99,11 +99,12 @@ $('#idCategoria').change(function(){
 //eleminiar
 
 $('.eliminar').click(function(){
-	var id = $(this).attr('data-id');
+	var id = $(this).attr('data-field');
 	result = sendAjax("serviceAdmin.php", "deleteNoticia", {idNoticia:id});
 	if (result.error == 1){
 		data = result.data;
 		alert('Registro Elemininado correctamente');
+		location.reload();
 	}else{
 		alert('Ocurrio un error en la consulta');
 	}
@@ -323,3 +324,13 @@ function remover(){
 			
 	});
 }
+
+$(document).on( "click",".data-list-field-menu", function() {
+	var field=$(this).attr("data-field");
+	$(".data-list-field-option[data-field='"+field+"']").show();
+});
+
+$(document).on( "click",".close", function() {
+	var field=$(this).attr("data-field");
+	$(".data-list-field-option[data-field='"+field+"']").hide();
+});

@@ -16,6 +16,7 @@
 		$cargos = $gen->getTotalDatos('VenCargo',null,array('estado'=>'A'));
 		$smarty->assign('cargos',$cargos);
 		$smarty->assign('titleForm',$accion);
+		$smarty->assign('seccion','usuario');//nombre de la seccion en la que estamos actualmente
 		$smarty->display('users-form.html');
 	}else{
 		header('Location:login.php');

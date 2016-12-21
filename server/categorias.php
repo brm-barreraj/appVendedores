@@ -8,7 +8,7 @@ require 'db/requires.php';
 		$cook= explode('+', $cook);
 		//printVar($data);
 		$smarty->assign('user',$cook);//nombre usuaro logueado
-		$smarty->assign('seccion','usuario');//nombre de la seccion en la que estamos actualmente
+		$smarty->assign('seccion','categoria');//nombre de la seccion en la que estamos actualmente
 		$smarty->assign('datos',$data); //primeros 10 usuaros
 		$smarty->display('category.html');
 	}else{

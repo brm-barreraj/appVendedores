@@ -20,6 +20,7 @@
 		
 		//$cargos = $gen->getTotalDatos('VenCargo',null,array('estado'=>'A'));
 		//$smarty->assign('cargos',$cargos);
+		$smarty->assign('seccion','noticia');//nombre de la seccion en la que estamos actualmente
 		$smarty->assign('titleForm',$accion);
 		$smarty->display('news-form.html');
 	}else{

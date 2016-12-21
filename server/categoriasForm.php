@@ -16,6 +16,7 @@
 		$categorias = $gen->getTotalDatos('VenCategoria',null,array('idPadre'=>'0','estado'=>'A'));
 		$smarty->assign('categorias',$categorias);
 		$smarty->assign('titleForm',$accion);
+		$smarty->assign('seccion','categoria');//nombre de la seccion en la que estamos actualmente
 		$smarty->display('category-form.html');
 	}else{
 		header('Location:login.php');
