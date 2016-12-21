@@ -15,9 +15,10 @@
 
 					<div id="create-two">
 
-						<div class="create-fileds">
+						<div class="create-fileds" style="overflow-y:scroll;">
 
 								<div class="create-field create-fileds-two">
+									<input type="hidden" name="accion" id="accion" value="updateNoticia">
 									<input type="hidden" name="idNoticia" id="idNoticia" value="{#$noticia.idNoticia#}">
 									<input type="text" name="titulon" id="titulon"value="{#$noticia.titulo#}"  placeholder="Titulo">
 									<div class="create-field-line"></div>
@@ -29,7 +30,7 @@
 								</div>
 
 								<div class="create-field">
-									<textarea name="contenido" value="{#$noticia.contenido#}" id="contenido" placeholder="Contenido"></textarea>
+									<textarea name="contenido"  id="contenido" placeholder="Contenido">{#$noticia.contenido#}</textarea>
 									<div class="create-field-line"></div>
 								</div>
 
@@ -37,29 +38,40 @@
 									<input type="text" name="tipoTemplate" value="{#$noticia.tipoTemplate#}" id="tipoTemplate" placeholder="Tipo Template">
 									<div class="create-field-line"></div>
 								</div>
+								<div class="create-field">
+								{#if isset($noticia.imagen) && !empty($noticia.imagen)#}
+									<img width="120px" src="img/noticias/{#$noticia.imagen#}">
+								{#/if#}
+									<input type="file" name="image" id="image" value="">
+									<div class="create-field-line"></div>
+								</div> 
 
 
 						</div>
-						<div class="create-fileds">
-							{#counter start=0 skip=1#}
+						<div class="create-fileds" style="overflow-y:scroll;">
 							{#foreach from=$noticia.secciones item=dato#}
-							{#counter#}
+						
+							<div class="dinamic" data-id="{#$dato.idSeccionNoticia#}">
+							
+							<i class="lnr oculta" data-ids="{#$dato.idSeccionNoticia#}" style="color:white;cursor:pointer;">X</i>
 								<div class="create-field">
-									<input type="hidden" name="idSeccionNoticia{#counter#}" id="idSeccionNoticia{#counter#}" value="{#$dato.idSeccionNoticia#}">
-									<input type="text" name="seccionTitulo{#counter#}" id="seccionTitulo{#counter#}" value="{#$dato.titulo#}">
+									<input type="hidden" name="idSeccionNoticia{#$dato.idSeccionNoticia#}" id="idSeccionNoticia{#$dato.idSeccionNoticia#}" value="{#$dato.idSeccionNoticia#}">
+									<input type="text" name="titulo{#$dato.idSeccionNoticia#}" id="titulo{#$dato.idSeccionNoticia#}" value="{#$dato.titulo#}">
 									<div class="create-field-line"></div>
 								</div>
 								<div class="create-field">
-									<textarea name="seccionContenido{#counter#}" id="seccionContenido{#counter#}" value="{#$dato.contenido#}"></textarea>
+									<textarea name="contenido{#$dato.idSeccionNoticia#}" id="contenido{#$dato.idSeccionNoticia#}">{#$dato.contenido#}</textarea>
 									<div class="create-field-line"></div>
 								</div>
 								<div class="create-field">
 								{#if isset($dato.imagen) && !empty($dato.imagen)#}
-									<img width="120px" src="images/{#$dato.imagen#}">
+									<img width="120px" src="img/noticias/{#$dato.imagen#}">
 								{#/if#}
-									<input type="file" name="seccionImagen{#counter#}" id="seccionImagen{#counter#}" value="">
+									<input type="file" name="image{#$dato.idSeccionNoticia#}" id="image{#$dato.idSeccionNoticia#}" value="">
 									<div class="create-field-line"></div>
 								</div> 
+							</div>
+							<br>
 							{#/foreach#}
 						</div>
 
@@ -92,5 +104,6 @@
 		});
 			});
 		</script>
+		
 {#include file="footer.html"#}
 

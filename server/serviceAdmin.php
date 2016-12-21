@@ -413,8 +413,10 @@ if (isset($_POST['accion']) && !empty($_POST['accion']) ) {
 				if (isset($_POST['subtitulo']) && $_POST['subtitulo'] != "") {
 					$camposUpdate['subtitulo'] = $_POST['subtitulo'];
 				}
-				if (isset($_POST['imagen']) && $_POST['imagen'] != "") {
-					$camposUpdate['imagen'] = $_POST['imagen'];
+				if (isset($_FILES['image']) && $_FILES['image'] != "") {
+					$nNoticias = $General->countRows("VenNoticia");
+					$imagen = $General->moveFile($_FILES['image'],"img/noticias/",'up-'.$nNoticias);
+					$camposUpdate['imagen'] = $imagen;
 				}
 				if (isset($_POST['tipoTemplate']) && $_POST['tipoTemplate'] != "") {
 					$camposUpdate['tipoTemplate'] = $_POST['tipoTemplate'];
@@ -425,6 +427,45 @@ if (isset($_POST['accion']) && !empty($_POST['accion']) ) {
 				if (count($camposUpdate) > 0) {
 					$idMod = $General->setUpdateInstancia("VenNoticia",$camposUpdate,array("idNoticia"=>$idNoticia));
 					if ($idMod > 0) {
+
+						// Set SeccionNoticia
+
+						foreach ($_FILES as $key => $value) {
+							if ($key != "image") {
+								$keySeccion = split("image", $key);
+								$idTupla = $keySeccion[1];
+								$keyContenido = 'contenido'.$idTupla;
+								if (isset($_POST[$keyContenido]) && $_POST[$keyContenido] != "") {
+									$camposUpdate['contenido'] = $_POST[$keyContenido];
+								}
+								$keyTitulo = 'titulo'.$idTupla;
+								if (isset($_POST[$keyTitulo]) && $_POST[$keyTitulo] != "") {
+									$camposUpdate['titulo'] = $_POST[$keyTitulo];
+								}
+								$keyImage = 'image'.$idTupla;
+								if (isset($_FILES[$keyImage]) && count($_FILES[$keyImage]) > 0) {
+									$nSeccionesNoticias = $General->countRows("VenSeccionNoticia");
+									$imagen = $General->moveFile($_FILES[$keyImage],"img/noticias/",'up-'.$nSeccionesNoticias);
+									$camposUpdate['imagen'] = $imagen;
+								}
+								$idMod = $General->setUpdateInstancia("VenSeccionNoticia",$camposUpdate,array("idSeccionNoticia"=>$idTupla));
+
+
+
+								
+								
+								/*$keyContent = 'contenido'.$keySeccion[1];
+								$SeccionNoticia = new General();
+								$imagenTemp = $General->moveFile($_FILES[$key],"img/noticias/",$idFoto.$nNoticias);
+								$SeccionNoticia->idNoticia=$idNoticia;
+								$SeccionNoticia->imagen=$imagenTemp;
+								$SeccionNoticia->contenido=utf8_encode($_POST[$keyContent]);
+								$SeccionNoticia->estado='A';
+								$SeccionNoticia->fechaMod = date("Y-m-d H:i:s");
+								$idSeccionNoticia = $SeccionNoticia->setInstancia('VenSeccionNoticia');*/
+							}
+							sleep(1);
+						}
 						$data = $idMod;
 						$error = 1;
 					}else{
@@ -443,6 +484,22 @@ if (isset($_POST['accion']) && !empty($_POST['accion']) ) {
 			if (isset($_POST['idNoticia']) && $_POST['idNoticia'] != "") {
 				$idNoticia = $_POST['idNoticia'];
 				$idMod = $General->setUpdateInstancia("VenNoticia",array("estado" => "I"),array("idNoticia"=>$idNoticia));
+				if ($idMod > 0) {
+					$data = $idMod;
+					$error = 1;
+				}else{
+					$error = 0;
+				}
+			}else{
+				$error = 3;
+			}
+		break;
+
+		//oculta seccion de noticia
+		case 'ocultaSeccionNoticia':
+			if (isset($_POST['idSeccionNoticia']) && $_POST['idSeccionNoticia'] != "") {
+				$idSeccionNoticia = $_POST['idSeccionNoticia'];
+				$idMod = $General->setUpdateInstancia("VenSeccionNoticia",array("estado" => "I"),array("idSeccionNoticia"=>$idSeccionNoticia));
 				if ($idMod > 0) {
 					$data = $idMod;
 					$error = 1;
