@@ -287,8 +287,8 @@ $('#create-title-option').click(function(){
 		}).success(function (data){ 
 			console.log(data.error);
 			if (data.error==1){
-				//location.reload();
 				alert("Guardo la noticia correctamente");
+				location.reload();
 			}else{
 				alert("Ocurrio un error al guardar la noticia");
 			}

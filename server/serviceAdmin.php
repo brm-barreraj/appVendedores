@@ -413,6 +413,9 @@ if (isset($_POST['accion']) && !empty($_POST['accion']) ) {
 				if (isset($_POST['subtitulo']) && $_POST['subtitulo'] != "") {
 					$camposUpdate['subtitulo'] = $_POST['subtitulo'];
 				}
+				if (isset($_POST['contenido']) && $_POST['contenido'] != "") {
+					$camposUpdate['contenido'] = $_POST['contenido'];
+				}
 				if (isset($_FILES['image']) && $_FILES['image'] != "") {
 					$nNoticias = $General->countRows("VenNoticia");
 					$imagen = $General->moveFile($_FILES['image'],"img/noticias/",'up-'.$nNoticias);
