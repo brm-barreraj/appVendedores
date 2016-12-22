@@ -54,13 +54,13 @@ class General
 		$objDBO->find();
 		if($objDBO->fetch()){
 			foreach($campos as $key => $value){
-				$objDBO->$key = $value;
+				$objDBO->$key = utf8_decode($value);
 			}
 			$objDBO->fechaMod = date("Y-m-d H:i:s");
 			$ret=$objDBO->update();
 		}else{
 			foreach($campos as $key => $value){
-				$objDBO->$key = $value;
+				$objDBO->$key = utf8_decode($value);
 			}
 			$objDBO->fecha = date("Y-m-d H:i:s");
 			$ret = $objDBO->insert();
@@ -288,18 +288,19 @@ class General
 					//$rows[$cont]->$value = cambiaParaEnvio($objDBO->$value);
 					$encoding= mb_detect_encoding($objDBO->$value, "auto");
 					//printVar($encoding);
-					if($encoding == 'UTF-8'){
+					$rows[$cont]->$value =  utf8_encode($objDBO->$value);
+					/*if($encoding == 'UTF-8'){
 						// Local
 						$rows[$cont]->$value =  utf8_encode($objDBO->$value);
 						// Servidor
 						//$rows[$cont]->$value =  $objDBO->$value;
 					}else{
 						if($encoding == 'ASCII'){
-							$rows[$cont]->$value = utf8_decode($objDBO->$value);
+							$rows[$cont]->$value = utf8_encode($objDBO->$value);
 						}else{
 							$rows[$cont]->$value = $objDBO->$value;
 						}
-					}
+					}*/
 					
 				}
 			}

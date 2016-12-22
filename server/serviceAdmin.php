@@ -101,12 +101,12 @@ if (isset($_POST['accion']) && !empty($_POST['accion']) ) {
 					}
 					$camposUsuario = array();
 					$camposUsuario['idCargo'] = $idCargo;
-					$camposUsuario['nombre'] = ltrim(trim(rtrim(strtolower($data -> sheets[0]['cells'][$i][1]))));
-					$camposUsuario['apellido'] = ltrim(trim(rtrim(strtolower($data -> sheets[0]['cells'][$i][2]))));
-					$camposUsuario['email'] = ltrim(trim(rtrim(strtolower($data -> sheets[0]['cells'][$i][3]))));
-					$camposUsuario['usuario'] = ltrim(trim(rtrim(strtolower($data -> sheets[0]['cells'][$i][5]))));
-					$camposUsuario['contrasena'] = ltrim(trim(rtrim(strtolower($data -> sheets[0]['cells'][$i][6]))));
-					$camposUsuario['puntos'] = ltrim(trim(rtrim(strtolower($data -> sheets[0]['cells'][$i][7]))));
+					$camposUsuario['nombre'] = ltrim(trim(rtrim(utf8_encode($data -> sheets[0]['cells'][$i][1]))));
+					$camposUsuario['apellido'] = ltrim(trim(rtrim(utf8_encode($data -> sheets[0]['cells'][$i][2]))));
+					$camposUsuario['email'] = ltrim(trim(rtrim(utf8_encode($data -> sheets[0]['cells'][$i][3]))));
+					$camposUsuario['usuario'] = ltrim(trim(rtrim(utf8_encode($data -> sheets[0]['cells'][$i][5]))));
+					$camposUsuario['contrasena'] = ltrim(trim(rtrim(utf8_encode($data -> sheets[0]['cells'][$i][6]))));
+					$camposUsuario['puntos'] = ltrim(trim(rtrim(utf8_encode($data -> sheets[0]['cells'][$i][7]))));
 					$campoWhere = array("email" => $camposUsuario['email']);
 					$resUsuario = $General->setUpdateInstancia('VenUsuario',$camposUsuario,$campoWhere);
 					if ($resUsuario > 0) {
@@ -313,9 +313,9 @@ if (isset($_POST['accion']) && !empty($_POST['accion']) ) {
 					$Noticia = new General();
 					$Noticia->idCategoria=$idSubCategoria;
 					$Noticia->idUsuarioAdmin=$idUsuarioAdmin;
-					$Noticia->titulo=utf8_encode($_POST['titulo']);
-					$Noticia->subtitulo=utf8_encode($_POST['subtitulo']);
-					$Noticia->contenido=utf8_encode($_POST['contenido']);
+					$Noticia->titulo=$_POST['titulo'];
+					$Noticia->subtitulo=$_POST['subtitulo'];
+					$Noticia->contenido=$_POST['contenido'];
 					$Noticia->imagen=$imagen;
 					$Noticia->tipoTemplate=$_POST['tipoTemplate'];
 					$Noticia->estado='A';
@@ -325,17 +325,17 @@ if (isset($_POST['accion']) && !empty($_POST['accion']) ) {
 					$Notification->sendMessageAndroid($_POST['titulo']);
 					//sendMessageAndroid($_POST['titulo']);
 					if ($idNoticia > 0) {
-						// Set SeccionNoticia
+						// Inserta Secciones a la noticia
 						foreach ($_FILES as $key => $value) {
 							if ($key != "image") {
-								$keySeccion = split("image", $key);
+								$keySeccion = explode("image", $key);
 								$idFoto = $keySeccion[1];
 								$keyContent = 'contenido'.$keySeccion[1];
 								$SeccionNoticia = new General();
 								$imagenTemp = $General->moveFile($_FILES[$key],"img/noticias/",$idFoto.$nNoticias);
 								$SeccionNoticia->idNoticia=$idNoticia;
 								$SeccionNoticia->imagen=$imagenTemp;
-								$SeccionNoticia->contenido=utf8_encode($_POST[$keyContent]);
+								$SeccionNoticia->contenido=$_POST[$keyContent];
 								$SeccionNoticia->estado='A';
 								$SeccionNoticia->fechaMod = date("Y-m-d H:i:s");
 								$idSeccionNoticia = $SeccionNoticia->setInstancia('VenSeccionNoticia');
@@ -367,7 +367,7 @@ if (isset($_POST['accion']) && !empty($_POST['accion']) ) {
 					$SeccionNoticia = new General();
 					$SeccionNoticia->idNoticia=$idNoticia;
 					$SeccionNoticia->imagen=$imagen;
-					$SeccionNoticia->contenido=utf8_encode($_POST['contenido']);
+					$SeccionNoticia->contenido=$_POST['contenido'];
 					$SeccionNoticia->estado='A';
 					$SeccionNoticia->fechaMod = date("Y-m-d H:i:s");
 					$idSeccionNoticia = $SeccionNoticia->setInstancia('VenSeccionNoticia');
@@ -405,8 +405,8 @@ if (isset($_POST['accion']) && !empty($_POST['accion']) ) {
 			if (isset($_POST['idNoticia']) && $_POST['idNoticia'] != "") {
 				$idNoticia = $_POST['idNoticia'];
 				$camposUpdate = array();
-				if (isset($_POST['idCategoria']) && $_POST['idCategoria'] != "") {
-					$camposUpdate['idCategoria'] = $_POST['idCategoria'];
+				if (isset($_POST['idSubCategoria']) && $_POST['idSubCategoria'] != "") {
+					$camposUpdate['idCategoria'] = $_POST['idSubCategoria'];
 				}
 				if (isset($_POST['idUsuarioAdmin']) && $_POST['idUsuarioAdmin'] != "") {
 					$camposUpdate['idUsuarioAdmin'] = $_POST['idUsuarioAdmin'];
@@ -439,29 +439,43 @@ if (isset($_POST['accion']) && !empty($_POST['accion']) ) {
 				if (count($camposUpdate) > 0) {
 					$idMod = $General->setUpdateInstancia("VenNoticia",$camposUpdate,array("idNoticia"=>$idNoticia));
 					if ($idMod > 0) {
-
-						// Set SeccionNoticia
-
+						// Actualiza y agrega nuevas secciones a una noticia
 						foreach ($_FILES as $key => $value) {
-							$camposUpdate = [];
+							$camposUpdate = array();
 							if ($key != "image") {
-								$keySeccion = split("image", $key);
-								$idTupla = $keySeccion[1];
-								$keyContenido = 'contenido'.$idTupla;
-								if (isset($_POST[$keyContenido])) {
-									$camposUpdate['contenido'] = $_POST[$keyContenido];
+								$exp = explode("-",$key);
+								if (count($exp) > 1) {
+									// Insertar secciones nuevas
+									$keySeccion = explode("image-e", $key);
+									$idFoto = $keySeccion[1];
+									$keyContent = 'contenido-e'.$keySeccion[1];
+									$SeccionNoticia = new General();
+									$imagenTemp = $General->moveFile($_FILES[$key],"img/noticias/",$idFoto.$nNoticias);
+									$SeccionNoticia->idNoticia=$idNoticia;
+									$SeccionNoticia->imagen=$imagenTemp;
+									$SeccionNoticia->contenido=$_POST[$keyContent];
+									$SeccionNoticia->estado='A';
+									$SeccionNoticia->fechaMod = date("Y-m-d H:i:s");
+									$idSeccionNoticia = $SeccionNoticia->setInstancia('VenSeccionNoticia');
+								}else{
+									// Editar secciones
+									$keySeccion = explode("image", $key);
+									$idTupla = $keySeccion[1];
+									$keyContenido = 'contenido'.$idTupla;
+									if (isset($_POST[$keyContenido])) {
+										$camposUpdate['contenido'] = $_POST[$keyContenido];
+									}
+									$keyTitulo = 'titulo'.$idTupla;
+									if (isset($_POST[$keyTitulo]) && $_POST[$keyTitulo] != "") {
+										$camposUpdate['titulo'] = $_POST[$keyTitulo];
+									}
+									if (isset($_FILES[$key]) && isset($_FILES[$key]['tmp_name']) && trim($_FILES[$key]['tmp_name']) != "") {
+										$nSeccionesNoticias = $General->countRows("VenSeccionNoticia");
+										$imagen = $General->moveFile($_FILES[$key],"img/noticias/",'up-'.$nSeccionesNoticias);
+										$camposUpdate['imagen'] = $imagen;
+									}
+									$idMod = $General->setUpdateInstancia("VenSeccionNoticia",$camposUpdate,array("idSeccionNoticia"=>$idTupla));
 								}
-								$keyTitulo = 'titulo'.$idTupla;
-								if (isset($_POST[$keyTitulo]) && $_POST[$keyTitulo] != "") {
-									$camposUpdate['titulo'] = $_POST[$keyTitulo];
-								}
-								$keyImage = 'image'.$idTupla;
-								if (isset($_FILES[$keyImage]) && isset($_FILES[$keyImage]['tmp_name']) && trim($_FILES[$keyImage]['tmp_name']) != "") {
-									$nSeccionesNoticias = $General->countRows("VenSeccionNoticia");
-									$imagen = $General->moveFile($_FILES[$keyImage],"img/noticias/",'up-'.$nSeccionesNoticias);
-									$camposUpdate['imagen'] = $imagen;
-								}
-								$idMod = $General->setUpdateInstancia("VenSeccionNoticia",$camposUpdate,array("idSeccionNoticia"=>$idTupla));
 							}
 							sleep(1);
 						}

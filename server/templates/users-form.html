@@ -3,7 +3,7 @@
 
 			<article>
 				
-				<form id="create" class="">
+				<form autocomplete="off" id="create" class="">
 
 					<div id="create-title">
 						<div id="create-title-option">
@@ -18,7 +18,7 @@
 						<div class="create-fileds">
 
 								<div class="create-field create-fileds-two">
-									<input type="text" name="nombre" value="{#$usuario->nombre#}"nombre" placeholder="Nombre">
+									<input type="text" name="nombre" value="{#$usuario->nombre#}" id="nombre" placeholder="Nombre">
 									<div class="create-field-line"></div>
 								</div>
 
@@ -49,11 +49,11 @@
 						</div>
 						<div class="create-fileds">
 							<div class="create-field">
-								<input type="text" name="usuario" value="{#$usuario->usuario#}" id="usuario" placeholder="Usuario">
+								<input type="text" name="usuario" value="{#$usuario->usuario#}" id="usuario" placeholder="SO ID">
 								<div class="create-field-line"></div>
 							</div>
 							<div class="create-field">
-								<input type="text" name="contrasena" value="{#$usuario->contrasena#}" id="contrasena" placeholder="Contraseña">
+								<input type="text" name="contrasena" value="{#$usuario->contrasena#}" id="contrasena" placeholder="YEI ID">
 								<div class="create-field-line"></div>
 							</div>
 							<div class="create-field">
@@ -70,5 +70,8 @@
 			
 		</section>
 		<script type="text/javascript" src="js/usuarios.js"></script>
+		<script type="text/javascript" src="js/vendor/jplist.core.min.js"></script>
+		<script type="text/javascript" src="js/vendor/jplist.pagination-bundle.min.js"></script>
+		<script type="text/javascript" src="js/vendor/jplist.textbox-filter.min.js"></script>
 {#include file="footer.html"#}
 

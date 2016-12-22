@@ -30,23 +30,28 @@
 
 	});
 
-$('#guardar').click(function(){
-
+// Agregar o editar
+$('#create-title-option').click(function(){
+	accion = ($("#idNoticia").val() != "") ? "updateNoticia" : "setNoticia";
+	$("#accion").val(accion);
+	//var accion = ($("#idUsuario").val() != "") ? "updateUsuario" : "setUsuario";
 	var imagen = $("#create input[name=image]").val();
 	imagen= imagen.split('.');
 	var img= '';
 	var ext =false;
 	//console.log(imagen[(imagen.length -1)]);
     ext=imagen[(imagen.length -1)];
-		if ( ext === 'jpg' || ext ==='png' || ext === 'gif' || ext === 'jpeg' || ext === 'JPG' || ext === 'PNG' || ext ==='GIF' || ext === 'JPEG' ) {
-			img=true;
-		}else { 
-			$("#info").addClass('error');
-			$("#info").html('<span style="color:#f04124;">Por favor selecciona una imagen.</span>');
-		}
-		var valid = $('#create').valid();
-	if (img && valid ) {
+	if ( ext === 'jpg' || ext ==='png' || ext === 'gif' || ext === 'jpeg' || ext === 'JPG' || ext === 'PNG' || ext ==='GIF' || ext === 'JPEG' ) {
+		img=true;
+	}else { 
+		$("#info").addClass('error');
+		$("#info").html('<span style="color:#f04124;">Por favor selecciona una imagen.</span>');
+	}
+	var valid = $('#create').valid();
+	if ($("#idNoticia").val() != "" && valid || $("#idNoticia").val() == "" && img && valid ) {
 		var formData = new FormData(document.getElementById("create"));
+		console.log(formData,"formData");
+		console.log("formData");
 		$.ajax({
 			url:'serviceAdmin.php',
 			method: 'POST',
@@ -202,7 +207,7 @@ $('#atrasSec').click(function(){
 			$("#atrasSec").addClass("hide");
 			$("#atrasSec p").text("");
 			$("#tituloCentro p").text("Contenido principal");
-			$("#adenlanteSec p").text("Agregar sección a la noticia");
+			$("#adenlanteSec p").text("Sección 1");
 
 			$('.section-new').hide();
 			$('.dinamico').hide();
@@ -222,23 +227,45 @@ $('#atrasSec').click(function(){
 	}
 });
 
+// Agregar html al editar
+
+$('.seccionesEditar').trumbowyg({
+ 	autogrow: true,
+	resetCss: true,
+    btns: [
+        ['viewHTML'],
+        ['formatting'],
+        ['removeformat'],
+        ['fullscreen'],
+        'btnGrp-semantic',
+        ['link'],
+        'btnGrp-justify',
+        'btnGrp-lists',
+        ['horizontalRule'],
+    ]
+});
+
+// Fin agregar html al editar
+
 function pintarSeccion(){
-	
+	var extEdit = ($("#idNoticia").val() != "") ? "-e" : "" ;
+
 	var seccion = '';
-	seccion+='<div class="section-new '+contador+' sec'+contador+'">';
+	seccion+='<div class="section-new sec'+contador+'">';
 	seccion+='<div class="create-fileds">';
-	seccion+='<div class="create-image-area">';
+	//seccion+='<div class="create-image-area">';
+	seccion+='<div>';
 	seccion+='<div class="icon-upload-new">';
 	seccion+='<i class="lnr lnr-upload"></i>';
 	seccion+='<i class="lnr lnr-picture"></i>';
 	seccion+='</div>';
-	seccion+='<input type="file" name="image'+contador+'" id="image'+contador+'" class="inputfile inputfile-3"/>';
+	seccion+='<input type="file" name="image'+extEdit+contador+'" id="image'+extEdit+contador+'" class="inputfile inputfile-3"/>';
 	seccion+='<label for="image"><span>Selecciona la imagen principal de la noticia</span></label>';
 	seccion+='</div>';
 	seccion+='</div>';
 	seccion+='<div class="create-fileds">';
 	seccion+='<div class="create-field">';
-	seccion+='<textarea style="background-color:white;" name="contenido'+contador+'" id="contenido'+contador+'" placeholder="Contenido sección '+contador+'"></textarea>';
+	seccion+='<textarea style="background-color:white;" name="contenido'+extEdit+contador+'" id="contenido'+extEdit+contador+'" placeholder="Contenido sección '+contador+'"></textarea>';
 	seccion+='</div>';
 	seccion+='</div>';
 	seccion+='</div>';
@@ -260,7 +287,7 @@ function pintarSeccion(){
 			$(ocultar).hide();
 		};
 
-		$('#contenido'+contador).trumbowyg({
+		$('#contenido'+extEdit+contador).trumbowyg({
 			 	autogrow: true,
 			  resetCss: true,
 		    btns: [
@@ -280,7 +307,7 @@ function pintarSeccion(){
 }
 
 //editar 
-
+/*
 $('#create-title-option').click(function(){
 	$(".dinamic").find(".msg-dinamico").text("");
 	var validDinamic=true;
@@ -314,7 +341,7 @@ $('#create-title-option').click(function(){
 		});
 	};
 });
-
+*/
 //ocultar seccion
 var manten=0;
 $('.oculta').click(function(){

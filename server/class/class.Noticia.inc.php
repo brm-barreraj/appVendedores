@@ -14,11 +14,11 @@
 			$data='';
 			while($obj->fetch()){
 				$data[$i]['idNoticia']=$obj->idNoticia;
-				$data[$i]['contenido']=$obj->contenido;
+				$data[$i]['contenido']=utf8_encode($obj->contenido);
 				$data[$i]['idCategoria']=$obj->idCategoria;
 				
 				$nombreCategoria=$this->getCategoriaById($obj->idCategoria);
-				$nombre=$nombreCategoria['nombre'];
+				$nombre=utf8_encode($nombreCategoria['nombre']);
 				$data[$i]['categoria']= $nombre;
 
 				//obteniendo el array con secciones
@@ -26,8 +26,8 @@
 				$data['secciones']=$this->getSecciones($obj->idNoticia);
 
 				$data[$i]['idUsuarioAdmin']=$obj->idUsuarioAdmin;
-				$data[$i]['titulo']=$obj->titulo;
-				$data[$i]['subtitulo']=$obj->subtitulo;
+				$data[$i]['titulo']=utf8_encode($obj->titulo);
+				$data[$i]['subtitulo']=utf8_encode($obj->subtitulo);
 				$data[$i]['imagen']=$obj->imagen;
 				
 				$data[$i]['tipoTemplate']=$obj->tipoTemplate;
@@ -51,7 +51,7 @@
 			$data='';
 			if($obj->fetch()){
 				$data['idNoticia']=$obj->idNoticia;
-				$data['contenido']=$obj->contenido;
+				$data['contenido']=utf8_encode($obj->contenido);
 				$data['idCategoria']=$obj->idCategoria;
 				
 				$nombreCategoria=$this->getCategoriaById($obj->idCategoria);
@@ -62,8 +62,8 @@
 				$data['secciones']=$this->getSecciones($obj->idNoticia);
 
 				$data['idUsuarioAdmin']=$obj->idUsuarioAdmin;
-				$data['titulo']=$obj->titulo;
-				$data['subtitulo']=$obj->subtitulo;
+				$data['titulo']=utf8_encode($obj->titulo);
+				$data['subtitulo']=utf8_encode($obj->subtitulo);
 				$data['imagen']=$obj->imagen;
 				
 				$data['tipoTemplate']=$obj->tipoTemplate;

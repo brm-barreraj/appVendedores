@@ -88,6 +88,12 @@ jQuery(document).ready(function () {
 		$(".data-list-field-option[data-field='"+field+"']").hide();
 	});
 
+	$('#data').jplist({				
+	    itemsBox: '#data-list-fields', 
+	    itemPath: '.data-list-field', 
+	    panelPath: '.data-panel'	
+	 });
+
 
 });
 

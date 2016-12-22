@@ -805,8 +805,18 @@ textarea:-ms-input-placeholder
 #create .create-image-area{
 	padding: 0 4%;
 	width: 100%;
-	height: 100px;
+	height: 115px;
 	position: relative;
+	overflow: hidden;
+}
+#create .create-image-area.img-edit{
+}
+#create .create-image-area.img-edit img{
+	position:absolute;
+	z-index: 0;
+	height: 90%;
+	top: 5%;
+	left: 5%;
 }
 #create .create-image-area input {
     width: 0.1px;
@@ -827,7 +837,9 @@ textarea:-ms-input-placeholder
     height: 100%;
 }
 
-#create .create-image-area label span {margin-top: 5px;display: block;}
+#create .create-image-area label span {margin-top: 5px;display: block;position: relative;z-index: 1;}
+#create .create-image-area.img-edit label span {margin-top: 9%;display: block;position: relative;z-index: 1;background: rgba(188, 204, 55, 0.8);padding: 0 0;font-size: 17px;font-family: col-reg;}
+
 
 #create .create-image-area input:focus + label,
 #create .create-image-area input.has-focus + label {
@@ -841,6 +853,8 @@ textarea:-ms-input-placeholder
     border: 0.099em dashed #29dbf1;
     padding: 0;
     text-align: center;
+    z-index: 1;
+    position: relative;
 }
 
 #create .create-image-area input:focus + label,
@@ -1085,7 +1099,7 @@ textarea:-ms-input-placeholder
 .icon-upload-new{
 	position: absolute;
 	right: calc(50% - 16px);
-	top: 36px;
+	top: 60px;
 	overflow: hidden;
 	width: 32px;
 	height: 45px;
