@@ -11,11 +11,7 @@ jQuery(document).ready(function () {
 	* caracteres especiales.
 	*/
 
-	 $('#data').jplist({				
-	    itemsBox: '#data-list-fields', 
-	    itemPath: '.data-list-field', 
-	    panelPath: '.data-panel'	
-	 });
+	
 
 
 	jQuery.validator.addMethod("string", function(value, element)
@@ -192,6 +188,12 @@ jQuery(document).ready(function () {
 		}
 
 	});
+
+	 $('#data').jplist({				
+	    itemsBox: '#data-list-fields', 
+	    itemPath: '.data-list-field', 
+	    panelPath: '.data-panel'	
+	 });
 
 });
 
