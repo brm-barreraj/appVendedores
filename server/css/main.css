@@ -1107,3 +1107,6 @@ textarea:-ms-input-placeholder
 	bottom: 0;
 	font-size: 22px;
 }
+.msg-dinamico{
+	color:red;
+}

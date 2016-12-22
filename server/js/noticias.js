@@ -282,14 +282,14 @@ function pintarSeccion(){
 //editar 
 
 $('#create-title-option').click(function(){
+	$(".dinamic").find(".msg-dinamico").text("");
 	var validDinamic=true;
 	$(".dinamic").each(function(){
 		if($(this).find("img").length == 0 && $(this).find("textarea").val().trim().length == 0){
-			$(this).find(".msg").text("Verifique que tenga contenido o imagen");
+			$(this).find(".msg-dinamico").text("Verifique que tenga contenido o imagen");
 			if (validDinamic) {
 				validDinamic = false;
-			};
-				
+			}
 		}
 	})
 	if ($("#create").valid() && validDinamic) {
