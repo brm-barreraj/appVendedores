@@ -420,7 +420,7 @@ if (isset($_POST['accion']) && !empty($_POST['accion']) ) {
 				if (isset($_POST['contenido']) && $_POST['contenido'] != "") {
 					$camposUpdate['contenido'] = $_POST['contenido'];
 				}
-				if (isset($_FILES['image']) && $_FILES['image'] != "") {
+				if (isset($_FILES['image']) && isset($_FILES['image']['tmp_name']) && trim($_FILES['image']['tmp_name']) != "") {
 					$nNoticias = $General->countRows("VenNoticia");
 					$imagen = $General->moveFile($_FILES['image'],"img/noticias/",'up-'.$nNoticias);
 					// Crop Imagen
@@ -443,11 +443,12 @@ if (isset($_POST['accion']) && !empty($_POST['accion']) ) {
 						// Set SeccionNoticia
 
 						foreach ($_FILES as $key => $value) {
+							$camposUpdate = [];
 							if ($key != "image") {
 								$keySeccion = split("image", $key);
 								$idTupla = $keySeccion[1];
 								$keyContenido = 'contenido'.$idTupla;
-								if (isset($_POST[$keyContenido]) && $_POST[$keyContenido] != "") {
+								if (isset($_POST[$keyContenido])) {
 									$camposUpdate['contenido'] = $_POST[$keyContenido];
 								}
 								$keyTitulo = 'titulo'.$idTupla;
@@ -455,7 +456,7 @@ if (isset($_POST['accion']) && !empty($_POST['accion']) ) {
 									$camposUpdate['titulo'] = $_POST[$keyTitulo];
 								}
 								$keyImage = 'image'.$idTupla;
-								if (isset($_FILES[$keyImage]) && count($_FILES[$keyImage]) > 0) {
+								if (isset($_FILES[$keyImage]) && isset($_FILES[$keyImage]['tmp_name']) && trim($_FILES[$keyImage]['tmp_name']) != "") {
 									$nSeccionesNoticias = $General->countRows("VenSeccionNoticia");
 									$imagen = $General->moveFile($_FILES[$keyImage],"img/noticias/",'up-'.$nSeccionesNoticias);
 									$camposUpdate['imagen'] = $imagen;

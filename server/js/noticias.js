@@ -5,7 +5,7 @@
 	    panelPath: '.data-panel'	
 	 });
 
-	 
+
 	$( ".create-template .lnr-chevron-left").on( "click", function() {
 
 		var template=parseInt( $(this).attr("data-template") );
@@ -282,8 +282,19 @@ function pintarSeccion(){
 //editar 
 
 $('#create-title-option').click(function(){
-	var formData = new FormData(document.getElementById("create"));
-	$.ajax({
+	var validDinamic=true;
+	$(".dinamic").each(function(){
+		if($(this).find("img").length == 0 && $(this).find("textarea").val().trim().length == 0){
+			$(this).find(".msg").text("Verifique que tenga contenido o imagen");
+			if (validDinamic) {
+				validDinamic = false;
+			};
+				
+		}
+	})
+	if ($("#create").valid() && validDinamic) {
+		var formData = new FormData(document.getElementById("create"));
+		$.ajax({
 			url:'serviceAdmin.php',
 			method: 'POST',
 			data: formData,
@@ -301,6 +312,7 @@ $('#create-title-option').click(function(){
 				alert("Ocurrio un error al guardar la noticia");
 			}
 		});
+	};
 });
 
 //ocultar seccion

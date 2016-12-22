@@ -53,13 +53,14 @@
 						
 							<div class="dinamic" data-id="{#$dato.idSeccionNoticia#}">
 							
-							<i class="lnr oculta" data-ids="{#$dato.idSeccionNoticia#}" style="color:white;cursor:pointer;">X</i>
+								<i class="lnr oculta" data-ids="{#$dato.idSeccionNoticia#}" style="color:white;cursor:pointer;">X</i>
 								<div class="create-field">
 									<input type="hidden" name="idSeccionNoticia{#$dato.idSeccionNoticia#}" id="idSeccionNoticia{#$dato.idSeccionNoticia#}" value="{#$dato.idSeccionNoticia#}">
-									<input type="text" name="titulo{#$dato.idSeccionNoticia#}" id="titulo{#$dato.idSeccionNoticia#}" value="{#$dato.titulo#}">
+									<input type="text" class="input-contenido" name="titulo{#$dato.idSeccionNoticia#}" id="titulo{#$dato.idSeccionNoticia#}" value="{#$dato.titulo#}">
 									<div class="create-field-line"></div>
 								</div>
 								<div class="create-field">
+									<span class="msg"></span>
 									<textarea name="contenido{#$dato.idSeccionNoticia#}" id="contenido{#$dato.idSeccionNoticia#}">{#$dato.contenido#}</textarea>
 									<div class="create-field-line"></div>
 								</div>
