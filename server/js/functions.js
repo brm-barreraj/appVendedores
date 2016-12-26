@@ -27,3 +27,13 @@ function sendAjax(url, action, data) {
 function logout(){
   sendAjax('serviceAdmin.php', 'logout', {});
 }
+
+function showmessage(message){
+
+	$( "#message" ).animate({
+	    top: "0",
+	  }, 2000, function() {
+	  	$("#message p").html(message);
+	  });
+
+}

@@ -52,10 +52,10 @@ jQuery(document).ready(function () {
 		result = sendAjax("serviceAdmin.php", "deleteProducto", {idProducto:id});
 		if (result.error == 1){
 			data = result.data;
-			alert('Registro Elemininado correctamente');
+			showmessage('Registro Elemininado correctamente');
 			location.reload();
 		}else{
-			alert('Ocurrio un error en la consulta');
+			showmessage('Ocurrio un error en la consulta');
 		}
 	});
 
@@ -69,10 +69,10 @@ jQuery(document).ready(function () {
 			result = sendAjax("serviceAdmin.php", accion,serial);
 			if (result.error == 1){
 				data = result.data;
-				alert('Registro Agregado correctamente');
+				showmessage('Registro Agregado correctamente');
 				window.location="productos.php";
 			}else{
-				alert('Ocurrio un error en el registro del usuario');
+				showmessage('Ocurrio un error en el registro del usuario');
 			}
 		}
 	});

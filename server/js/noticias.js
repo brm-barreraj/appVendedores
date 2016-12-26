@@ -65,9 +65,9 @@ $('#create-title-option').click(function(){
 			console.log(data.error);
 			if (data.error==1){
 				location.reload();
-				alert("Guardo la noticia correctamente");
+				showmessage("Guardo la noticia correctamente");
 			}else{
-				alert("Ocurrio un error al guardar la noticia");
+				showmessage("Ocurrio un error al guardar la noticia");
 			}
 		});
 	}
@@ -103,7 +103,7 @@ $('#idCategoria').change(function(){
 		$('#idSubCategoriaDiv').show();
 		
 	}else{
-		alert('Ocurrio un error en la consulta');
+		showmessage('Ocurrio un error en la consulta');
 	}
 });
 
@@ -114,10 +114,10 @@ $('.eliminar').click(function(){
 	result = sendAjax("serviceAdmin.php", "deleteNoticia", {idNoticia:id});
 	if (result.error == 1){
 		data = result.data;
-		alert('Registro Elemininado correctamente');
+		showmessage('Registro Elemininado correctamente');
 		location.reload();
 	}else{
-		alert('Ocurrio un error en la consulta');
+		showmessage('Ocurrio un error en la consulta');
 	}
 });
 
@@ -329,10 +329,10 @@ $('#create-title-option').click(function(){
 		}).success(function (data){ 
 			console.log(data.error);
 			if (data.error==1){
-				alert("Guardo la noticia correctamente");
+				showmessage("Guardo la noticia correctamente");
 				location.reload();
 			}else{
-				alert("Ocurrio un error al guardar la noticia");
+				showmessage("Ocurrio un error al guardar la noticia");
 			}
 		});
 	};
@@ -347,13 +347,13 @@ $('.oculta').click(function(){
 	result = sendAjax("serviceAdmin.php", "ocultaSeccionNoticia", {idSeccionNoticia : id});
 		if (result.error == 1){
 			data = result.data;
-			alert('Registro Elemininado correctamente');
+			showmessage('Registro Elemininado correctamente');
 			//console.log(data);
 			remover();
 			
 			//location.reload();
 		}else{
-			alert('Ocurrio un error en la consulta');
+			showmessage('Ocurrio un error en la consulta');
 		}
 });
 
