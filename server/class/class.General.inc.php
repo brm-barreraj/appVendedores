@@ -54,13 +54,13 @@ class General
 		$objDBO->find();
 		if($objDBO->fetch()){
 			foreach($campos as $key => $value){
-				$objDBO->$key = $value;
+				$objDBO->$key = utf8_decode($value);
 			}
 			$objDBO->fechaMod = date("Y-m-d H:i:s");
 			$ret=$objDBO->update();
 		}else{
 			foreach($campos as $key => $value){
-				$objDBO->$key = $value;
+				$objDBO->$key = utf8_decode($value);
 			}
 			$objDBO->fecha = date("Y-m-d H:i:s");
 			$ret = $objDBO->insert();
@@ -288,18 +288,19 @@ class General
 					//$rows[$cont]->$value = cambiaParaEnvio($objDBO->$value);
 					$encoding= mb_detect_encoding($objDBO->$value, "auto");
 					//printVar($encoding);
-					if($encoding == 'UTF-8'){
+					$rows[$cont]->$value =  utf8_encode($objDBO->$value);
+					/*if($encoding == 'UTF-8'){
 						// Local
 						$rows[$cont]->$value =  utf8_encode($objDBO->$value);
 						// Servidor
 						//$rows[$cont]->$value =  $objDBO->$value;
 					}else{
 						if($encoding == 'ASCII'){
-							$rows[$cont]->$value = utf8_decode($objDBO->$value);
+							$rows[$cont]->$value = utf8_encode($objDBO->$value);
 						}else{
 							$rows[$cont]->$value = $objDBO->$value;
 						}
-					}
+					}*/
 					
 				}
 			}
@@ -351,6 +352,40 @@ class General
 			$res = false;
 		}
 		return $res;
+	}
+
+	function cropImage($ruta,$rutaCrop,$width,$height){
+		$image = imagecreatefromjpeg($ruta);
+		$filename = $rutaCrop;
+		$thumb_width = $width;
+		$thumb_height = $height;
+		$width = imagesx($image);
+		$height = imagesy($image);
+		$original_aspect = $width / $height;
+		$thumb_aspect = $thumb_width / $thumb_height;
+		if ( $original_aspect >= $thumb_aspect )
+		{
+		   // If image is wider than thumbnail (in aspect ratio sense)
+		   $new_height = $thumb_height;
+		   $new_width = $width / ($height / $thumb_height);
+		}
+		else
+		{
+		   // If the thumbnail is wider than the image
+		   $new_width = $thumb_width;
+		   $new_height = $height / ($width / $thumb_width);
+		}
+
+		$thumb = imagecreatetruecolor( $thumb_width, $thumb_height );
+		// Resize and crop
+		imagecopyresampled($thumb,
+		                   $image,
+		                   0 - ($new_width - $thumb_width) / 2, // Center the image horizontally
+		                   0 - ($new_height - $thumb_height) / 2, // Center the image vertically
+		                   0, 0,
+		                   $new_width, $new_height,
+		                   $width, $height);
+		imagejpeg($thumb, $filename, 90);
 	}
 
 	function validaCookie($val){

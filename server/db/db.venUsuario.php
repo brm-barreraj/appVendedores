@@ -11,12 +11,12 @@ class DataObject_VenUsuario extends DB_DataObject
     public $__table = 'ven_usuario';                     // table name
     public $idUsuario;                       // int(11)  not_null primary_key auto_increment
     public $idCargo;                         // int(11)  not_null multiple_key
-    public $nombre;                          // string(75)  
-    public $apellido;                        // string(75)  
-    public $email;                           // string(45)  
-    public $usuario;                         // string(45)  
-    public $contrasena;                      // string(45)  
-    public $puntos;                          // string(45)  
+    public $nombre;                          // string(150)  
+    public $apellido;                        // string(150)  
+    public $email;                           // string(75)  
+    public $usuario;                         // string(75)  
+    public $contrasena;                      // string(75)  
+    public $puntos;                          // string(10)  
     public $estado;                          // string(1)  enum
     public $fechaMod;                        // datetime(19)  binary
     public $fecha;                           // datetime(19)  binary

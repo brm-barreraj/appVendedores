@@ -10,7 +10,7 @@ class DataObject_VenCategoria extends DB_DataObject
 
     public $__table = 'ven_categoria';                   // table name
     public $idCategoria;                     // int(11)  not_null primary_key auto_increment
-    public $nombre;                          // string(75)  
+    public $nombre;                          // string(150)  
     public $imagen;                          // string(150)  
     public $idPadre;                         // int(11)  
     public $estado;                          // string(1)  enum

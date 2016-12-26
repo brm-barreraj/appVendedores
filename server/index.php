@@ -9,6 +9,7 @@ if(isset($_COOKIE['login']) && $gen->validaCookie($_COOKIE['login'])){
 	//printVar($countUsuarios,'los count');
 	$cook = base64_decode($_COOKIE['login']);
 	$cook= explode('+', $cook);
+	$smarty->assign('seccion','home');//nombre de la seccion en la que estamos actualmente
 	$smarty->assign('countUsuarios',$countUsuarios);//nombre usuaro logueado
 	$smarty->assign('countNoticias',$countNoticias);//nombre usuaro logueado
 	$smarty->assign('countCategorias',$countCategorias);//nombre usuaro logueado

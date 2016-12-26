@@ -1,4 +1,11 @@
 
+	 $('#data').jplist({				
+	    itemsBox: '#data-list-fields', 
+	    itemPath: '.data-list-field', 
+	    panelPath: '.data-panel'	
+	 });
+
+
 	$( ".create-template .lnr-chevron-left").on( "click", function() {
 
 		var template=parseInt( $(this).attr("data-template") );
@@ -23,23 +30,28 @@
 
 	});
 
-$('#guardar').click(function(){
-
+// Agregar o editar Noticia
+$('#create-title-option').click(function(){
+	accion = ($("#idNoticia").val() != "") ? "updateNoticia" : "setNoticia";
+	$("#accion").val(accion);
+	//var accion = ($("#idUsuario").val() != "") ? "updateUsuario" : "setUsuario";
 	var imagen = $("#create input[name=image]").val();
 	imagen= imagen.split('.');
 	var img= '';
 	var ext =false;
 	//console.log(imagen[(imagen.length -1)]);
     ext=imagen[(imagen.length -1)];
-		if ( ext === 'jpg' || ext ==='png' || ext === 'gif' || ext === 'jpeg' || ext === 'JPG' || ext === 'PNG' || ext ==='GIF' || ext === 'JPEG' ) {
-			img=true;
-		}else { 
-			$("#info").addClass('error');
-			$("#info").html('<span style="color:#f04124;">Por favor selecciona una imagen.</span>');
-		}
-		var valid = $('#create').valid();
-	if (img && valid ) {
+	if ( ext === 'jpg' || ext ==='png' || ext === 'gif' || ext === 'jpeg' || ext === 'JPG' || ext === 'PNG' || ext ==='GIF' || ext === 'JPEG' ) {
+		img=true;
+	}else { 
+		$("#info").addClass('error');
+		$("#info").html('<span style="color:#f04124;">Por favor selecciona una imagen.</span>');
+	}
+	var valid = $('#create').valid();
+	if ($("#idNoticia").val() != "" && valid || $("#idNoticia").val() == "" && img && valid ) {
 		var formData = new FormData(document.getElementById("create"));
+		console.log(formData,"formData");
+		console.log("formData");
 		$.ajax({
 			url:'serviceAdmin.php',
 			method: 'POST',
@@ -80,7 +92,6 @@ $('#contenido').trumbowyg({
 
 //cargar subcategorias con base a la categoria seleccionado
 $('#idCategoria').change(function(){
-	console.log($(this).val());
 	result = sendAjax("serviceAdmin.php", "getSubcategorias", {idCategoria:$(this).val()});
 	if (result.error == 1){
 		data = result.data;
@@ -99,19 +110,18 @@ $('#idCategoria').change(function(){
 //eleminiar
 
 $('.eliminar').click(function(){
-	var id = $(this).attr('data-id');
+	var id = $(this).attr('data-field');
 	result = sendAjax("serviceAdmin.php", "deleteNoticia", {idNoticia:id});
 	if (result.error == 1){
 		data = result.data;
 		alert('Registro Elemininado correctamente');
+		location.reload();
 	}else{
 		alert('Ocurrio un error en la consulta');
 	}
 });
 
-
-( function( $, window, document, undefined )
-{
+function loadFile(){
 	$( '.inputfile' ).each( function()
 	{
 		var $input	 = $( this ),
@@ -138,8 +148,8 @@ $('.eliminar').click(function(){
 		.on( 'focus', function(){ $input.addClass( 'has-focus' ); })
 		.on( 'blur', function(){ $input.removeClass( 'has-focus' ); });
 	});
-})( jQuery, window, document );
-
+}
+loadFile();
 
 var contador = 0;
 $('#adenlanteSec').click(function(){
@@ -194,7 +204,7 @@ $('#atrasSec').click(function(){
 			$("#atrasSec").addClass("hide");
 			$("#atrasSec p").text("");
 			$("#tituloCentro p").text("Contenido principal");
-			$("#adenlanteSec p").text("Agregar sección a la noticia");
+			$("#adenlanteSec p").text("Sección 1");
 
 			$('.section-new').hide();
 			$('.dinamico').hide();
@@ -214,23 +224,45 @@ $('#atrasSec').click(function(){
 	}
 });
 
+// Agregar html al editar
+
+$('.seccionesEditar').trumbowyg({
+ 	autogrow: true,
+	resetCss: true,
+    btns: [
+        ['viewHTML'],
+        ['formatting'],
+        ['removeformat'],
+        ['fullscreen'],
+        'btnGrp-semantic',
+        ['link'],
+        'btnGrp-justify',
+        'btnGrp-lists',
+        ['horizontalRule'],
+    ]
+});
+
+// Fin agregar html al editar
+
 function pintarSeccion(){
-	
+	var extEdit = ($("#idNoticia").val() != "") ? "-e" : "" ;
+
 	var seccion = '';
-	seccion+='<div class="section-new '+contador+' sec'+contador+'">';
+	seccion+='<div class="section-new sec'+contador+'">';
 	seccion+='<div class="create-fileds">';
 	seccion+='<div class="create-image-area">';
+	//seccion+='<div>';
 	seccion+='<div class="icon-upload-new">';
 	seccion+='<i class="lnr lnr-upload"></i>';
 	seccion+='<i class="lnr lnr-picture"></i>';
 	seccion+='</div>';
-	seccion+='<input type="file" name="image'+contador+'" id="image'+contador+'" class="inputfile inputfile-3"/>';
-	seccion+='<label for="image"><span>Selecciona la imagen principal de la noticia</span></label>';
+	seccion+='<input type="file" name="image'+extEdit+contador+'" id="image'+extEdit+contador+'" class="inputfile inputfile-3"/>';
+	seccion+='<label for="image'+extEdit+contador+'"><span>Selecciona la imagen principal de la noticia</span></label>';
 	seccion+='</div>';
 	seccion+='</div>';
 	seccion+='<div class="create-fileds">';
 	seccion+='<div class="create-field">';
-	seccion+='<textarea style="background-color:white;" name="contenido'+contador+'" id="contenido'+contador+'" placeholder="Contenido sección '+contador+'"></textarea>';
+	seccion+='<textarea style="background-color:white;" name="contenido'+extEdit+contador+'" id="contenido'+extEdit+contador+'" placeholder="Contenido sección '+contador+'"></textarea>';
 	seccion+='</div>';
 	seccion+='</div>';
 	seccion+='</div>';
@@ -244,29 +276,103 @@ function pintarSeccion(){
 		actual = seccion;
 		$('.dinamico').html(actual);
 	}
-		$('.section-new').show();
-		$('.dinamico').show();
+	$('.section-new').show();
+	$('.dinamico').show();
 
-		for (var i = 0; i < ($('.section-new').length -1); i++) {
-			var ocultar=$('.section-new').get(i);
-			$(ocultar).hide();
-		};
+	for (var i = 0; i < ($('.section-new').length -1); i++) {
+		var ocultar=$('.section-new').get(i);
+		$(ocultar).hide();
+	};
 
-		$('#contenido'+contador).trumbowyg({
-			 	autogrow: true,
-			  resetCss: true,
-		    btns: [
-		        ['viewHTML'],
-		        ['formatting'],
-		        ['removeformat'],
-		        ['fullscreen'],
-		        'btnGrp-semantic',
-		        ['link'],
-		        'btnGrp-justify',
-		        'btnGrp-lists',
-		        ['horizontalRule'],
-		    ]
-		});
-
-
+	$('#contenido'+extEdit+contador).trumbowyg({
+		 	autogrow: true,
+		  resetCss: true,
+	    btns: [
+	        ['viewHTML'],
+	        ['formatting'],
+	        ['removeformat'],
+	        ['fullscreen'],
+	        'btnGrp-semantic',
+	        ['link'],
+	        'btnGrp-justify',
+	        'btnGrp-lists',
+	        ['horizontalRule'],
+	    ]
+	});
+	loadFile();
 }
+
+//editar 
+/*
+$('#create-title-option').click(function(){
+	$(".dinamic").find(".msg-dinamico").text("");
+	var validDinamic=true;
+	$(".dinamic").each(function(){
+		if($(this).find("img").length == 0 && $(this).find("textarea").val().trim().length == 0){
+			$(this).find(".msg-dinamico").text("Verifique que tenga contenido o imagen");
+			if (validDinamic) {
+				validDinamic = false;
+			}
+		}
+	})
+	if ($("#create").valid() && validDinamic) {
+		var formData = new FormData(document.getElementById("create"));
+		$.ajax({
+			url:'serviceAdmin.php',
+			method: 'POST',
+			data: formData,
+			cache: false,
+			dataType: 'json',
+			contentType: false,
+			processData: false,
+			enctype: 'multipart/form-data'
+		}).success(function (data){ 
+			console.log(data.error);
+			if (data.error==1){
+				alert("Guardo la noticia correctamente");
+				location.reload();
+			}else{
+				alert("Ocurrio un error al guardar la noticia");
+			}
+		});
+	};
+});
+*/
+//ocultar seccion
+var manten=0;
+$('.oculta').click(function(){
+
+	var id = $(this).attr('data-ids');
+	manten=id;
+	result = sendAjax("serviceAdmin.php", "ocultaSeccionNoticia", {idSeccionNoticia : id});
+		if (result.error == 1){
+			data = result.data;
+			alert('Registro Elemininado correctamente');
+			//console.log(data);
+			remover();
+			
+			//location.reload();
+		}else{
+			alert('Ocurrio un error en la consulta');
+		}
+});
+
+function remover(){
+	$('.dinamic').each(function(){
+		var id = $(this).attr('data-id');
+		if (id == manten) {
+			$(this).remove();
+		};
+			
+	});
+}
+
+$(document).on( "click",".data-list-field-menu", function() {
+	var field=$(this).attr("data-field");
+	$(".data-list-field-option[data-field='"+field+"']").show();
+});
+
+$(document).on( "click",".close", function() {
+	var field=$(this).attr("data-field");
+	$(".data-list-field-option[data-field='"+field+"']").hide();
+});

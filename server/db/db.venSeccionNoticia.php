@@ -11,7 +11,7 @@ class DataObject_VenSeccionNoticia extends DB_DataObject
     public $__table = 'ven_seccion_noticia';             // table name
     public $idSeccionNoticia;                // int(11)  not_null primary_key auto_increment
     public $idNoticia;                       // int(11)  not_null multiple_key
-    public $titulo;                          // string(120)  
+    public $titulo;                          // string(150)  
     public $imagen;                          // string(150)  
     public $contenido;                       // blob(65535)  blob
     public $estado;                          // string(1)  enum

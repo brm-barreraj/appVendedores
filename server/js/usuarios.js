@@ -11,11 +11,7 @@ jQuery(document).ready(function () {
 	* caracteres especiales.
 	*/
 
-	 $('#data').jplist({				
-	    itemsBox: '#data-list-fields', 
-	    itemPath: '.data-list-field', 
-	    panelPath: '.data-panel'	
-	 });
+	
 
 
 	jQuery.validator.addMethod("string", function(value, element)
@@ -143,14 +139,13 @@ jQuery(document).ready(function () {
 		}
 	});
 
-
-	$( ".data-list-field-menu").on( "click", function() {
+	$(document).on( "click",".data-list-field-menu", function() {
 		var field=$(this).attr("data-field");
 		$(".data-list-field-option[data-field='"+field+"']").show();
 
 	});
 
-	$( ".close").on( "click", function() {
+	$(document).on( "click",".close", function() {
 		var field=$(this).attr("data-field");
 		$(".data-list-field-option[data-field='"+field+"']").hide();
 	});
@@ -193,6 +188,12 @@ jQuery(document).ready(function () {
 		}
 
 	});
+
+	 $('#data').jplist({				
+	    itemsBox: '#data-list-fields', 
+	    itemPath: '.data-list-field', 
+	    panelPath: '.data-panel'	
+	 });
 
 });
 

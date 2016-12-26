@@ -28,7 +28,7 @@
 			$data='';
 			while($obj->fetch()){
 				$data[$i]['idCategoria']=$obj->idCategoria;
-				$data[$i]['nombre']=$obj->nombre;
+				$data[$i]['nombre']=utf8_encode($obj->nombre);
 				$data[$i]['imagen']=$obj->imagen;
 
 				$data[$i]['idPadre']=$obj->idPadre;
@@ -87,7 +87,7 @@
 			$data='';
 			while($obj->fetch()){
 				$data[$i]['idCategoria']=$obj->idCategoria;
-				$data[$i]['nombre']=$obj->nombre;
+				$data[$i]['nombre']=utf8_encode($obj->nombre);
 				$data[$i]['imagen']=$obj->imagen;
 				$data[$i]['idPadre']=$obj->idPadre;
 				$nomPa=$this->getCategoriaById($obj->idPadre);
@@ -120,7 +120,7 @@
 					$i=0;
 					while($obj->fetch()){
 						$data[$i]['idCategoria']=$obj->idCategoria;
-						$data[$i]['nombre']=$obj->nombre;
+						$data[$i]['nombre']=utf8_encode($obj->nombre);
 					
 						$data[$i]['imagen']=$obj->imagen;
 						$data[$i]['idPadre']=$obj->idPadre;
@@ -176,7 +176,7 @@
 
 			$obj->find();
 			if($obj->fetch()){
-				$data=$obj->nombre;
+				$data=utf8_encode($obj->nombre);
 			}
 			$obj->free();
 			//printVar($data,'getCargoById');

@@ -28,17 +28,14 @@
 			while($obj->fetch()){
 				$data[$i]['idUsuario']=$obj->idUsuario;
 				$data[$i]['idCargo']=$obj->idCargo;
-				
 				$nombreCargo=$this->getCargoById($obj->idCargo);
-				$nombreCargo=$nombreCargo['nombre'];
+				$nombreCargo=utf8_encode($nombreCargo['nombre']);
 				$data[$i]['cargo']= $nombreCargo;
-
-				$data[$i]['nombre']=$obj->nombre;
-				$data[$i]['apellido']=$obj->apellido;
+				$data[$i]['nombre']=utf8_encode($obj->nombre);
+				$data[$i]['apellido']=utf8_encode($obj->apellido);
 				$data[$i]['email']=$obj->email;
-				$data[$i]['usuario']=$obj->usuario;
-				
-				$data[$i]['contrasena']=$obj->contrasena;
+				$data[$i]['usuario']=utf8_encode($obj->usuario);
+				$data[$i]['contrasena']=utf8_encode($obj->contrasena);
 				$data[$i]['puntos']=$obj->puntos;
 				$data[$i]['estado']=$obj->estado;
 				$data[$i]['fechaMod']=$obj->fechaMod;
@@ -64,15 +61,15 @@
 				$data[$i]['idCargo']=$obj->idCargo;
 				
 				$nombreCargo=$this->getCargoById($obj->idCargo);
-				$nombreCargo=$nombreCargo['nombre'];
+				$nombreCargo=utf8_encode($nombreCargo['nombre']);
 				$data[$i]['cargo']= $nombreCargo;
 
-				$data[$i]['nombre']=$obj->nombre;
-				$data[$i]['apellido']=$obj->apellido;
+				$data[$i]['nombre']=utf8_encode($obj->nombre);
+				$data[$i]['apellido']=utf8_encode($obj->apellido);
 				$data[$i]['email']=$obj->email;
-				$data[$i]['usuario']=$obj->usuario;
+				$data[$i]['usuario']=utf8_encode($obj->usuario);
 				
-				$data[$i]['contrasena']=$obj->contrasena;
+				$data[$i]['contrasena']=utf8_encode($obj->contrasena);
 				$data[$i]['puntos']=$obj->puntos;
 				$data[$i]['estado']=$obj->estado;
 				$data[$i]['fechaMod']=$obj->fechaMod;
@@ -97,15 +94,15 @@
 				$data[$i]['idCargo']=$obj->idCargo;
 				
 				$nombreCargo=$this->getCargoById($obj->idCargo);
-				$nombreCargo=$nombreCargo['nombre'];
+				$nombreCargo=utf8_encode($nombreCargo['nombre']);
 				$data[$i]['cargo']= $nombreCargo;
 
-				$data[$i]['nombre']=$obj->nombre;
-				$data[$i]['apellido']=$obj->apellido;
+				$data[$i]['nombre']=utf8_encode($obj->nombre);
+				$data[$i]['apellido']=utf8_encode($obj->apellido);
 				$data[$i]['email']=$obj->email;
-				$data[$i]['usuario']=$obj->usuario;
+				$data[$i]['usuario']=utf8_encode($obj->usuario);
 				
-				$data[$i]['contrasena']=$obj->contrasena;
+				$data[$i]['contrasena']=utf8_encode($obj->contrasena);
 				$data[$i]['puntos']=$obj->puntos;
 				$data[$i]['estado']=$obj->estado;
 				$data[$i]['fechaMod']=$obj->fechaMod;
@@ -136,13 +133,13 @@
 						$data[$i]['idCargo']=$obj->idCargo;
 
 						$nombreCargo=$this->getCargoById($obj->idCargo);
-						$nombreCargo=$nombreCargo['nombre'];
+						$nombreCargo=utf8_encode($nombreCargo['nombre']);
 						$data[$i]['cargo']= $nombreCargo;
 						
-						$data[$i]['nombre']=$obj->nombre;
-						$data[$i]['apellido']=$obj->apellido;
+						$data[$i]['nombre']=utf8_encode($obj->nombre);
+						$data[$i]['apellido']=utf8_encode($obj->apellido);
 						$data[$i]['email']=$obj->email;
-						$data[$i]['usuario']=$obj->usuario;
+						$data[$i]['usuario']=utf8_encode($obj->usuario);
 						$data[$i]['puntos']=$obj->puntos;
 						$data[$i]['estado']=$obj->estado;
 						$data[$i]['fechaMod']=$obj->fechaMod;
@@ -164,13 +161,13 @@
 						$data[$i]['idCargo']=$obj->idCargo;
 
 						$nombreCargo=$this->getCargoById($obj->idCargo);
-						$nombreCargo=$nombreCargo['nombre'];
+						$nombreCargo=utf8_encode($nombreCargo['nombre']);
 						$data[$i]['cargo']= $nombreCargo;
 						
-						$data[$i]['nombre']=$obj->nombre;
-						$data[$i]['apellido']=$obj->apellido;
+						$data[$i]['nombre']=utf8_encode($obj->nombre);
+						$data[$i]['apellido']=utf8_encode($obj->apellido);
 						$data[$i]['email']=$obj->email;
-						$data[$i]['usuario']=$obj->usuario;
+						$data[$i]['usuario']=utf8_encode($obj->usuario);
 						$data[$i]['puntos']=$obj->puntos;
 						$data[$i]['estado']=$obj->estado;
 						$data[$i]['fechaMod']=$obj->fechaMod;
@@ -205,7 +202,7 @@
 			$obj->find();
 			if($obj->fetch()){
 				$data['idCargo']=$obj->idCargo;
-				$data['nombre']=$obj->nombre;
+				$data['nombre']=utf8_encode($obj->nombre);
 				$data['estado']=$obj->estado;
 				$data['fechaMod']=$obj->fechaMod;
 				$data['fecha']=$obj->fecha;			
@@ -224,7 +221,7 @@
 			$i=0;
 			while($obj->fetch()){
 				$data[$i]['idCargo']=$obj->idCargo;
-				$data[$i]['nombre']=$obj->nombre;
+				$data[$i]['nombre']=utf8_encode($obj->nombre);
 				$data[$i]['estado']=$obj->estado;
 				$data[$i]['fechaMod']=$obj->fechaMod;
 				$data[$i]['fecha']=$obj->fecha;	

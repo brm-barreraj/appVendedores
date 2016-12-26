@@ -1,0 +1,29 @@
+{#include file="head.html" user=$user#}
+{#include file="menu.html"#}
+			<article>
+				<form autocomplete="off" id="create">
+					<div id="create-title">
+						<div id="create-title-option">
+							<p>{#$titleForm#} Producto</p>
+							<em class="lnr lnr-checkmark-circle"></em>
+							<i class="lnr lnr-users"></i>
+						</div>
+					</div>
+					<div id="create-two">
+						<div class="create-fileds">
+							<div class="create-field">
+								<input type="hidden" name="idProducto" id="idProducto" value="{#$productos->idProducto#}">
+								<input type="text" name="nombre" id="nombre" value="{#$productos->nombre#}" placeholder="Nombre producto">
+								<div class="create-field-line"></div>
+							</div>
+						</div>
+					</div>
+				</form>
+			</article>
+		</section>
+		<script type="text/javascript" src="js/productos.js"></script>
+		<script type="text/javascript" src="js/vendor/jplist.core.min.js"></script>
+		<script type="text/javascript" src="js/vendor/jplist.pagination-bundle.min.js"></script>
+		<script type="text/javascript" src="js/vendor/jplist.textbox-filter.min.js"></script>
+{#include file="footer.html"#}
+

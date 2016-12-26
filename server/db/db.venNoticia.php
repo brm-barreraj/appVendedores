@@ -12,11 +12,16 @@ class DataObject_VenNoticia extends DB_DataObject
     public $idNoticia;                       // int(11)  not_null primary_key auto_increment
     public $idCategoria;                     // int(11)  not_null multiple_key
     public $idUsuarioAdmin;                  // int(11)  not_null multiple_key
+    public $idProducto;                      // int(11)  not_null multiple_key
     public $titulo;                          // string(150)  
     public $subtitulo;                       // string(150)  
     public $imagen;                          // string(150)  
+    public $video;                           // string(150)  
+    public $pdf;                             // string(150)  
     public $contenido;                       // blob(65535)  blob
     public $tipoTemplate;                    // int(11)  
+    public $fechaDesde;                      // datetime(19)  binary
+    public $fechaHasta;                      // datetime(19)  binary
     public $estado;                          // string(1)  enum
     public $fechaMod;                        // datetime(19)  binary
     public $fecha;                           // datetime(19)  binary
@@ -30,11 +35,16 @@ class DataObject_VenNoticia extends DB_DataObject
              'idNoticia' =>  DB_DATAOBJECT_INT + DB_DATAOBJECT_NOTNULL,
              'idCategoria' =>  DB_DATAOBJECT_INT + DB_DATAOBJECT_NOTNULL,
              'idUsuarioAdmin' =>  DB_DATAOBJECT_INT + DB_DATAOBJECT_NOTNULL,
+             'idProducto' =>  DB_DATAOBJECT_INT + DB_DATAOBJECT_NOTNULL,
              'titulo' =>  DB_DATAOBJECT_STR,
              'subtitulo' =>  DB_DATAOBJECT_STR,
              'imagen' =>  DB_DATAOBJECT_STR,
+             'video' =>  DB_DATAOBJECT_STR,
+             'pdf' =>  DB_DATAOBJECT_STR,
              'contenido' =>  DB_DATAOBJECT_STR + DB_DATAOBJECT_BLOB,
              'tipoTemplate' =>  DB_DATAOBJECT_INT,
+             'fechaDesde' =>  DB_DATAOBJECT_STR + DB_DATAOBJECT_DATE + DB_DATAOBJECT_TIME,
+             'fechaHasta' =>  DB_DATAOBJECT_STR + DB_DATAOBJECT_DATE + DB_DATAOBJECT_TIME,
              'estado' =>  DB_DATAOBJECT_STR,
              'fechaMod' =>  DB_DATAOBJECT_STR + DB_DATAOBJECT_DATE + DB_DATAOBJECT_TIME,
              'fecha' =>  DB_DATAOBJECT_STR + DB_DATAOBJECT_DATE + DB_DATAOBJECT_TIME,
@@ -57,6 +67,8 @@ class DataObject_VenNoticia extends DB_DataObject
              'titulo' => '',
              'subtitulo' => '',
              'imagen' => '',
+             'video' => '',
+             'pdf' => '',
              'contenido' => '',
              'estado' => 'A',
          );

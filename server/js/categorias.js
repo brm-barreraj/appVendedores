@@ -22,84 +22,24 @@ jQuery(document).ready(function () {
 			rules: {
 				nombre:{
 					required: true,
-					string:true,
 					minlength: 2,
 					maxlength: 150
 				},
-				apellido:{
-					required: true,
-					minlength: 2,
-					maxlength: 150
-				},
-
-				idCargo: {
-					required: true,
-					number: true,
-					minlength: 1,
-					maxlength: 10
-				},
-				email:{
-					required: true,
-					email: true,
-				},
-				usuario:{
-					required: true,
-				},
-				
-
-				contrasena:{
-					required: true,
-				},
-
-				puntos:{
+				idPadre:{
 					required:true,
-					number: true,
-					minlength: 1,
-					maxlength: 10
 				},
 			},
 			messages: {
 				nombre:{
 					required:'Campo necesario',
-					string:'Ingrese unicamente letras',
-					minlength: 'Titulo corto en longitud',
-					maxlength:'Titulo muy largo',
-					
+					minlength: 'Nombre de categoria corto en longitud',
+					maxlength:'Nombre de categoria muy largo',	
 				},
-				apellido:{
-					required: 'Campo necesario',
-					string:'Ingrese unicamente letras',
-					minlength: 'Subtitulo corto en longitud',
-					maxlength: 'Subtitulo muy largo',
-					
+				idPadre:{
+					required: 'Seleccione una categoria padre',
 				},
 
-				idCargo:{
-					required:'Campo necesario',
-					number: 'Únicamente admite digitos (0-9)',
-					minlength:'Número muy corto',
-					maxlength: 'Número muy largo',
-				},
-
-				email:{
-					required: 'Campo necesario',
-					email: 'Formato de correo electrónico no válido',
-				},
-
-
-				usuario:{
-					required: 'Campo necesario',
-				},
-
-				contrasena:{
-					required: 'Campo necesario',
-				},
-				puntos:{
-					required:'Campo necesario',
-					number: 'Únicamente admite digitos (0-9)',
-					minlength:'Número muy corto',
-					maxlength: 'Número muy largo',
-				},
+				
 			}
 		});
 
@@ -147,6 +87,12 @@ jQuery(document).ready(function () {
 		var field=$(this).attr("data-field");
 		$(".data-list-field-option[data-field='"+field+"']").hide();
 	});
+
+	$('#data').jplist({				
+	    itemsBox: '#data-list-fields', 
+	    itemPath: '.data-list-field', 
+	    panelPath: '.data-panel'	
+	 });
 
 
 });

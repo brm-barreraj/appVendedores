@@ -3,25 +3,51 @@
 					<img src="img/logo.png" alt="">
 				</div>
 				<ul id="nav-dashboard">
+					{#if $seccion == 'home'#}
+					<li class="active">
+					{#else#}
 					<li>
+					{#/if#}
 						<a href="./">
 							<i class="lnr lnr-home"></i>
 							<span>Inicio</span>
 						</a>
 					</li>
+					{#if $seccion == 'usuario'#}
 					<li class="active">
+					{#else#}
+					<li>
+					{#/if#}
 						<a href="usuarios.php">
 							<i class="lnr lnr-users"></i>
 							<span>Usuarios</span>
 						</a>
 					</li>
+					{#if $seccion == 'producto'#}
+					<li class="active">
+					{#else#}
 					<li>
+					{#/if#}
+						<a href="productos.php">
+							<i class="lnr lnr-spell-check"></i>
+							<span>Productos</span>
+						</a>
+					</li>
+					{#if $seccion == 'categoria'#}
+					<li class="active">
+					{#else#}
+					<li>
+					{#/if#}
 						<a href="categorias.php">
 							<i class="lnr lnr-spell-check"></i>
 							<span>Categorías</span>
 						</a>
 					</li>
+					{#if $seccion == 'noticia'#}
+					<li class="active">
+					{#else#}
 					<li>
+					{#/if#}
 						<a href="listaNoticias.php">
 							<i class="lnr lnr-news"></i>
 							<span>Noticias</span>
