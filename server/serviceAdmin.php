@@ -364,14 +364,16 @@ if (isset($_POST['accion']) && !empty($_POST['accion']) ) {
 									$keySeccion = explode("image", $key);
 									$idFoto = $keySeccion[1];
 									$keyContent = 'contenido'.$keySeccion[1];
-									$SeccionNoticia = new General();
-									$imagenTemp = $General->moveFile($_FILES[$key],"img/noticias/",$idFoto.$nNoticias);
-									$SeccionNoticia->idNoticia=$idNoticia;
-									$SeccionNoticia->imagen=$imagenTemp;
-									$SeccionNoticia->contenido=$_POST[$keyContent];
-									$SeccionNoticia->estado='A';
-									$SeccionNoticia->fechaMod = date("Y-m-d H:i:s");
-									$idSeccionNoticia = $SeccionNoticia->setInstancia('VenSeccionNoticia');
+									if ((isset($_FILES[$key]) && isset($_FILES[$key]['tmp_name']) && trim($_FILES[$key]['tmp_name']) != "") || (isset($_POST[$keyContent]) && trim($_POST[$keyContent]) != "")) {
+										$SeccionNoticia = new General();
+										$imagenTemp = $General->moveFile($_FILES[$key],"img/noticias/",$idFoto.$nNoticias);
+										$SeccionNoticia->idNoticia=$idNoticia;
+										$SeccionNoticia->imagen=$imagenTemp;
+										$SeccionNoticia->contenido=$_POST[$keyContent];
+										$SeccionNoticia->estado='A';
+										$SeccionNoticia->fechaMod = date("Y-m-d H:i:s");
+										$idSeccionNoticia = $SeccionNoticia->setInstancia('VenSeccionNoticia');
+									}
 								}
 								sleep(1);
 							}

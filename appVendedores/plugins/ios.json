@@ -27,6 +27,9 @@
         },
         "onesignal-cordova-plugin": {
             "PACKAGE_NAME": "com.ionicframework.starter"
+        },
+        "cordova-plugin-network-information": {
+            "PACKAGE_NAME": "com.ionicframework.vendedores698151"
         }
     },
     "dependent_plugins": {}

@@ -242,6 +242,10 @@ function ($scope, $stateParams, $ionicLoading, $state, ServiceGeneral) {
 	$scope.reducirTamTitle = function(str){
 		return (str.length > 64) ? str.substring(0,64)+"..." : str;
 	}
+	$scope.loadMore = function() {
+		//alert(1);
+	};
+
 }])
 
 .controller('detalleCtrl', ['$scope', '$stateParams', '$ionicLoading', '$state', 'ServiceGeneral',

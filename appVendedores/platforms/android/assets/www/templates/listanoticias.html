@@ -11,21 +11,26 @@
 				</a>
 		    </div>
 		    <div id="frist-new-info" ng-click="selNoticia(noticia1.idNoticia)">
-	        <p>{{noticia1.titulo}}</p>
-	        <strong>{{noticia1.subtitulo}}</strong>
-	        <small>
-	        	<i class="lnr lnr-calendar-full"></i>
-	        	{{noticia1.fechaMod}}
-	        </small>
+		        <p>{{noticia1.titulo}}</p>
+		        <strong>{{noticia1.subtitulo}}</strong>
+		        <small>
+		        	<i class="lnr lnr-calendar-full"></i>
+		        	{{noticia1.fechaMod}}
+		        </small>
+		        <div class="producto-select">
+		        	<select name="" id="">
+		        		<option value="">Producto</option>
+		        	</select>
+		        </div>
 		    </div>
 		</div>
-		<div id="news">
+		<ion-list id="news">
 			<div class="new" ng-repeat="noticia in noticias" ng-click="selNoticia(noticia.idNoticia)">
 		        <img ng-src="http://fbapp.brm.com.co/fbappFundacion/appVendedores/img/noticias/{{noticia.imagen}}">
 		        <p>{{reducirTamTitle(noticia.titulo)}}</p>
 		        <!-- <strong>{{noticia.subtitulo}}</strong> -->
 			</div>
-			
-		</div>
+		</ion-list>
+		<ion-infinite-scroll on-infinite="loadMore()" distance="10%"></ion-infinite-scroll>
   </ion-content>
 </ion-view>

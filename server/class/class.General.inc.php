@@ -272,7 +272,6 @@ class General
 		if($orden != ""){
 			$objDBO->orderBy($orden);
 		}
-		
 		$objDBO->find();
 		$cont = 0;
 		

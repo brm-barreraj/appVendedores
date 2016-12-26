@@ -157,9 +157,8 @@
 						</div>
 						
 					</div>
-
 					<div class="dinamico">
-						{#if isset($secciones) &&  count($secciones) > 0 #}
+						{#if isset($secciones) and is_array($secciones) and count($secciones) > 0 #}
 							{#assign var="iSecciones" value=1#}
 							{#foreach from=$secciones item=seccion#}
 								{#if $iSecciones > 1 #}
@@ -210,7 +209,7 @@
 							<p>Contenido principal</p>
 						</div>
 						<div id="adenlanteSec" >
-							{#if isset($secciones) &&  count($secciones) > 0 #}
+							{#if isset($secciones) and is_array($secciones) and count($secciones) > 0 #}
 								<p>Sección 1</p>
 								<i class="lnr lnr-chevron-right"></i>
 							{#else#}
@@ -235,7 +234,6 @@
 		  <script type="text/javascript" src="js/vendor/jplist.core.min.js"></script>
 		  <script type="text/javascript" src="js/vendor/jplist.pagination-bundle.min.js"></script>
 		  <script type="text/javascript" src="js/vendor/jplist.textbox-filter.min.js"></script>
-		<script type="text/javascript" src="js/validacion.js"></script>
 		<script type="text/javascript" src="js/noticias.js"></script>
     </body>
 </html>

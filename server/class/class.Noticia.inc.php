@@ -38,7 +38,7 @@
 			}
 			$obj->free();
 			//printVar($data,'getAllNoticias');
-			//return $data;
+			return $data;
 		}
 
 		function getNoticiaById($idNoticia){

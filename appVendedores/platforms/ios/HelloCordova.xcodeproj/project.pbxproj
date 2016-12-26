@@ -41,6 +41,9 @@
 		87B908B5A3D04BD089D06725 /* UNUserNotificationCenter+OneSignal.m in Sources */ = {isa = PBXBuildFile; fileRef = 4015AC9360C64313A12E6110 /* UNUserNotificationCenter+OneSignal.m */; };
 		7B6E8735187C4AE3BED12B6D /* UIApplicationDelegate+OneSignal.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D28B120E010496C8C11F612 /* UIApplicationDelegate+OneSignal.m */; };
 		40ECC688F2FE42CEBD6D370B /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7A7D8CC30E674FCD85058AD0 /* SystemConfiguration.framework */; };
+		11A27CE752F04B63A2E01E2D /* CDVConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = EFF66854DD33499B9FB88382 /* CDVConnection.m */; };
+		AF1E78A8C5CC4D73AE5FF57D /* CDVReachability.m in Sources */ = {isa = PBXBuildFile; fileRef = ACAE978B83A5409C9FEADA16 /* CDVReachability.m */; };
+		82BFDDA093724ECB930A74B5 /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8F90E76148064B6681BC435C /* CoreTelephony.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -124,6 +127,11 @@
 		37CE79D9D6E84930963B6C6E /* OneSignalWebView.h */ = {isa = PBXFileReference; name = "OneSignalWebView.h"; path = "onesignal-cordova-plugin/OneSignalWebView.h"; sourceTree = "<group>"; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; explicitFileType = undefined; includeInIndex = 0; };
 		88D69862C3F44E5793EB02D6 /* OneSignal-Prefix.pch */ = {isa = PBXFileReference; name = "OneSignal-Prefix.pch"; path = "onesignal-cordova-plugin/OneSignal-Prefix.pch"; sourceTree = "<group>"; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; explicitFileType = undefined; includeInIndex = 0; };
 		7A7D8CC30E674FCD85058AD0 /* SystemConfiguration.framework */ = {isa = PBXFileReference; name = "SystemConfiguration.framework"; path = "System/Library/Frameworks/SystemConfiguration.framework"; sourceTree = SDKROOT; fileEncoding = undefined; lastKnownFileType = wrapper.framework; explicitFileType = undefined; includeInIndex = 0; };
+		EFF66854DD33499B9FB88382 /* CDVConnection.m */ = {isa = PBXFileReference; name = "CDVConnection.m"; path = "cordova-plugin-network-information/CDVConnection.m"; sourceTree = "<group>"; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; explicitFileType = undefined; includeInIndex = 0; };
+		ACAE978B83A5409C9FEADA16 /* CDVReachability.m */ = {isa = PBXFileReference; name = "CDVReachability.m"; path = "cordova-plugin-network-information/CDVReachability.m"; sourceTree = "<group>"; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; explicitFileType = undefined; includeInIndex = 0; };
+		9B929F9C1E534DC8975FE84C /* CDVConnection.h */ = {isa = PBXFileReference; name = "CDVConnection.h"; path = "cordova-plugin-network-information/CDVConnection.h"; sourceTree = "<group>"; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; explicitFileType = undefined; includeInIndex = 0; };
+		7099434F21FC44EB9CB82741 /* CDVReachability.h */ = {isa = PBXFileReference; name = "CDVReachability.h"; path = "cordova-plugin-network-information/CDVReachability.h"; sourceTree = "<group>"; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; explicitFileType = undefined; includeInIndex = 0; };
+		8F90E76148064B6681BC435C /* CoreTelephony.framework */ = {isa = PBXFileReference; name = "CoreTelephony.framework"; path = "System/Library/Frameworks/CoreTelephony.framework"; sourceTree = SDKROOT; fileEncoding = undefined; lastKnownFileType = wrapper.framework; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -133,6 +141,7 @@
 			files = (
 				301BF552109A68D80062928A /* libCordova.a in Frameworks */,
 				40ECC688F2FE42CEBD6D370B /* SystemConfiguration.framework in Frameworks */,
+				82BFDDA093724ECB930A74B5 /* CoreTelephony.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -203,6 +212,7 @@
 			isa = PBXGroup;
 			children = (
 				7A7D8CC30E674FCD85058AD0 /* SystemConfiguration.framework */,
+				8F90E76148064B6681BC435C /* CoreTelephony.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -271,6 +281,10 @@
 				800877A0EA444B7F918AC5FF /* OneSignalTracker.h */,
 				37CE79D9D6E84930963B6C6E /* OneSignalWebView.h */,
 				88D69862C3F44E5793EB02D6 /* OneSignal-Prefix.pch */,
+				EFF66854DD33499B9FB88382 /* CDVConnection.m */,
+				ACAE978B83A5409C9FEADA16 /* CDVReachability.m */,
+				9B929F9C1E534DC8975FE84C /* CDVConnection.h */,
+				7099434F21FC44EB9CB82741 /* CDVReachability.h */,
 			);
 			name = Plugins;
 			path = "HelloCordova/Plugins";
@@ -410,6 +424,8 @@
 				8947991E38A841C3BF0C0587 /* OneSignalSelectorHelpers.m in Sources */,
 				87B908B5A3D04BD089D06725 /* UNUserNotificationCenter+OneSignal.m in Sources */,
 				7B6E8735187C4AE3BED12B6D /* UIApplicationDelegate+OneSignal.m in Sources */,
+				11A27CE752F04B63A2E01E2D /* CDVConnection.m in Sources */,
+				AF1E78A8C5CC4D73AE5FF57D /* CDVReachability.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

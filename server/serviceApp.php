@@ -46,8 +46,14 @@ switch ($request->accion) {
 	/* Lista todas las noticias */
 	case 'getNoticias':
 		if (isset($request->idSubcategoria) && $request->idSubcategoria > 0) {
+			$fechaActual = date("Y-m-d H:i:s");
+			$where = "idCategoria = ".$request->idSubcategoria." and estado = 'A' and fechaDesde <= '".$fechaActual."' and fechaHasta >= '".$fechaActual."'";
+			$where .= (isset($request->idProducto) && (int) $request->idProducto > 0) ? " and idProducto = ".$request->idProducto : "" ;
+			$desde = (isset($request->desde) && (int) $request->desde > 0) ? $request->desde : 0;
+			$hasta = 10;
 			$idSubcategoria = $request->idSubcategoria;
-			$noticia = $General->getTotalDatos('VenNoticia',array('idNoticia','imagen','titulo','subtitulo','fechaMod'),array('idCategoria'=>$idSubcategoria,'estado'=>'A'));
+			$campos = array('idNoticia','imagen','titulo','subtitulo','fechaMod');
+			$noticia = $General->getTotalDatos('VenNoticia', $campos, $where, 'fechaMod DESC,idNoticia DESC', $desde, $hasta);
 			if (count($noticia) > 0) {
 				$data = $noticia;
 				$error = 1;
@@ -80,6 +86,17 @@ switch ($request->accion) {
 			$error = 3;
 		}
 	break;
+
+	/* Lista productos */
+		case 'getProductos':
+			$productos = $General->getTotalDatos('VenProducto',null,array('estado'=>'A'));
+			if (count($productos) > 0) {
+				$data = $productos;
+				$error = 1;
+			}else{
+				$error = 2;
+			}
+		break;
 	
 	/* Login */
 	case 'login':

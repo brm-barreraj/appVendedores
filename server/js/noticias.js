@@ -1,34 +1,126 @@
+/* Validación */
+jQuery(document).ready(function () {
+	/*se agrega un metodo de validacion llamdo string; se encarga de
+	* validar que las cadenas de caracteres ingresadas no contengan
+	* caracteres especiales.
+	*/
+	jQuery.validator.addMethod("string", function(value, element)
+    {
+        return this.optional(element) || /^[a-z" "ñÑáéíóúÁÉÍÓÚ,.;]+$/i.test(value);
+    });
 
-	 $('#data').jplist({				
-	    itemsBox: '#data-list-fields', 
-	    itemPath: '.data-list-field', 
-	    panelPath: '.data-panel'	
-	 });
+	/*aquí comienza la validacion campo por campo, esta validacion
+	*se efectua a traves de la libreria jquery.validate*/
 
+	jQuery("#create").validate({
+		rules: {
+			titulo:{
+				required: true,
+				minlength: 2,
+				maxlength: 150
+			},
+			subtitulo:{
+				required: true,
+				minlength: 2,
+				maxlength: 150
+			},
 
-	$( ".create-template .lnr-chevron-left").on( "click", function() {
+			idCategoria: {
+				required: true,
+				number: true
+			},
+			idSubCategoria: {
+				required: true,
+				number: true
+			},
+			fechaDesde: {
+				required: true,
+				dateISO: true
+			},
+			fechaHasta: {
 
-		var template=parseInt( $(this).attr("data-template") );
-		$(".create-templates div").hide();
-		$(".create-templates #template-"+template).show();
-		$(".create-template i").attr("data-now",template);
-		$("#tipoTemplate").val(template);
-		template=(template == 1) ? 3 : template-1;
-		$(this).attr("data-template",template);
-
+				required: true,
+				dateISO: true
+			},
+			/*idProducto: {
+				required: true,
+				number: true
+			},
+			contenido: {
+				required: true
+			},*/
+		},
+		messages: {
+			titulo:{
+				required:'Campo necesario',
+				minlength: 'Titulo corto en longitud',
+				maxlength:'Titulo muy largo',
+			},
+			subtitulo:{
+				required: 'Campo necesario',
+				minlength: 'Subtitulo corto en longitud',
+				maxlength: 'Subtitulo muy largo',
+			},
+			idCategoria:{
+				required:'Campo necesario',
+				number: 'Categoría inválida'
+			},
+			idSubCategoria:{
+				required:'Campo necesario',
+				number: 'SubCategoría inválida'
+			},
+			fechaDesde:{
+				required:'Campo necesario',
+				dateISO: 'Fecha inválida'
+			},
+			fechaHasta:{
+				required:'Campo necesario',
+				dateISO: 'Fecha inválida'
+			},
+			/*idProducto:{
+				required:'Campo necesario',
+				number: 'Producto inválido'
+			},
+			contenido:{
+				required:'Campo necesario'
+			},*/
+		}
 	});
+});
 
-	$( ".create-template .lnr-chevron-right").on( "click", function() {
 
-		var template=parseInt( $(this).attr("data-template") );
-		$(".create-templates div").hide();
-		$(".create-templates #template-"+template).show();
-		$(".create-template i").attr("data-now",template);
-		$("#tipoTemplate").val(template);
-		template=(template == 3) ? 1 : template+1;
-		$(this).attr("data-template",template);
 
-	});
+
+ $('#data').jplist({				
+    itemsBox: '#data-list-fields', 
+    itemPath: '.data-list-field', 
+    panelPath: '.data-panel'	
+ });
+
+
+$( ".create-template .lnr-chevron-left").on( "click", function() {
+
+	var template=parseInt( $(this).attr("data-template") );
+	$(".create-templates div").hide();
+	$(".create-templates #template-"+template).show();
+	$(".create-template i").attr("data-now",template);
+	$("#tipoTemplate").val(template);
+	template=(template == 1) ? 3 : template-1;
+	$(this).attr("data-template",template);
+
+});
+
+$( ".create-template .lnr-chevron-right").on( "click", function() {
+
+	var template=parseInt( $(this).attr("data-template") );
+	$(".create-templates div").hide();
+	$(".create-templates #template-"+template).show();
+	$(".create-template i").attr("data-now",template);
+	$("#tipoTemplate").val(template);
+	template=(template == 3) ? 1 : template+1;
+	$(this).attr("data-template",template);
+
+});
 
 // Agregar o editar Noticia
 $('#create-title-option').click(function(){
@@ -302,42 +394,7 @@ function pintarSeccion(){
 	loadFile();
 }
 
-//editar 
-/*
-$('#create-title-option').click(function(){
-	$(".dinamic").find(".msg-dinamico").text("");
-	var validDinamic=true;
-	$(".dinamic").each(function(){
-		if($(this).find("img").length == 0 && $(this).find("textarea").val().trim().length == 0){
-			$(this).find(".msg-dinamico").text("Verifique que tenga contenido o imagen");
-			if (validDinamic) {
-				validDinamic = false;
-			}
-		}
-	})
-	if ($("#create").valid() && validDinamic) {
-		var formData = new FormData(document.getElementById("create"));
-		$.ajax({
-			url:'serviceAdmin.php',
-			method: 'POST',
-			data: formData,
-			cache: false,
-			dataType: 'json',
-			contentType: false,
-			processData: false,
-			enctype: 'multipart/form-data'
-		}).success(function (data){ 
-			console.log(data.error);
-			if (data.error==1){
-				alert("Guardo la noticia correctamente");
-				location.reload();
-			}else{
-				alert("Ocurrio un error al guardar la noticia");
-			}
-		});
-	};
-});
-*/
+
 //ocultar seccion
 var manten=0;
 $('.oculta').click(function(){
