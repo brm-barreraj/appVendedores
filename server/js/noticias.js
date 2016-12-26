@@ -30,7 +30,7 @@
 
 	});
 
-// Agregar o editar
+// Agregar o editar Noticia
 $('#create-title-option').click(function(){
 	accion = ($("#idNoticia").val() != "") ? "updateNoticia" : "setNoticia";
 	$("#accion").val(accion);
@@ -92,7 +92,6 @@ $('#contenido').trumbowyg({
 
 //cargar subcategorias con base a la categoria seleccionado
 $('#idCategoria').change(function(){
-	console.log($(this).val());
 	result = sendAjax("serviceAdmin.php", "getSubcategorias", {idCategoria:$(this).val()});
 	if (result.error == 1){
 		data = result.data;
@@ -122,9 +121,7 @@ $('.eliminar').click(function(){
 	}
 });
 
-
-( function( $, window, document, undefined )
-{
+function loadFile(){
 	$( '.inputfile' ).each( function()
 	{
 		var $input	 = $( this ),
@@ -151,8 +148,8 @@ $('.eliminar').click(function(){
 		.on( 'focus', function(){ $input.addClass( 'has-focus' ); })
 		.on( 'blur', function(){ $input.removeClass( 'has-focus' ); });
 	});
-})( jQuery, window, document );
-
+}
+loadFile();
 
 var contador = 0;
 $('#adenlanteSec').click(function(){
@@ -253,14 +250,14 @@ function pintarSeccion(){
 	var seccion = '';
 	seccion+='<div class="section-new sec'+contador+'">';
 	seccion+='<div class="create-fileds">';
-	//seccion+='<div class="create-image-area">';
-	seccion+='<div>';
+	seccion+='<div class="create-image-area">';
+	//seccion+='<div>';
 	seccion+='<div class="icon-upload-new">';
 	seccion+='<i class="lnr lnr-upload"></i>';
 	seccion+='<i class="lnr lnr-picture"></i>';
 	seccion+='</div>';
 	seccion+='<input type="file" name="image'+extEdit+contador+'" id="image'+extEdit+contador+'" class="inputfile inputfile-3"/>';
-	seccion+='<label for="image"><span>Selecciona la imagen principal de la noticia</span></label>';
+	seccion+='<label for="image'+extEdit+contador+'"><span>Selecciona la imagen principal de la noticia</span></label>';
 	seccion+='</div>';
 	seccion+='</div>';
 	seccion+='<div class="create-fileds">';
@@ -279,31 +276,30 @@ function pintarSeccion(){
 		actual = seccion;
 		$('.dinamico').html(actual);
 	}
-		$('.section-new').show();
-		$('.dinamico').show();
+	$('.section-new').show();
+	$('.dinamico').show();
 
-		for (var i = 0; i < ($('.section-new').length -1); i++) {
-			var ocultar=$('.section-new').get(i);
-			$(ocultar).hide();
-		};
+	for (var i = 0; i < ($('.section-new').length -1); i++) {
+		var ocultar=$('.section-new').get(i);
+		$(ocultar).hide();
+	};
 
-		$('#contenido'+extEdit+contador).trumbowyg({
-			 	autogrow: true,
-			  resetCss: true,
-		    btns: [
-		        ['viewHTML'],
-		        ['formatting'],
-		        ['removeformat'],
-		        ['fullscreen'],
-		        'btnGrp-semantic',
-		        ['link'],
-		        'btnGrp-justify',
-		        'btnGrp-lists',
-		        ['horizontalRule'],
-		    ]
-		});
-
-
+	$('#contenido'+extEdit+contador).trumbowyg({
+		 	autogrow: true,
+		  resetCss: true,
+	    btns: [
+	        ['viewHTML'],
+	        ['formatting'],
+	        ['removeformat'],
+	        ['fullscreen'],
+	        'btnGrp-semantic',
+	        ['link'],
+	        'btnGrp-justify',
+	        'btnGrp-lists',
+	        ['horizontalRule'],
+	    ]
+	});
+	loadFile();
 }
 
 //editar 

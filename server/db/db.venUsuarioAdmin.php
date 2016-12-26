@@ -10,11 +10,11 @@ class DataObject_VenUsuarioAdmin extends DB_DataObject
 
     public $__table = 'ven_usuario_admin';               // table name
     public $idUsuarioAdmin;                  // int(11)  not_null primary_key auto_increment
-    public $nombre;                          // string(45)  
-    public $apellido;                        // string(45)  
-    public $email;                           // string(45)  
-    public $usuario;                         // string(45)  
-    public $contrasena;                      // string(45)  
+    public $nombre;                          // string(150)  
+    public $apellido;                        // string(150)  
+    public $email;                           // string(75)  
+    public $usuario;                         // string(75)  
+    public $contrasena;                      // string(75)  
     public $estado;                          // string(1)  enum
     public $fechaMod;                        // datetime(19)  binary
     public $fecha;                           // datetime(19)  binary

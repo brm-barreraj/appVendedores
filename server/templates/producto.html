@@ -1,0 +1,105 @@
+{#include file="head.html"#}
+{#include file="menu.html"#}
+
+
+			<article id="{#$seccion#}">
+				
+				<div id="data">
+
+					<div id="data-top" class="data-panel">
+
+						<div id="data-top-search">
+							<i class="lnr lnr-magnifier"></i>
+							<input autocomplete="off" data-path=".data-search" type="text" value="" placeholder="Buscar" data-control-type="textbox" data-control-name="data-search-filter" data-control-action="filter" type="text" name="search" id="search">
+						</div>
+
+						<div id="data-top-title">
+							<div>
+								<p>PRODUCTOS</p>
+								<small data-type="{start} - {end} de {all}" data-control-type="pagination-info"  data-control-name="paging"  data-control-action="paging">
+								</small>
+							</div>
+							<div>
+								<i class="lnr lnr-spell-check"></i>
+							</div>
+							<div>
+								<a href="productosForm.php">
+									<i class="lnr lnr-plus"></i>
+								</a>
+							</div>
+						</div>
+
+					</div>
+					
+					<div id="data-list">
+
+						<div id="data-list-titles">
+							<p>Producto</p>
+							<p>Fecha</p>
+							<p></p>
+							<p></p>
+						</div>
+
+						<div id="data-list-fields">
+							{#foreach from=$datos item=dato#}
+			  				<div class="data-list-field">
+
+									<div>
+										<p class="data-search">{#$dato->nombre#}</p>
+									</div>
+
+									<div>
+										<p class="data-search">{#$dato->fechaMod#}</p>
+									</div>
+
+									<div></div>
+									<div></div>
+									<div class="data-list-field-option" data-field="{#$dato->idProducto#}">
+										<a href="productosForm.php?idProducto={#$dato->idProducto#}">
+											<div class="edit" data-field="{#$dato->idProducto#}">
+												<p>EDITAR</p>
+												<em class="lnr lnr-pencil"></em>
+											</div>
+										</a>
+
+										<div class="show-hide eliminar" data-field="{#$dato->idProducto#}">
+											<p>OCULTAR</p>
+											<em class="lnr lnr-eye-hidden"></em>
+										</div>
+
+										<i class="close lnr lnr-cross" data-field="{#$dato->idProducto#}"></i>
+
+									</div>
+
+									<div class="data-list-field-menu" data-field="{#$dato->idProducto#}">
+										<em class="lnr lnr-menu"></em>
+									</div>
+
+							</div>
+							{#/foreach#}
+						</div>
+
+						<div id="data-list-bottom" class="data-panel">
+							<div  class="jplist-pagination"  data-control-type="pagination"  data-control-name="paging"  data-control-action="paging" data-items-per-page="6"  data-control-animate-to-top="true">
+							</div>
+						</div>
+
+					</div>
+
+					<div id="data-bottom">
+						<div id="data-bottom-message">
+						</div>
+					</div>
+				</div>
+
+			</article>
+			
+		</section>
+
+	<script type="text/javascript" src="js/productos.js"></script>
+  <script type="text/javascript" src="js/vendor/jplist.core.min.js"></script>
+  <script type="text/javascript" src="js/vendor/jplist.pagination-bundle.min.js"></script>
+  <script type="text/javascript" src="js/vendor/jplist.textbox-filter.min.js"></script>
+
+{#include file="footer.html"#}
+    

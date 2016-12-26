@@ -23,6 +23,16 @@
 							<span>Usuarios</span>
 						</a>
 					</li>
+					{#if $seccion == 'producto'#}
+					<li class="active">
+					{#else#}
+					<li>
+					{#/if#}
+						<a href="productos.php">
+							<i class="lnr lnr-spell-check"></i>
+							<span>Productos</span>
+						</a>
+					</li>
 					{#if $seccion == 'categoria'#}
 					<li class="active">
 					{#else#}

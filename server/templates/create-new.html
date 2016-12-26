@@ -59,16 +59,14 @@
 									{#/foreach#}
 									</select>	
 							{#else#}
-							<div class="create-field" style="display:none;" id="idSubCategoriaDiv">
+							<div class="create-field hiden" id="idSubCategoriaDiv">
 								<label for="idSubCategoria">SubCategoría</label>
-									<select name="idSubCategoria" id="idSubCategoria" style="display:none;">
+									<select name="idSubCategoria" id="idSubCategoria">
 									</select>	
 							{#/if#}
 								<div class="create-field-line"></div>
 							</div>
 							<div class="create-field">
-								
-							</div>
 								{#if isset($noticia->imagen) && !empty($noticia->imagen)#}
 								<div class="create-image-area img-edit">
 								{#else#}
@@ -77,22 +75,45 @@
 								{#if isset($noticia->imagen) && !empty($noticia->imagen)#}
 									<img width="120px" src="img/noticias/{#$noticia->imagen#}">
 								{#/if#}
-								<div class="icon-upload-new">
-									<i class="lnr lnr-upload"></i>
-									<i class="lnr lnr-picture"></i>
+									<div class="icon-upload-new">
+										<i class="lnr lnr-upload"></i>
+										<i class="lnr lnr-picture"></i>
+									</div>
+									<input type="file" name="image" id="image" class="inputfile inputfile-3"/>
+									<label for="image"><span>Selecciona la imagen principal de la noticia</span></label>
 								</div>
-								<input type="file" name="image" id="image" class="inputfile inputfile-3"/>
-								<label for="image"><span>Selecciona la imagen principal de la noticia</span></label>
+							</div>
+							<div class="create-field div-two">
+								<label for="fechaDesde">Fecha Desde</label>
+								<input type="date" name="fechaDesde" id="fechaDesde" value="{#date_format(date_create($noticia->fechaDesde),'Y-m-d')#}" placeholder="Escoge del título una frase destacada">
+								<div class="create-field-line"></div>
+							</div>
+							<div class="create-field div-two">
+								<label for="fechaHasta">Fecha Hasta</label>
+								<input type="date" name="fechaHasta" id="fechaHasta" value="{#date_format(date_create($noticia->fechaHasta),'Y-m-d')#}" placeholder="Escoge del título una frase destacada">
+								<div class="create-field-line"></div>
+							</div>
+							<div class="create-field">
+								<label for="idProducto">Producto</label>
+								<select name="idProducto" id="idProducto">
+									<option>Producto</option>
+									{#foreach from=$productos item=dato#}
+										{#if isset($dato->idProducto) && $dato->idProducto == $noticia->idProducto#}
+											<option selected value="{#$dato->idProducto#}">{#$dato->nombre#}</option>
+										{#else#}
+											<option value="{#$dato->idProducto#}">{#$dato->nombre#}</option>
+										{#/if#}
+									{#/foreach#}
+								</select>
+								<div class="create-field-line"></div>
 							</div>
 
 						</div>
 
 						<div class="create-fileds">
-
 							<div class="create-field">
 								<textarea name="contenido" id="contenido" placeholder="Contenido noticia">{#$noticia->contenido#}</textarea>
 							</div>
-
 						</div>
 
 						<div class="create-template">
@@ -142,7 +163,7 @@
 							{#assign var="iSecciones" value=1#}
 							{#foreach from=$secciones item=seccion#}
 								{#if $iSecciones > 1 #}
-									<div class="section-new sec{#$iSecciones#}" style="display:none;">
+									<div class="section-new sec{#$iSecciones#} hiden">
 								{#else#}
 									<div class="section-new sec{#$iSecciones#}">
 								{#/if#}
@@ -150,11 +171,9 @@
 									<div class="create-fileds">
 
 										{#if isset($seccion->imagen) && !empty($seccion->imagen)#}
-										<!-- <div class="create-image-area img-edit"> -->
-										<div class="img-edit">
+											<div class="create-image-area img-edit">
 										{#else#}
-										<!-- <div class="create-image-area"> -->
-										<div>
+											<div class="create-image-area">
 										{#/if#}
 										{#if isset($seccion->imagen) && !empty($seccion->imagen)#}
 											<img width="120px" src="img/noticias/{#$seccion->imagen#}">
@@ -165,7 +184,7 @@
 													<i class="lnr lnr-picture"></i>
 												</div>
 												<input type="file" name="image{#$seccion->idSeccionNoticia#}" id="image{#$seccion->idSeccionNoticia#}" class="inputfile inputfile-3"/>
-												<label for="image"><span>Selecciona la imagen de la sección</span></label>
+												<label for="image{#$seccion->idSeccionNoticia#}"><span>Selecciona la imagen de la sección</span></label>
 											</div>
 										</div>
 										<div class="create-fileds">
