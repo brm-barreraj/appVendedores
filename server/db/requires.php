@@ -1,6 +1,6 @@
 <?php
 @ini_set("display_errors","0");
-@error_reporting(0);
+@error_reporting(1);
 session_start();
 
 global $prefijo;
@@ -21,7 +21,7 @@ require($prefijo."class/class.Noticia.inc.php");
 /*require($prefijo."class/class.MillerLite.inc.php");*/
 
 //Smarty
-require($_SERVER["DOCUMENT_ROOT"]."/Smarty/libs/Smarty.class.php");
+require($_SERVER["DOCUMENT_ROOT"]."/libs/Smarty/libs/Smarty.class.php");
 $smarty = new Smarty();
 
 $smarty->compile_check = true;

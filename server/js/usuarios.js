@@ -114,10 +114,10 @@ jQuery(document).ready(function () {
 		result = sendAjax("serviceAdmin.php", "deleteUsuario", {idUsuario:id});
 		if (result.error == 1){
 			data = result.data;
-			alert('Registro Elemininado correctamente');
+			showmessage('Registro Elemininado correctamente');
 			location.reload();
 		}else{
-			alert('Ocurrio un error en la consulta');
+			showmessage('Ocurrio un error en la consulta');
 		}
 	});
 
@@ -131,10 +131,10 @@ jQuery(document).ready(function () {
 			result = sendAjax("serviceAdmin.php", accion,serial);
 			if (result.error == 1){
 				data = result.data;
-				alert('Registro Agregado correctamente');
-				window.location="usuarios.php";
+				showmessage('Registro Agregado correctamente');
+				//window.location="usuarios.php";
 			}else{
-				alert('Ocurrio un error en el registro del usuario');
+				showmessage('Ocurrio un error en el registro del usuario');
 			}
 		}
 	});
@@ -180,9 +180,9 @@ jQuery(document).ready(function () {
 			}).success(function (data){
 				if (data.error==1){
 					location.reload();
-					alert("Guardo el excel correctamente");
+					showmessage("Guardo el excel correctamente");
 				}else{
-					alert("Ocurrio un error al guardar la noticia");
+					showmessage("Ocurrio un error al guardar la noticia");
 				}
 			});
 		}
