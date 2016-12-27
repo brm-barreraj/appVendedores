@@ -45,6 +45,11 @@
         <img ng-if='seccion.imagen' ng-src="http://fbapp.brm.com.co/fbappFundacion/appVendedores/img/noticias/{{seccion.imagen}}">
         <p ng-if='seccion.contenido'>{{seccion.contenido}}</p>
       </div>
+      <!-- Aquí va el pdf -->
+      <div class="detalle-text" ng-if='detalleNoticia.pdf'>
+        <a ng-click="openPdf(detalleNoticia.pdf)">Descargar Pdf</a>
+      </div>
+      <div class="spacer" style="width: 300px; height: 40px;"></div>
     </div>
   </ion-content>
 </ion-view>

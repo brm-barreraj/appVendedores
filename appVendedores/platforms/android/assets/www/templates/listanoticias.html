@@ -18,19 +18,19 @@
 		        	{{noticia1.fechaMod}}
 		        </small>
 		        <div class="producto-select">
-		        	<select name="" id="">
-		        		<option value="">Producto</option>
-		        	</select>
+		        	<select ng-options="producto.nombre for producto in productos" ng-model="productoModel" ng-change="selectedProd(productoModel.idProducto)"></select>
 		        </div>
 		    </div>
 		</div>
+		<ion-refresher pulling-text="Pull to refresh..." on-refresh="doRefresh()">
+		</ion-refresher>
 		<ion-list id="news">
 			<div class="new" ng-repeat="noticia in noticias" ng-click="selNoticia(noticia.idNoticia)">
 		        <img ng-src="http://fbapp.brm.com.co/fbappFundacion/appVendedores/img/noticias/{{noticia.imagen}}">
-		        <p>{{reducirTamTitle(noticia.titulo)}}</p>
+		        <p>{{reducirTamTitle(noticia.titulo)}} {{noticia.idNoticia}}</p>
 		        <!-- <strong>{{noticia.subtitulo}}</strong> -->
 			</div>
 		</ion-list>
-		<ion-infinite-scroll on-infinite="loadMore()" distance="10%"></ion-infinite-scroll>
+		<ion-infinite-scroll ng-if="!estadoScroll" on-infinite="loadMore()" distance="10%"></ion-infinite-scroll>
   </ion-content>
 </ion-view>

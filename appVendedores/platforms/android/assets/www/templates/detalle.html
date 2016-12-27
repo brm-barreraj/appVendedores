@@ -1,6 +1,30 @@
 <ion-view id="page3" >
   <ion-content id="ion-content-clear">
-		<div id="top-new" style="background-image:url(http://fbapp.brm.com.co/fbappFundacion/appVendedores/img/noticias/{{detalleNoticia.imagen}})">
+    <!-- Tipo Template 1 -->
+    <div ng-if="detalleNoticia.tipoTemplate == 1" id="top-new" style="background-image:url(http://fbapp.brm.com.co/fbappFundacion/appVendedores/img/noticias/{{detalleNoticia.imagen}})">
+        <p>{{detalleNoticia.titulo}}</p>
+        <div id="line-top-new"></div>
+        <strong>{{detalleNoticia.subtitulo}}</strong>
+        <small>
+          <i class="lnr lnr-calendar-full"></i>
+          {{detalleNoticia.fechaMod}}
+        </small>
+        <div id="diagonal"></div>
+    </div>
+    <!-- Tipo Template 2 -->
+    <div ng-if="detalleNoticia.tipoTemplate == 2" id="top-new" style="background-image:url(http://fbapp.brm.com.co/fbappFundacion/appVendedores/img/noticias/{{detalleNoticia.imagen}})">
+        <p>{{detalleNoticia.titulo}}</p>
+        <div id="line-top-new"></div>
+        <strong>{{detalleNoticia.subtitulo}}</strong>
+        <small>
+          <i class="lnr lnr-calendar-full"></i>
+          {{detalleNoticia.fechaMod}}
+        </small>
+        <div id="diagonal"></div>
+    </div>
+
+    <!-- Tipo Template 3 -->
+		<div ng-if="detalleNoticia.tipoTemplate == 3" id="top-new" style="background-image:url(http://fbapp.brm.com.co/fbappFundacion/appVendedores/img/noticias/{{detalleNoticia.imagen}})">
 				<p>{{detalleNoticia.titulo}}</p>
 				<div id="line-top-new"></div>
 				<strong>{{detalleNoticia.subtitulo}}</strong>
@@ -13,11 +37,19 @@
 
     <div id="detalle-container9">
     	<!--acá va el contenido de la noticia principal y de ahi si las secciones-->
-      <div id="detalle-markdown20"  class="detalle-text" ng-repeat="seccion in detalleNoticia.secciones ">
+      <div class="detalle-text">
+        <p ng-if='detalleNoticia.contenido'>{{detalleNoticia.contenido}}</p>
+      </div>
+      <div id="detalle-markdown20" class="detalle-text" ng-repeat="seccion in detalleNoticia.secciones ">
         <p ng-if='seccion.titulo'><strong>{{seccion.titulo}}</strong></p>
         <img ng-if='seccion.imagen' ng-src="http://fbapp.brm.com.co/fbappFundacion/appVendedores/img/noticias/{{seccion.imagen}}">
         <p ng-if='seccion.contenido'>{{seccion.contenido}}</p>
       </div>
+      <!-- Aquí va el pdf -->
+      <div class="detalle-text" ng-if='detalleNoticia.pdf'>
+        <a ng-click="openPdf(detalleNoticia.pdf)">Descargar Pdf</a>
+      </div>
+      <div class="spacer" style="width: 300px; height: 40px;"></div>
     </div>
   </ion-content>
 </ion-view>

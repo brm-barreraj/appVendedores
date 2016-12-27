@@ -175,35 +175,13 @@ function ($scope, $stateParams, $ionicLoading, $state, ServiceGeneral) {
 
 .controller('listaNoticiasCtrl', ['$scope', '$stateParams', '$ionicLoading', '$state', 'ServiceGeneral',
 function ($scope, $stateParams, $ionicLoading, $state, ServiceGeneral) {
+	var idProducto = 0
 	$scope.categoria = $stateParams.categoria;
 	$scope.nombreSubcategoria = $stateParams.nombreSubcategoria;
 	$scope.fechaSubcategoria = $stateParams.fechaSubcategoria;
-	
-	// Trae el listado de categorías
-	var idSubcategoria = $stateParams.idSubcategoria;
-	$ionicLoading.show({
-		template: 'Cargando...'
-	});
-	var parameters = {
-		accion : "getNoticias",
-		idSubcategoria : idSubcategoria
-	};
-	ServiceGeneral.post(parameters)
-	.then(function(result){
-		$ionicLoading.hide();
-		if(result.error == 1){
-			$scope.noticia1 = result.data[0];
-			var noticias = result.data;
-			noticias.shift();
-			$scope.noticias = noticias;
-			console.log("lista noticias",result.data);
-		}else{
-			console.log("error","Ocurrio un error");
-		}
-	},function(err){
-		$ionicLoading.hide();
-	});
-
+	$scope.noticia1 = [];
+	$scope.noticias = [];
+	$scope.estadoScroll = false;
 	// Carga las 2 primeras categorías de la base de datos
 	$ionicLoading.show({
 		template: 'Cargando...'
@@ -230,6 +208,28 @@ function ($scope, $stateParams, $ionicLoading, $state, ServiceGeneral) {
 		$ionicLoading.hide();
 	});
 
+	// Trae el listado de productos
+	$ionicLoading.show({
+		template: 'Cargando...'
+	});
+	var parameters = {accion : "getProductos"};
+	ServiceGeneral.post(parameters)
+	.then(function(result){
+		$ionicLoading.hide();
+		if(result.error == 1){
+			$scope.productos = result.data;
+			$scope.productos.unshift({
+				idProducto: 0,
+				nombre: "Productos"
+			});
+			$scope.productoModel = result.data[0];
+		}else{
+			console.log("error","Ocurrio un error");
+		}
+	},function(err){
+		$ionicLoading.hide();
+	});
+
 	// Selecciona la categoria y redirige a las subcategorias
 	$scope.selCategoria = function(categoria){
 		$state.go('menu.subcategoria',categoria);
@@ -239,12 +239,80 @@ function ($scope, $stateParams, $ionicLoading, $state, ServiceGeneral) {
 	$scope.selNoticia = function(idNoticia){
 		$state.go('menu.detalle',{idNoticia:idNoticia});
 	}
+	
+	// Reduce el tamaño de los titulos del listado de noticias
 	$scope.reducirTamTitle = function(str){
 		return (str.length > 64) ? str.substring(0,64)+"..." : str;
 	}
+	
+	// Scroll
 	$scope.loadMore = function() {
-		//alert(1);
+		listNoticias(false);
+		$scope.$broadcast('scroll.infiniteScrollComplete');
 	};
+
+	// Refresh
+	$scope.doRefresh = function() {
+		listNoticias(true);
+	};
+	
+	// Lista las noticas
+	var listNoticias = function(reiniciar) {
+		console.log("length",$scope.noticias);
+
+		if (reiniciar || $scope.noticias.length == 0) {
+			$scope.noticia1 = [];
+			$scope.noticias = [];
+			$scope.estadoScroll = false;
+			desde = 0;
+		}else{
+			desde = ($scope.noticias.length+1);
+		};
+		
+		// Trae el listado de noticias de un producto
+		var idSubcategoria = $stateParams.idSubcategoria;
+		$ionicLoading.show({
+			template: 'Cargando...'
+		});
+		var parameters = {
+			accion : "getNoticias",
+			idSubcategoria : idSubcategoria,
+			idProducto: idProducto,
+			desde : desde
+		};
+		ServiceGeneral.post(parameters)
+		.then(function(result){
+			$ionicLoading.hide();
+			$scope.$broadcast('scroll.refreshComplete');
+			if(result.error == 1){
+				var noticias = result.data;
+				if (!noticias) {
+					$scope.estadoScroll = true;
+				}else{
+					if (reiniciar || $scope.noticias.length == 0) {
+						$scope.noticia1 = result.data[0];
+						noticias.shift();
+						$scope.noticias = noticias;
+					}else{
+						for (var i = 0; i < noticias.length; i++) {
+							$scope.noticias.push(noticias[i]);
+						};
+					};
+				};
+				
+			}else{
+				console.log("error","Ocurrio un error");
+			}
+		},function(err){
+			$ionicLoading.hide();
+		});
+	};
+
+	// Evento al seleccionar el producto
+	$scope.selectedProd = function(idProd){
+		idProducto = idProd;
+		listNoticias(true);
+	}
 
 }])
 

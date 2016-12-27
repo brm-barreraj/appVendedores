@@ -1,7 +1,7 @@
 angular.module('app.controllers', ['ionic'])
   
-.controller('loginCtrl', ['$scope', '$stateParams', '$ionicLoading', '$ionicPopup', '$timeout', '$state', 'ServiceGeneral',
-function($scope, $stateParams, $ionicLoading, $ionicPopup, $timeout, $state, ServiceGeneral) {
+.controller('loginCtrl', ['$scope', '$stateParams', '$ionicLoading', '$ionicPopup', '$timeout', '$state', 'ServiceGeneral', '$ionicHistory',
+function($scope, $stateParams, $ionicLoading, $ionicPopup, $timeout, $state, ServiceGeneral, $ionicHistory) {
 	$scope.login = function(usuario){
 		if (usuario && usuario.user && usuario.user != "" && usuario.pass && usuario.pass != "") {
 			$ionicLoading.show({
@@ -37,8 +37,8 @@ function($scope, $stateParams, $ionicLoading, $ionicPopup, $timeout, $state, Ser
 	}
 }])
 
-.controller('menuCtrl', ['$scope', '$stateParams', '$ionicLoading', '$state', 'ServiceGeneral',
-function ($scope, $stateParams, $ionicLoading, $state, ServiceGeneral) {
+.controller('menuCtrl', ['$scope', '$stateParams', '$ionicLoading', '$ionicPopup', '$state', 'ServiceGeneral', '$ionicHistory',
+function ($scope, $stateParams, $ionicLoading, $ionicPopup, $state, ServiceGeneral, $ionicHistory) {
 	// Trae Los datos del usuario
 	var userData = JSON.parse( window.localStorage.getItem('us3r4pp'));
 	if (userData != null && userData.idUsuario != "") {
@@ -84,8 +84,8 @@ function ($scope, $stateParams, $ionicLoading, $state, ServiceGeneral) {
 	}
 }])
 
-.controller('mainCtrl', ['$scope', '$stateParams', '$ionicLoading', '$state', 'ServiceGeneral',
-function ($scope, $stateParams, $ionicLoading, $state, ServiceGeneral) {
+.controller('mainCtrl', ['$scope', '$stateParams', '$ionicLoading', '$ionicPopup', '$state', 'ServiceGeneral', '$ionicHistory',
+function ($scope, $stateParams, $ionicLoading, $ionicPopup, $state, ServiceGeneral, $ionicHistory) {
 	// Si el usuario no esta logueado lo redirigue al login
 	var userData = JSON.parse( window.localStorage.getItem('us3r4pp'));
 	if (userData == null || userData.idUsuario == "") {
@@ -125,8 +125,8 @@ function ($scope, $stateParams, $ionicLoading, $state, ServiceGeneral) {
 	}
 }])
 
-.controller('subcategoriaCtrl', ['$scope', '$stateParams', '$ionicLoading', '$state', 'ServiceGeneral',
-function ($scope, $stateParams, $ionicLoading, $state, ServiceGeneral) {
+.controller('subcategoriaCtrl', ['$scope', '$stateParams', '$ionicLoading', '$ionicPopup', '$state', 'ServiceGeneral', '$ionicHistory',
+function ($scope, $stateParams, $ionicLoading, $ionicPopup, $state, ServiceGeneral, $ionicHistory) {
 	var idCategoria = $stateParams.idCategoria;
 	var nombreCategoria = $stateParams.nombre;
 	$ionicLoading.show({
@@ -158,6 +158,11 @@ function ($scope, $stateParams, $ionicLoading, $state, ServiceGeneral) {
 		}
 	},function(err){
 		$ionicLoading.hide();
+		$ionicPopup.alert({
+			title: 'Sin conexión a Internet',
+			content: 'Lo sentimos, no se detectó ninguna conexión a Internet. Vuelve a conectarte e inténtalo de nuevo.'
+		});
+		$ionicHistory.goBack();
 	});
 
 	// Selecciona la categoria y redirige a las subcategorias
@@ -173,8 +178,8 @@ function ($scope, $stateParams, $ionicLoading, $state, ServiceGeneral) {
 	}
 }])
 
-.controller('listaNoticiasCtrl', ['$scope', '$stateParams', '$ionicLoading', '$state', 'ServiceGeneral',
-function ($scope, $stateParams, $ionicLoading, $state, ServiceGeneral) {
+.controller('listaNoticiasCtrl', ['$scope', '$stateParams', '$ionicLoading', '$ionicPopup', '$state', 'ServiceGeneral', '$ionicHistory',
+function ($scope, $stateParams, $ionicLoading, $ionicPopup, $state, ServiceGeneral, $ionicHistory) {
 	var idProducto = 0
 	$scope.categoria = $stateParams.categoria;
 	$scope.nombreSubcategoria = $stateParams.nombreSubcategoria;
@@ -206,6 +211,11 @@ function ($scope, $stateParams, $ionicLoading, $state, ServiceGeneral) {
 		}
 	},function(err){
 		$ionicLoading.hide();
+		$ionicPopup.alert({
+			title: 'Sin conexión a Internet',
+			content: 'Lo sentimos, no se detectó ninguna conexión a Internet. Vuelve a conectarte e inténtalo de nuevo.'
+		});
+		$ionicHistory.goBack();
 	});
 
 	// Trae el listado de productos
@@ -258,8 +268,6 @@ function ($scope, $stateParams, $ionicLoading, $state, ServiceGeneral) {
 	
 	// Lista las noticas
 	var listNoticias = function(reiniciar) {
-		console.log("length",$scope.noticias);
-
 		if (reiniciar || $scope.noticias.length == 0) {
 			$scope.noticia1 = [];
 			$scope.noticias = [];
@@ -289,11 +297,16 @@ function ($scope, $stateParams, $ionicLoading, $state, ServiceGeneral) {
 				if (!noticias) {
 					$scope.estadoScroll = true;
 				}else{
+					if (noticias.length < 10) {
+						$scope.estadoScroll = true;
+					};
+					// iniciar lista
 					if (reiniciar || $scope.noticias.length == 0) {
 						$scope.noticia1 = result.data[0];
 						noticias.shift();
 						$scope.noticias = noticias;
 					}else{
+					// agregar a la lista existente
 						for (var i = 0; i < noticias.length; i++) {
 							$scope.noticias.push(noticias[i]);
 						};
@@ -313,11 +326,10 @@ function ($scope, $stateParams, $ionicLoading, $state, ServiceGeneral) {
 		idProducto = idProd;
 		listNoticias(true);
 	}
-
 }])
 
-.controller('detalleCtrl', ['$scope', '$stateParams', '$ionicLoading', '$state', 'ServiceGeneral',
-function ($scope, $stateParams, $ionicLoading, $state, ServiceGeneral) {
+.controller('detalleCtrl', ['$scope', '$stateParams', '$ionicLoading', '$ionicPopup', '$state', 'ServiceGeneral', '$ionicHistory',
+function ($scope, $stateParams, $ionicLoading, $ionicPopup, $state, ServiceGeneral, $ionicHistory) {
 	var idNoticia = $stateParams.idNoticia;
 
 	$ionicLoading.show({
@@ -337,5 +349,15 @@ function ($scope, $stateParams, $ionicLoading, $state, ServiceGeneral) {
 		}
 	},function(err){
 		$ionicLoading.hide();
+		$ionicPopup.alert({
+			title: 'Sin conexión a Internet',
+			content: 'Lo sentimos, no se detectó ninguna conexión a Internet. Vuelve a conectarte e inténtalo de nuevo.'
+		});
+		$ionicHistory.goBack();
 	});
+
+	// Abrir Pdf
+	$scope.openPdf = function(namePdf){
+		window.open('http://fbapp.brm.com.co/fbappFundacion/appVendedores/pdf/'+namePdf, '_system', 'location=yes');
+	}
 }])

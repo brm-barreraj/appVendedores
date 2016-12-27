@@ -607,3 +607,11 @@ label.item.item-input input {
     margin: 0;
     margin-left: 12px;
 }
+.producto-select{
+    float: right;
+    color: #fff;
+    position: absolute;
+    bottom: 5px;
+    right: 5px;
+    font-size: 16px;
+}
