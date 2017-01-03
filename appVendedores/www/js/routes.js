@@ -10,6 +10,7 @@ angular.module('app.routes', [])
     
 
   .state('menu.listanoticias', {
+    cache: false,
     url: '/listanoticias/:categoria/:idCategoria/:idSubcategoria/:nombreSubcategoria/:fechaSubcategoria/',
     views: {
       'side-menu21': {
@@ -21,6 +22,7 @@ angular.module('app.routes', [])
 
 
   .state('menu.detalle', {
+    cache: false,
     url: '/detalle/:idNoticia',
     views: {
       'side-menu21': {

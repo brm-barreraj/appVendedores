@@ -7,7 +7,6 @@ function($scope, $stateParams, $ionicLoading, $ionicPopup, $timeout, $state, Ser
 			$ionicLoading.show({
 				template: 'Cargando...'
 			});
-			//var placa = $scope.placa;
 			var parameters = {
 				accion : "login",
 				usuario : usuario.user,
@@ -27,6 +26,10 @@ function($scope, $stateParams, $ionicLoading, $ionicPopup, $timeout, $state, Ser
 				}
 			},function(err){
 				$ionicLoading.hide();
+				$ionicPopup.alert({
+					title: 'Sin conexión a Internet',
+					content: 'Lo sentimos, no se detectó ninguna conexión a Internet. Vuelve a conectarte e inténtalo de nuevo.'
+				});
 			});
 		}else{
 			$ionicPopup.alert({
@@ -152,7 +155,6 @@ function ($scope, $stateParams, $ionicLoading, $ionicPopup, $state, ServiceGener
 			};
 			$scope.categoria = nombreCategoria;
 			$scope.subcategorias = subcategorias;
-			console.log("subcategorias",subcategorias);
 		}else{
 			console.log("error","Ocurrio un error");
 		}
@@ -184,6 +186,7 @@ function ($scope, $stateParams, $ionicLoading, $ionicPopup, $state, ServiceGener
 	$scope.categoria = $stateParams.categoria;
 	$scope.nombreSubcategoria = $stateParams.nombreSubcategoria;
 	$scope.fechaSubcategoria = $stateParams.fechaSubcategoria;
+	$scope.productos = [];
 	$scope.noticia1 = [];
 	$scope.noticias = [];
 	$scope.estadoScroll = false;
@@ -206,7 +209,7 @@ function ($scope, $stateParams, $ionicLoading, $ionicPopup, $state, ServiceGener
 				idCategoria: result.data[1].idCategoria,
 				nombre: result.data[1].nombre
 			}
-	}else{
+		}else{
 			console.log("error","Ocurrio un error");
 		}
 	},function(err){
@@ -219,7 +222,7 @@ function ($scope, $stateParams, $ionicLoading, $ionicPopup, $state, ServiceGener
 	});
 
 	// Trae el listado de productos
-	$ionicLoading.show({
+	/*$ionicLoading.show({
 		template: 'Cargando...'
 	});
 	var parameters = {accion : "getProductos"};
@@ -238,7 +241,7 @@ function ($scope, $stateParams, $ionicLoading, $ionicPopup, $state, ServiceGener
 		}
 	},function(err){
 		$ionicLoading.hide();
-	});
+	});*/
 
 	// Selecciona la categoria y redirige a las subcategorias
 	$scope.selCategoria = function(categoria){
@@ -256,10 +259,10 @@ function ($scope, $stateParams, $ionicLoading, $ionicPopup, $state, ServiceGener
 	}
 	
 	// Scroll
-	$scope.loadMore = function() {
+	/*$scope.loadMore = function() {
 		listNoticias(false);
 		$scope.$broadcast('scroll.infiniteScrollComplete');
-	};
+	};*/
 
 	// Refresh
 	$scope.doRefresh = function() {
@@ -293,7 +296,26 @@ function ($scope, $stateParams, $ionicLoading, $ionicPopup, $state, ServiceGener
 			$ionicLoading.hide();
 			$scope.$broadcast('scroll.refreshComplete');
 			if(result.error == 1){
-				var noticias = result.data;
+
+				// Productos
+				if ($scope.productos && $scope.productos.length == 0) {
+					$scope.productos = result.data.productos;
+					$scope.productos.unshift({
+						idProducto: 0,
+						nombre: "Filtros"
+					});
+					$scope.productoModel = result.data.productos[0];
+				};
+
+				// Noticias
+				var noticias = result.data.noticias;
+				$scope.noticia1 = result.data.noticias[0];
+				if (noticias.length > 1) {
+					noticias.shift();
+					$scope.noticias = noticias;
+				};
+
+				/*var noticias = result.data;
 				if (!noticias) {
 					$scope.estadoScroll = true;
 				}else{
@@ -311,15 +333,25 @@ function ($scope, $stateParams, $ionicLoading, $ionicPopup, $state, ServiceGener
 							$scope.noticias.push(noticias[i]);
 						};
 					};
-				};
+				};*/
 				
 			}else{
+				$ionicPopup.alert({
+					title: 'No hay noticias disponibles',
+					content: 'Lo sentimos, no se detectó ninguna noticia en esta categoría.'
+				})
+				.then(function(){
+					$ionicHistory.goBack();
+				});
 				console.log("error","Ocurrio un error");
 			}
 		},function(err){
 			$ionicLoading.hide();
 		});
 	};
+
+	// Inicial
+	listNoticias(true);
 
 	// Evento al seleccionar el producto
 	$scope.selectedProd = function(idProd){
@@ -358,6 +390,6 @@ function ($scope, $stateParams, $ionicLoading, $ionicPopup, $state, ServiceGener
 
 	// Abrir Pdf
 	$scope.openPdf = function(namePdf){
-		window.open('http://fbapp.brm.com.co/fbappFundacion/appVendedores/pdf/'+namePdf, '_system', 'location=yes');
+		window.open('http://fbapp.brm.com.co/fbappFundacion/appVendedores/pdf/noticias/'+namePdf, '_system', 'location=yes');
 	}
 }])

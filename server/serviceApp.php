@@ -46,16 +46,26 @@ switch ($request->accion) {
 	/* Lista todas las noticias */
 	case 'getNoticias':
 		if (isset($request->idSubcategoria) && $request->idSubcategoria > 0) {
+			// Noticias
 			$fechaActual = date("Y-m-d H:i:s");
 			$where = "idCategoria = ".$request->idSubcategoria." and estado = 'A' and fechaDesde <= '".$fechaActual."' and fechaHasta >= '".$fechaActual."'";
 			$where .= (isset($request->idProducto) && (int) $request->idProducto > 0) ? " and idProducto = ".$request->idProducto : "" ;
-			$desde = (isset($request->desde) && (int) $request->desde > 0) ? $request->desde : 0;
-			$hasta = 10;
+			$hasta = '';
+			$desde  = '';
+			//$desde = (isset($request->desde) && (int) $request->desde > 0) ? $request->desde : 0;
+			//$hasta = 10;
 			$idSubcategoria = $request->idSubcategoria;
-			$campos = array('idNoticia','imagen','titulo','subtitulo','fechaMod');
+			$campos = array('idNoticia','imagen','titulo','subtitulo','idProducto','fechaMod');
 			$noticia = $General->getTotalDatos('VenNoticia', $campos, $where, 'fechaMod DESC,idNoticia DESC', $desde, $hasta);
-			if (count($noticia) > 0) {
-				$data = $noticia;
+			if (count($noticia) > 0 && $noticia != false) {
+				// Productos
+				$idProductosArray = array_unique(array_map(function ($i) { return $i->idProducto; }, $noticia));
+				$idProductos = implode(",", $idProductosArray);
+				$productos = $General->getTotalDatos('VenProducto', array('idProducto','nombre'), 'idProducto IN ('.$idProductos.')');
+				
+
+				$data['noticias'] = $noticia;
+				$data['productos'] = $productos;
 				$error = 1;
 			}else{
 				$error = 2;
@@ -88,15 +98,15 @@ switch ($request->accion) {
 	break;
 
 	/* Lista productos */
-		case 'getProductos':
-			$productos = $General->getTotalDatos('VenProducto',null,array('estado'=>'A'));
-			if (count($productos) > 0) {
-				$data = $productos;
-				$error = 1;
-			}else{
-				$error = 2;
-			}
-		break;
+	case 'getProductos':
+		$productos = $General->getTotalDatos('VenProducto',null,array('estado'=>'A'));
+		if (count($productos) > 0) {
+			$data = $productos;
+			$error = 1;
+		}else{
+			$error = 2;
+		}
+	break;
 	
 	/* Login */
 	case 'login':

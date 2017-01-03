@@ -43,7 +43,7 @@
       <div id="detalle-markdown20" class="detalle-text" ng-repeat="seccion in detalleNoticia.secciones ">
         <p ng-if='seccion.titulo'><strong>{{seccion.titulo}}</strong></p>
         <img ng-if='seccion.imagen' ng-src="http://fbapp.brm.com.co/fbappFundacion/appVendedores/img/noticias/{{seccion.imagen}}">
-        <p ng-if='seccion.contenido'>{{seccion.contenido}}</p>
+        <p ng-if='seccion.contenido' ng-bind-html="seccion.contenido" ></p>
       </div>
       <!-- Aquí va el pdf -->
       <div class="detalle-text" ng-if='detalleNoticia.pdf'>

@@ -360,7 +360,7 @@ if (isset($_POST['accion']) && !empty($_POST['accion']) ) {
 						if ($idNoticia > 0) {
 							// Inserta Secciones a la noticia
 							foreach ($_FILES as $key => $value) {
-								if ($key != "image") {
+								if ($key != "image" && $key != "pdf" && $key != "video") {
 									$keySeccion = explode("image", $key);
 									$idFoto = $keySeccion[1];
 									$keyContent = 'contenido'.$keySeccion[1];
@@ -460,6 +460,7 @@ if (isset($_POST['accion']) && !empty($_POST['accion']) ) {
 						$camposUpdate['contenido'] = $_POST['contenido'];
 					}
 					if (isset($_FILES['image']) && isset($_FILES['image']['tmp_name']) && trim($_FILES['image']['tmp_name']) != "") {
+						printVar("Entroo 2");
 						$imagen = $General->moveFile($_FILES['image'],"img/noticias/",'up-'.$nNoticias);
 						// Crop Imagen
 						$imagenFinArr = explode(".",$imagen);
@@ -469,6 +470,7 @@ if (isset($_POST['accion']) && !empty($_POST['accion']) ) {
 						$camposUpdate['imagen'] = $imagen;
 					}
 					if (isset($_FILES['video']) && isset($_FILES['video']['tmp_name']) && trim($_FILES['video']['tmp_name']) != "") {
+						printVar("Entroo 1");
 						$video = $General->moveFile($_FILES['video'],"video/noticias/",'up-'.$nNoticias);
 						$camposUpdate['video'] = $video;
 					}
@@ -494,7 +496,7 @@ if (isset($_POST['accion']) && !empty($_POST['accion']) ) {
 							// Actualiza y agrega nuevas secciones a una noticia
 							foreach ($_FILES as $key => $value) {
 								$camposUpdate = array();
-								if ($key != "image") {
+								if ($key != "image" && $key != "pdf" && $key != "video") {
 									$exp = explode("-",$key);
 									if (count($exp) > 1) {
 										// Insertar secciones nuevas

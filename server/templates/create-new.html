@@ -94,9 +94,9 @@
 								<div class="create-field-line"></div>
 							</div>
 							<div class="create-field">
-								<label for="idProducto">Producto</label>
+								<label for="idProducto">Filtro</label>
 								<select name="idProducto" id="idProducto">
-									<option>Producto</option>
+									<option>Filtro</option>
 									{#foreach from=$productos item=dato#}
 										{#if isset($dato->idProducto) && $dato->idProducto == $noticia->idProducto#}
 											<option selected value="{#$dato->idProducto#}">{#$dato->nombre#}</option>
@@ -108,6 +108,20 @@
 								<div class="create-field-line"></div>
 							</div>
 
+							<div class="create-field">
+								{#if isset($noticia->pdf) && !empty($noticia->pdf)#}
+								<div class="create-image-area img-edit">
+								{#else#}
+								<div class="create-image-area">
+								{#/if#}
+									<div class="icon-upload-new">
+										<i class="lnr lnr-upload"></i>
+										<i class="lnr lnr-picture"></i>
+									</div>
+									<input type="file" name="pdf" id="pdf" class="inputfile inputfile-3"/>
+									<label for="pdf"><span>Selecciona el pdf de la noticia</span></label>
+								</div>
+							</div>
 						</div>
 
 						<div class="create-fileds">
