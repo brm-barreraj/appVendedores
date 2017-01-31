@@ -9,6 +9,32 @@ module.exports = [
         ]
     },
     {
+        "id": "cordova-plugin-inappbrowser.inappbrowser",
+        "file": "plugins/cordova-plugin-inappbrowser/www/inappbrowser.js",
+        "pluginId": "cordova-plugin-inappbrowser",
+        "clobbers": [
+            "cordova.InAppBrowser.open",
+            "window.open"
+        ]
+    },
+    {
+        "id": "cordova-plugin-network-information.network",
+        "file": "plugins/cordova-plugin-network-information/www/network.js",
+        "pluginId": "cordova-plugin-network-information",
+        "clobbers": [
+            "navigator.connection",
+            "navigator.network.connection"
+        ]
+    },
+    {
+        "id": "cordova-plugin-network-information.Connection",
+        "file": "plugins/cordova-plugin-network-information/www/Connection.js",
+        "pluginId": "cordova-plugin-network-information",
+        "clobbers": [
+            "Connection"
+        ]
+    },
+    {
         "id": "cordova-plugin-splashscreen.SplashScreen",
         "file": "plugins/cordova-plugin-splashscreen/www/splashscreen.js",
         "pluginId": "cordova-plugin-splashscreen",
@@ -40,32 +66,6 @@ module.exports = [
         "clobbers": [
             "OneSignal"
         ]
-    },
-    {
-        "id": "cordova-plugin-network-information.network",
-        "file": "plugins/cordova-plugin-network-information/www/network.js",
-        "pluginId": "cordova-plugin-network-information",
-        "clobbers": [
-            "navigator.connection",
-            "navigator.network.connection"
-        ]
-    },
-    {
-        "id": "cordova-plugin-network-information.Connection",
-        "file": "plugins/cordova-plugin-network-information/www/Connection.js",
-        "pluginId": "cordova-plugin-network-information",
-        "clobbers": [
-            "Connection"
-        ]
-    },
-    {
-        "id": "cordova-plugin-inappbrowser.inappbrowser",
-        "file": "plugins/cordova-plugin-inappbrowser/www/inappbrowser.js",
-        "pluginId": "cordova-plugin-inappbrowser",
-        "clobbers": [
-            "cordova.InAppBrowser.open",
-            "window.open"
-        ]
     }
 ];
 module.exports.metadata = 
@@ -73,13 +73,13 @@ module.exports.metadata =
 {
     "cordova-plugin-console": "1.0.4",
     "cordova-plugin-device": "1.1.3",
+    "cordova-plugin-inappbrowser": "1.6.2-dev",
+    "cordova-plugin-network-information": "1.3.1",
     "cordova-plugin-splashscreen": "4.0.0",
     "cordova-plugin-statusbar": "2.2.0",
     "cordova-plugin-whitelist": "1.3.0",
     "ionic-plugin-keyboard": "2.2.1",
-    "onesignal-cordova-plugin": "2.0.10",
-    "cordova-plugin-network-information": "1.3.1",
-    "cordova-plugin-inappbrowser": "1.6.2-dev"
+    "onesignal-cordova-plugin": "2.0.10"
 };
 // BOTTOM OF METADATA
 });

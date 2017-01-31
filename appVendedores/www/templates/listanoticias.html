@@ -27,7 +27,7 @@
 		<ion-list id="news">
 			<div class="new" ng-repeat="noticia in noticias" ng-click="selNoticia(noticia.idNoticia)">
 		        <img ng-src="http://fbapp.brm.com.co/fbappFundacion/appVendedores/img/noticias/{{noticia.imagen}}">
-		        <p>{{reducirTamTitle(noticia.titulo)}} {{noticia.idNoticia}}</p>
+		        <p>{{reducirTamTitle(noticia.titulo)}}</p>
 		        <!-- <strong>{{noticia.subtitulo}}</strong> -->
 			</div>
 		</ion-list>

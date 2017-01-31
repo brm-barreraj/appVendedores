@@ -340,15 +340,20 @@ class General
 	}
 
 	function moveFile($file,$ruta,$id){
-		$ext=explode('.',$file['name']);
-		$temporal=$file['tmp_name'];
-		$imgFinal=$id.'-'.date('Y_m_d_H_i_s').'.'.$ext[1];
-		$urlDef=$ruta.$imgFinal;
-		$guarda=move_uploaded_file($temporal, $urlDef);//$guarda true si guardo la factura en la carpeta recien creada
-		if ($guarda) { //si guarda la imagen en la carpeta
-			$res = $imgFinal;
-		}else{// si no gurado la imagen en la carpeta
+		printVar($file['size']);
+		if ($file['size'] > 5000000) {
 			$res = false;
+		}else{
+			$ext=explode('.',$file['name']);
+			$temporal=$file['tmp_name'];
+			$imgFinal=$id.'-'.date('Y_m_d_H_i_s').'.'.$ext[1];
+			$urlDef=$ruta.$imgFinal;
+			$guarda=move_uploaded_file($temporal, $urlDef);//$guarda true si guardo la factura en la carpeta recien creada
+			if ($guarda) { //si guarda la imagen en la carpeta
+				$res = $imgFinal;
+			}else{// si no gurado la imagen en la carpeta
+				$res = false;
+			}
 		}
 		return $res;
 	}

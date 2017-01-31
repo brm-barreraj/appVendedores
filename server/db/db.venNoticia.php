@@ -35,7 +35,7 @@ class DataObject_VenNoticia extends DB_DataObject
              'idNoticia' =>  DB_DATAOBJECT_INT + DB_DATAOBJECT_NOTNULL,
              'idCategoria' =>  DB_DATAOBJECT_INT + DB_DATAOBJECT_NOTNULL,
              'idUsuarioAdmin' =>  DB_DATAOBJECT_INT + DB_DATAOBJECT_NOTNULL,
-             'idProducto' =>  DB_DATAOBJECT_INT + DB_DATAOBJECT_NOTNULL,
+             'idProducto' =>  DB_DATAOBJECT_INT,
              'titulo' =>  DB_DATAOBJECT_STR,
              'subtitulo' =>  DB_DATAOBJECT_STR,
              'imagen' =>  DB_DATAOBJECT_STR,
@@ -64,6 +64,7 @@ class DataObject_VenNoticia extends DB_DataObject
     function defaults() // column default values 
     {
          return array(
+             'idProducto' => '',
              'titulo' => '',
              'subtitulo' => '',
              'imagen' => '',

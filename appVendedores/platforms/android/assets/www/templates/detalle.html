@@ -38,7 +38,7 @@
     <div id="detalle-container9">
     	<!--acá va el contenido de la noticia principal y de ahi si las secciones-->
       <div class="detalle-text">
-        <p ng-if='detalleNoticia.contenido'>{{detalleNoticia.contenido}}</p>
+        <p ng-if='detalleNoticia.contenido' ng-bind-html="detalleNoticia.contenido"></p>
       </div>
       <div id="detalle-markdown20" class="detalle-text" ng-repeat="seccion in detalleNoticia.secciones ">
         <p ng-if='seccion.titulo'><strong>{{seccion.titulo}}</strong></p>

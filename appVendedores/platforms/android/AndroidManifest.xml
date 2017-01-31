@@ -20,8 +20,8 @@
         </receiver>
     </application>
     <uses-sdk android:minSdkVersion="16" android:targetSdkVersion="24" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="com.amazon.device.messaging.permission.RECEIVE" />
     <permission android:name="com.ionicframework.vendedores698151.permission.RECEIVE_ADM_MESSAGE" android:protectionLevel="signature" />
     <uses-permission android:name="com.ionicframework.vendedores698151.permission.RECEIVE_ADM_MESSAGE" />
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 </manifest>

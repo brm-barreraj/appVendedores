@@ -2,6 +2,7 @@
 require 'db/requires.php';
 $error = -1;
 $data="";
+ini_set('max_file_uploads', 5000);
 if (isset($_POST['accion']) && !empty($_POST['accion']) ) {
 	
 	$accion = $_POST['accion'];
@@ -329,7 +330,7 @@ if (isset($_POST['accion']) && !empty($_POST['accion']) ) {
 					if (isset($_POST['idProducto']) && (int) $_POST['idProducto'] > 0) {
 						$idProducto = $_POST['idProducto'];
 					}else{
-						$idProducto = "";
+						$idProducto = null;
 					}
 					$imagen = $General->moveFile($_FILES['image'],"img/noticias/",$nNoticias);
 					// Crop Imagen
@@ -354,10 +355,9 @@ if (isset($_POST['accion']) && !empty($_POST['accion']) ) {
 						$Noticia->estado='A';
 						$Noticia->fechaMod = date("Y-m-d H:i:s");
 						$idNoticia = $Noticia->setInstancia('VenNoticia');
-						$Notification = new Notification;
-						$Notification->sendMessageAndroid($_POST['titulo']);
-						//sendMessageAndroid($_POST['titulo']);
 						if ($idNoticia > 0) {
+							$Notification = new Notification;
+							$Notification->sendMessageAndroid($_POST['titulo']);
 							// Inserta Secciones a la noticia
 							foreach ($_FILES as $key => $value) {
 								if ($key != "image" && $key != "pdf" && $key != "video") {
@@ -447,7 +447,7 @@ if (isset($_POST['accion']) && !empty($_POST['accion']) ) {
 					if (isset($_POST['idUsuarioAdmin']) && $_POST['idUsuarioAdmin'] != "") {
 						$camposUpdate['idUsuarioAdmin'] = $_POST['idUsuarioAdmin'];
 					}
-					if (isset($_POST['idProducto']) && $_POST['idProducto'] != "") {
+					if (isset($_POST['idProducto']) && $_POST['idProducto'] > 0) {
 						$camposUpdate['idProducto'] = $_POST['idProducto'];
 					}
 					if (isset($_POST['titulo']) && $_POST['titulo'] != "") {

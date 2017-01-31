@@ -45,10 +45,11 @@ jQuery(document).ready(function () {
 			/*idProducto: {
 				required: true,
 				number: true
-			},
-			contenido: {
-				required: true
 			},*/
+			contenido: {
+				//required: true,
+				maxlength: 65000
+			},
 		},
 		messages: {
 			titulo:{
@@ -80,16 +81,14 @@ jQuery(document).ready(function () {
 			/*idProducto:{
 				required:'Campo necesario',
 				number: 'Producto inválido'
-			},
-			contenido:{
-				required:'Campo necesario'
 			},*/
+			contenido:{
+				//required:'Campo necesario',
+				maxlength: 'Contenido muy largo, máximo 65000 caracteres'
+			},
 		}
 	});
 });
-
-
-
 
  $('#data').jplist({				
     itemsBox: '#data-list-fields', 
@@ -128,11 +127,14 @@ $('#create-title-option').click(function(){
 	$("#accion").val(accion);
 	//var accion = ($("#idUsuario").val() != "") ? "updateUsuario" : "setUsuario";
 	var imagen = $("#create input[name=image]").val();
+	var pdf = $("#create input[name=pdf]").val();
+	pdf= pdf.split('.');
 	imagen= imagen.split('.');
 	var img= '';
 	var ext =false;
 	//console.log(imagen[(imagen.length -1)]);
     ext=imagen[(imagen.length -1)];
+    extPdf=pdf[(pdf.length -1)];
 	if ( ext === 'jpg' || ext ==='png' || ext === 'gif' || ext === 'jpeg' || ext === 'JPG' || ext === 'PNG' || ext ==='GIF' || ext === 'JPEG' ) {
 		img=true;
 	}else { 
@@ -140,29 +142,36 @@ $('#create-title-option').click(function(){
 		$("#info").html('<span style="color:#f04124;">Por favor selecciona una imagen.</span>');
 	}
 	var valid = $('#create').valid();
-	if ($("#idNoticia").val() != "" && valid || $("#idNoticia").val() == "" && img && valid ) {
-		var formData = new FormData(document.getElementById("create"));
-		console.log(formData,"formData");
-		console.log("formData");
-		$.ajax({
-			url:'serviceAdmin.php',
-			method: 'POST',
-			data: formData,
-			cache: false,
-			dataType: 'json',
-			contentType: false,
-			processData: false,
-			enctype: 'multipart/form-data'
-		}).success(function (data){ 
-			console.log(data.error);
-			if (data.error==1){
-				location.reload();
-				showmessage("Guardo la noticia correctamente");
-			}else{
-				showmessage("Ocurrio un error al guardar la noticia");
-			}
-		});
-	}
+	console.log("extPdf",extPdf);
+	if (extPdf != "pdf") {
+		if ($("#idNoticia").val() != "" && valid || $("#idNoticia").val() == "" && img && valid ) {
+			var formData = new FormData(document.getElementById("create"));
+			console.log(formData,"formData");
+			console.log("formData");
+			$.ajax({
+				url:'serviceAdmin.php',
+				method: 'POST',
+				data: formData,
+				cache: false,
+				dataType: 'json',
+				contentType: false,
+				processData: false,
+				enctype: 'multipart/form-data'
+			}).success(function (data){ 
+				console.log(data.error);
+				if (data.error==1){
+					location.reload();
+					showmessage("Guardó la noticia correctamente");
+				}else if (data.error==4){
+					showmessage("Imagen muy pesada, por favor intente con otra imagen");
+				}else{
+					showmessage("Ocurrió un error al guardar la noticia");
+				}
+			});
+		}
+	} else{
+		showmessage("Pdf inválido");
+	};
 });
 
 $('#contenido').trumbowyg({
@@ -431,4 +440,17 @@ $(document).on( "click",".data-list-field-menu", function() {
 $(document).on( "click",".close", function() {
 	var field=$(this).attr("data-field");
 	$(".data-list-field-option[data-field='"+field+"']").hide();
+});
+
+// Ocultar mensaje 
+$("#message i.lnr-cross").on('click',function(){
+  $( "#message" ).animate({
+    top: "-100%"
+  }, 2000);
+});
+
+// DAtePiker
+$( function() {
+	$( "#fechaDesde" ).datepicker({dateFormat: "yy-mm-dd"});
+	$( "#fechaHasta" ).datepicker({dateFormat: "yy-mm-dd"});
 });

@@ -300,10 +300,10 @@ function ($scope, $stateParams, $ionicLoading, $ionicPopup, $state, ServiceGener
 				// Productos
 				if ($scope.productos && $scope.productos.length == 0) {
 					$scope.productos = result.data.productos;
-					$scope.productos.unshift({
+					/*$scope.productos.unshift({
 						idProducto: 0,
 						nombre: "Filtros"
-					});
+					});*/
 					$scope.productoModel = result.data.productos[0];
 				};
 
