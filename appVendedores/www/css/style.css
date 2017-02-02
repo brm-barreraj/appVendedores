@@ -589,23 +589,33 @@ label.item.item-input input {
     height: 80px;
     width: 80px;
     float: left;
+    position: relative;
+    display: block;
 }
 #news .new p{
     color: #101d33;
-    font-size: 25px;
-    margin-top: 13px;
-    margin-left: 12px;
+    font-size: 15px;
     float: left;
-    width: 70%;
+    width: calc(100% - 80px);
+    margin: 0;
+    display: block;
+    position: relative;
+    font-family: col-reg;
+    padding-left: 2%;
+    line-height: 14px;
+    margin-top: 13px;
 }
 #news .new strong{
-    color: #101d33;
-    font-size: 25px;
-    margin-top: 10px;
-    float: left;
-    font-family: col-reg;
-    margin: 0;
+    color: #777777;
+    font-size: 15px;
+    font-family: col-thin;
     margin-left: 12px;
+    float: left;
+    width: calc(100% - 80px);
+    margin: 0;
+    display: block;
+    position: relative;
+    padding-left: 2%;
 }
 .producto-select{
     float: right;
