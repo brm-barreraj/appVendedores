@@ -9,7 +9,8 @@ function($scope, $stateParams, $ionicLoading, $ionicPopup, $timeout, $state, Ser
 			});
 			var parameters = {
 				accion : "login",
-				usuario : usuario.user,
+				email : usuario.user,
+				usuario : usuario.soeid,
 				contrasena : usuario.pass
 			};
 			ServiceGeneral.post(parameters)
@@ -272,7 +273,6 @@ function ($scope, $stateParams, $ionicLoading, $ionicPopup, $state, ServiceGener
 	// Lista las noticas
 	var listNoticias = function(reiniciar) {
 		if (reiniciar || $scope.noticias.length == 0) {
-			$scope.noticia1 = [];
 			$scope.noticias = [];
 			$scope.estadoScroll = false;
 			desde = 0;
@@ -300,40 +300,14 @@ function ($scope, $stateParams, $ionicLoading, $ionicPopup, $state, ServiceGener
 				// Productos
 				if ($scope.productos && $scope.productos.length == 0) {
 					$scope.productos = result.data.productos;
-					/*$scope.productos.unshift({
-						idProducto: 0,
-						nombre: "Filtros"
-					});*/
 					$scope.productoModel = result.data.productos[0];
 				};
 
 				// Noticias
 				var noticias = result.data.noticias;
-				$scope.noticia1 = result.data.noticias[0];
-				if (noticias.length > 1) {
-					noticias.shift();
+				if (noticias.length > 0) {
 					$scope.noticias = noticias;
 				};
-
-				/*var noticias = result.data;
-				if (!noticias) {
-					$scope.estadoScroll = true;
-				}else{
-					if (noticias.length < 10) {
-						$scope.estadoScroll = true;
-					};
-					// iniciar lista
-					if (reiniciar || $scope.noticias.length == 0) {
-						$scope.noticia1 = result.data[0];
-						noticias.shift();
-						$scope.noticias = noticias;
-					}else{
-					// agregar a la lista existente
-						for (var i = 0; i < noticias.length; i++) {
-							$scope.noticias.push(noticias[i]);
-						};
-					};
-				};*/
 				
 			}else{
 				$ionicPopup.alert({
@@ -391,5 +365,8 @@ function ($scope, $stateParams, $ionicLoading, $ionicPopup, $state, ServiceGener
 	// Abrir Pdf
 	$scope.openPdf = function(namePdf){
 		window.open('http://fbapp.brm.com.co/fbappFundacion/appVendedores/pdf/noticias/'+namePdf, '_system', 'location=yes');
+	}
+	$scope.openURL= function(link){
+		window.open('http://'+link);
 	}
 }])

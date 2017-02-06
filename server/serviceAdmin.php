@@ -357,7 +357,7 @@ if (isset($_POST['accion']) && !empty($_POST['accion']) ) {
 						$idNoticia = $Noticia->setInstancia('VenNoticia');
 						if ($idNoticia > 0) {
 							$Notification = new Notification;
-							$Notification->sendMessageAndroid($_POST['titulo']);
+							$Notification->sendMessageAndroid($idNoticia, $_POST['titulo']);
 							// Inserta Secciones a la noticia
 							foreach ($_FILES as $key => $value) {
 								if ($key != "image" && $key != "pdf" && $key != "video") {

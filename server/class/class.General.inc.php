@@ -340,7 +340,7 @@ class General
 	}
 
 	function moveFile($file,$ruta,$id){
-		printVar($file['size']);
+		//printVar($file['size']);
 		if ($file['size'] > 5000000) {
 			$res = false;
 		}else{

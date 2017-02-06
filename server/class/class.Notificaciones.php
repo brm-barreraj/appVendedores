@@ -5,7 +5,7 @@
 class Notification
 {
 	
-	function sendMessageAndroid($mensaje){
+	function sendMessageAndroid($idNoticia , $mensaje){
 		$content = array(
 			"en" => $mensaje
 			);
@@ -13,7 +13,7 @@ class Notification
 		$fields = array(
 			'app_id' => "70f89bba-c190-4195-ba99-44ac183508a7",
 			'included_segments' => array('Active Users'),
-			'data' => array("foo" => "bar"),
+			'data' => array("foo" => "bar", "idNoticia" => $idNoticia),
 			'contents' => $content
 		);
 		

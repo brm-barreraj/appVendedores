@@ -11,8 +11,8 @@
 				</a>
 		    </div>
 		    <div id="frist-new-info">
-		      	<strong>MARKETING</strong>
-		        <div class="producto-select">
+		      	<strong>{{nombreSubcategoria}}</strong>
+		        <div class="producto-select" ng-show="productos">
 		        	<select ng-options="producto.nombre for producto in productos" ng-model="productoModel" ng-change="selectedProd(productoModel.idProducto)"></select>
 		        </div>
 		    </div>
