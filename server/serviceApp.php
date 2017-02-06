@@ -110,11 +110,13 @@ switch ($request->accion) {
 	
 	/* Login */
 	case 'login':
-		if (isset($request->usuario) && $request->usuario != "" &&
+		if (isset($request->email) && $request->email != "" &&
+			isset($request->usuario) && $request->usuario != "" &&
 			isset($request->contrasena) && $request->contrasena != "") {
+			$email=$request->email;
 			$usuario=$request->usuario;
 			$contrasena=$request->contrasena;
-			$user = $General->getTotalDatos('VenUsuario',null,array('usuario'=>$usuario,'contrasena'=>$contrasena,'estado'=>'A'));
+			$user = $General->getTotalDatos('VenUsuario',null,array('email'=>$email, 'usuario'=>$usuario, 'contrasena'=>$contrasena, 'estado'=>'A'));
 			if (!$user) {
 			  	$error = 2;
 			}else{

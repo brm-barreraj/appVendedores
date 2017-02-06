@@ -16,7 +16,7 @@ angular.module('app', ['ionic', 'app.controllers', 'app.routes', 'app.directives
 
 })
 
-.run(function($ionicPlatform, $ionicPopup) {
+.run(function($ionicPlatform, $ionicPopup, $state) {
   $ionicPlatform.ready(function() {
     // Check for network connection
     if(window.Connection) {
@@ -32,7 +32,8 @@ angular.module('app', ['ionic', 'app.controllers', 'app.routes', 'app.directives
     }
     // Notificaciones con onesignal
     var notificationOpenedCallback = function(jsonData) {
-      console.log('notificationOpenedCallback: ' + JSON.stringify(jsonData));
+      var idNoticia = jsonData.notification.payload.additionalData.idNoticia;
+      $state.go("menu.detalle", {idNoticia: idNoticia});
     };
     if (window.plugins && window.plugins.OneSignal) {
       window.plugins.OneSignal
