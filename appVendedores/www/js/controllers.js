@@ -148,13 +148,14 @@ function ($scope, $stateParams, $ionicLoading, $ionicPopup, $state, ServiceGener
 			var subcategorias = result.data;
 			for (var i = 0; i < subcategorias.length; i++) {
 				subcategorias[i].nDiv = nDiv;
-				if (subcategorias[i].nombre.length >= 21) {
+				/*if (subcategorias[i].nombre.length >= 21) {
 					subcategorias[i].nombre = subcategorias[i].nombre.substring(0,21)+"...";
-				};
+				};*/
 				nDiv++;
 				if (nDiv == 6) {nDiv = 1};
 			};
 			$scope.categoria = nombreCategoria;
+			$scope.idCategoria = idCategoria;
 			$scope.subcategorias = subcategorias;
 		}else{
 			console.log("error","Ocurrio un error");
@@ -185,6 +186,7 @@ function ($scope, $stateParams, $ionicLoading, $ionicPopup, $state, ServiceGener
 function ($scope, $stateParams, $ionicLoading, $ionicPopup, $state, ServiceGeneral, $ionicHistory) {
 	var idProducto = 0
 	$scope.categoria = $stateParams.categoria;
+	$scope.idCategoria = $stateParams.idCategoria;
 	$scope.nombreSubcategoria = $stateParams.nombreSubcategoria;
 	$scope.fechaSubcategoria = $stateParams.fechaSubcategoria;
 	$scope.productos = [];

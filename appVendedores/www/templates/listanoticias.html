@@ -1,13 +1,12 @@
 <ion-view  id="page2">
   <ion-content id="ion-content-clear">
-		<div id="frist-new" style="background-image:url(http://fbapp.brm.com.co/fbappFundacion/appVendedores/img/noticias/{{noticia1.imagen}})">
+		<div id="frist-new" style="background-image:url(img/imgs/bg-list-default-{{idCategoria}}.jpg)">
 		    <div class="list-cat-tipo">
-				<a ng-click="selCategoria(categoria1)">
-					<i class="lnr lnr-banknote"></i>
+				<a ng-click="selCategoria(categoria1)" class="{{idCategoria == 1 ? 'active':''}}">
+					<span>{{categoria1.nombre}}</span>
 				</a>
-				<span class="separador-icons"> / </span>
-				<a ng-click="selCategoria(categoria2)">
-					<i class="lnr lnr-news"></i>
+				<a ng-click="selCategoria(categoria2)" class="{{idCategoria == 2 ? 'active':''}}">
+					<span>{{categoria2.nombre}}</span>
 				</a>
 		    </div>
 		    <div id="frist-new-info">
