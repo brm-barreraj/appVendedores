@@ -8,26 +8,18 @@
     <div class="spacer" style="width: 300px; height: 60px;"></div>
     <form id="login-form1" class="list">
       <ion-list id="login-list2">
-        <label class="item item-input" id="login-input1">
-          <i class="lnr lnr-user logo-small"></i>
-          <input type="text" ng-model="usuario.user" placeholder="Usuario">
-        </label>
+
         <label class="item item-input" id="login-input2">
           <i class="lnr lnr-lock logo-small"></i>
           <input type="password" ng-model="usuario.soeid" placeholder="SOE ID">
         </label>
-        <label class="item item-input" id="login-input2">
-          <i class="lnr lnr-lock logo-small"></i>
-          <input type="password" ng-model="usuario.pass" placeholder="Password">
-        </label>
+
       </ion-list>
       <div class="spacer" style="height: 40px;"></div>
       <a  id="login-button1" ng-click="login(usuario)" class="btn-login button button-stable  button-block">
-        Ingresar 
+        Aceptar
 			<i class="lnr lnr-arrow-right logo-small"></i>
       </a>
     </form>
   </ion-content>
 </ion-view>
-
-

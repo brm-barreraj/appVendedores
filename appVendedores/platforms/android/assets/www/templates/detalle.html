@@ -7,7 +7,7 @@
         <strong>{{detalleNoticia.subtitulo}}</strong>
         <small>
           <i class="lnr lnr-calendar-full"></i>
-          {{detalleNoticia.fechaMod}}
+          {{formatDate(detalleNoticia.fechaMod) | date:"dd/MM/yyyy"}}
         </small>
         <div id="diagonal"></div>
     </div>
@@ -18,7 +18,7 @@
         <strong>{{detalleNoticia.subtitulo}}</strong>
         <small>
           <i class="lnr lnr-calendar-full"></i>
-          {{detalleNoticia.fechaMod}}
+          {{formatDate(detalleNoticia.fechaMod) | date:"MM/dd/yyyy"}}
         </small>
         <div id="diagonal"></div>
     </div>
@@ -30,7 +30,7 @@
 				<strong>{{detalleNoticia.subtitulo}}</strong>
         <small>
         	<i class="lnr lnr-calendar-full"></i>
-				  {{detalleNoticia.fechaMod}}
+				  {{formatDate(detalleNoticia.fechaMod) | date:"MM/dd/yyyy"}}
         </small>
         <div id="diagonal"></div>
 		</div>

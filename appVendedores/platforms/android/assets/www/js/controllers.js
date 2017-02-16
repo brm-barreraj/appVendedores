@@ -2,27 +2,27 @@ angular.module('app.controllers', ['ionic'])
   
 .controller('loginCtrl', ['$scope', '$stateParams', '$ionicLoading', '$ionicPopup', '$timeout', '$state', 'ServiceGeneral', '$ionicHistory',
 function($scope, $stateParams, $ionicLoading, $ionicPopup, $timeout, $state, ServiceGeneral, $ionicHistory) {
+
 	$scope.login = function(usuario){
-		if (usuario && usuario.user && usuario.user != "" && usuario.pass && usuario.pass != "") {
+		if (usuario && usuario.soeid && usuario.soeid != "") {
 			$ionicLoading.show({
 				template: 'Cargando...'
 			});
 			var parameters = {
 				accion : "login",
-				email : usuario.user,
-				usuario : usuario.soeid,
-				contrasena : usuario.pass
+				usuario : usuario.soeid
 			};
 			ServiceGeneral.post(parameters)
 			.then(function(result){
 				$ionicLoading.hide();
 				if(result.error == 1){
-					window.localStorage.setItem('us3r4pp', JSON.stringify(result.data));
-					$state.go('menu.main');
+					$scope.usuario = {};
+					window.localStorage.setItem('us3r4ppTemp', JSON.stringify(result.data));
+					$state.go('login-p2');
 				}else if(result.error == 2){
 					$ionicPopup.alert({
 						title: 'Usuario incorrecto',
-						template: 'El usuario no es correcto'
+						template: 'EL SOE ID es incorrecto'
 					});
 				}
 			},function(err){
@@ -35,9 +35,23 @@ function($scope, $stateParams, $ionicLoading, $ionicPopup, $timeout, $state, Ser
 		}else{
 			$ionicPopup.alert({
 				title: 'Datos incorrectos',
-				template: 'Por favor ingrese Usuario y contraseña'
+				template: 'Por favor ingrese el SOE ID'
 			});
 		}
+	}
+
+	$scope.loginp2 = function(usuario){
+		var userData = JSON.parse( window.localStorage.getItem('us3r4ppTemp'));
+		if (usuario && userData && userData.email == usuario.user && userData.contrasena == usuario.pass) {
+			window.localStorage.setItem('us3r4pp', JSON.stringify(userData));
+			localStorage.removeItem('us3r4ppTemp');
+			$state.go('menu.main');
+		}else{
+			$ionicPopup.alert({
+				title: 'Usuario incorrecto',
+				template: 'Verifica que el usuario y la contraseña esten correctamente'
+			});
+		};
 	}
 }])
 
@@ -83,8 +97,13 @@ function ($scope, $stateParams, $ionicLoading, $ionicPopup, $state, ServiceGener
 
 	// Cerrar sesión
 	$scope.loguot = function(){
-		localStorage.removeItem('us3r4pp');
-		$state.go('login');
+
+		$ionicHistory.clearCache().then(function(){
+			localStorage.removeItem('us3r4pp');
+			$state.go('login');
+		});
+
+		
 	}
 }])
 
@@ -148,13 +167,14 @@ function ($scope, $stateParams, $ionicLoading, $ionicPopup, $state, ServiceGener
 			var subcategorias = result.data;
 			for (var i = 0; i < subcategorias.length; i++) {
 				subcategorias[i].nDiv = nDiv;
-				if (subcategorias[i].nombre.length >= 21) {
+				/*if (subcategorias[i].nombre.length >= 21) {
 					subcategorias[i].nombre = subcategorias[i].nombre.substring(0,21)+"...";
-				};
+				};*/
 				nDiv++;
 				if (nDiv == 6) {nDiv = 1};
 			};
 			$scope.categoria = nombreCategoria;
+			$scope.idCategoria = idCategoria;
 			$scope.subcategorias = subcategorias;
 		}else{
 			console.log("error","Ocurrio un error");
@@ -175,6 +195,7 @@ function ($scope, $stateParams, $ionicLoading, $ionicPopup, $state, ServiceGener
 			idCategoria: idCategoria,
 			idSubcategoria: subcat.idCategoria,
 			nombreSubcategoria: subcat.nombre,
+			imagenSubcategoria: subcat.imagen,
 			fechaSubcategoria: subcat.fechaMod
 		}
 		$state.go('menu.listanoticias', subcategoria);
@@ -185,7 +206,9 @@ function ($scope, $stateParams, $ionicLoading, $ionicPopup, $state, ServiceGener
 function ($scope, $stateParams, $ionicLoading, $ionicPopup, $state, ServiceGeneral, $ionicHistory) {
 	var idProducto = 0
 	$scope.categoria = $stateParams.categoria;
+	$scope.idCategoria = $stateParams.idCategoria;
 	$scope.nombreSubcategoria = $stateParams.nombreSubcategoria;
+	$scope.imagenSubcategoria = $stateParams.imagenSubcategoria;
 	$scope.fechaSubcategoria = $stateParams.fechaSubcategoria;
 	$scope.productos = [];
 	$scope.noticia1 = [];
@@ -364,9 +387,13 @@ function ($scope, $stateParams, $ionicLoading, $ionicPopup, $state, ServiceGener
 
 	// Abrir Pdf
 	$scope.openPdf = function(namePdf){
-		window.open('http://fbapp.brm.com.co/fbappFundacion/appVendedores/pdf/noticias/'+namePdf, '_system', 'location=yes');
+		window.open('http://fbapp.brm.com.co/fbappFundacion/appVendedores/pdf/noticias/'+namePdf, '_self', 'location=yes');
 	}
 	$scope.openURL= function(link){
 		window.open('http://'+link);
 	}
+	$scope.formatDate = function(date){
+          var dateOut = new Date(date);
+          return dateOut;
+    };
 }])

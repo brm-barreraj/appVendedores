@@ -1,4 +1,8 @@
-<ion-view title="Login" id="page4" class="login" hide-nav-bar="true">
+<ion-view id="page4" class="login">
+
+  <ion-nav-bar class="transparent">
+    <ion-nav-back-button class="azul-claro"></ion-nav-back-button>
+  </ion-nav-bar>
   <ion-content scroll="false" padding="false" class="has-header" >
     <div id="login-container1" class="hide-on-keyboard-open">
       <div >
@@ -9,15 +13,20 @@
     <form id="login-form1" class="list">
       <ion-list id="login-list2">
 
+        <label class="item item-input" id="login-input1">
+          <i class="lnr lnr-user logo-small"></i>
+          <input type="text" ng-model="usuario.user" placeholder="Usuario">
+        </label>
+        
         <label class="item item-input" id="login-input2">
           <i class="lnr lnr-lock logo-small"></i>
-          <input type="password" ng-model="usuario.soeid" placeholder="SOE ID">
+          <input type="password" ng-model="usuario.pass" placeholder="Password">
         </label>
 
       </ion-list>
       <div class="spacer" style="height: 40px;"></div>
-      <a  id="login-button1" ng-click="login(usuario)" class="btn-login button button-stable  button-block">
-        Aceptar
+      <a  id="login-button1" ng-click="loginp2(usuario)" class="btn-login button button-stable  button-block">
+        Ingresar
 			<i class="lnr lnr-arrow-right logo-small"></i>
       </a>
     </form>

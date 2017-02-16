@@ -1,13 +1,14 @@
 <ion-view  id="page2">
   <ion-content id="ion-content-clear">
-		<div id="frist-new" style="background-image:url(http://fbapp.brm.com.co/fbappFundacion/appVendedores/img/noticias/{{noticia1.imagen}})">
+
+
+		<div id="frist-new" ng-style="imagenSubcategoria == '' ? {'background-image':'url(img/imgs/bg-list-default-{{idCategoria}}.jpg)'} : {'background-image':'url(http://fbapp.brm.com.co/fbappFundacion/appVendedores/img/categorias/{{imagenSubcategoria}})'}">
 		    <div class="list-cat-tipo">
-				<a ng-click="selCategoria(categoria1)">
-					<i class="lnr lnr-banknote"></i>
+				<a ng-click="selCategoria(categoria1)" class="{{idCategoria == 1 ? 'active':''}}">
+					<span>{{categoria1.nombre}}</span>
 				</a>
-				<span class="separador-icons"> / </span>
-				<a ng-click="selCategoria(categoria2)">
-					<i class="lnr lnr-news"></i>
+				<a ng-click="selCategoria(categoria2)" class="{{idCategoria == 2 ? 'active':''}}">
+					<span>{{categoria2.nombre}}</span>
 				</a>
 		    </div>
 		    <div id="frist-new-info">
@@ -22,8 +23,11 @@
 		<ion-list id="news">
 			<div class="new" ng-repeat="noticia in noticias" ng-click="selNoticia(noticia.idNoticia)">
 		        <img ng-src="http://fbapp.brm.com.co/fbappFundacion/appVendedores/img/noticias/{{noticia.imagen}}">
-		        <p>{{reducirTamTitle(noticia.titulo)}}</p>
-		         <strong>{{noticia.subtitulo}}</strong>
+		        <div>
+			        <p>{{reducirTamTitle(noticia.titulo)}}</p>
+			        <strong>{{noticia.subtitulo}}</strong>	
+		        </div>
+
 			</div>
 		</ion-list>
 		<!-- <ion-infinite-scroll ng-if="!estadoScroll" on-infinite="loadMore()" distance="10%"></ion-infinite-scroll> -->

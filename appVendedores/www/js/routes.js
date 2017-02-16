@@ -11,7 +11,7 @@ angular.module('app.routes', [])
 
   .state('menu.listanoticias', {
     cache: false,
-    url: '/listanoticias/:categoria/:idCategoria/:idSubcategoria/:nombreSubcategoria/:fechaSubcategoria/',
+    url: '/listanoticias/:categoria/:idCategoria/:idSubcategoria/:nombreSubcategoria/:fechaSubcategoria/:imagenSubcategoria/',
     views: {
       'side-menu21': {
         templateUrl: 'templates/listanoticias.html',
@@ -33,6 +33,7 @@ angular.module('app.routes', [])
   })
 
   .state('menu.main', {
+    cache: false,
     url: '/main',
     views: {
       'side-menu21': {
@@ -61,6 +62,12 @@ angular.module('app.routes', [])
   .state('login', {
     url: '/login',
     templateUrl: 'templates/login.html',
+    controller: 'loginCtrl'
+  })
+
+  .state('login-p2', {
+    url: '/login-p2',
+    templateUrl: 'templates/login-p2.html',
     controller: 'loginCtrl'
   })
 
